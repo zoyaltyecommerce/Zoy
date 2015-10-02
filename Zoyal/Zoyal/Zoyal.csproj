@@ -410,6 +410,10 @@
     </Compile>
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Code\BLL.cs" />
+    <Compile Include="Code\Dal.cs" />
+    <Compile Include="Code\SQLHelper.cs" />
+    <Compile Include="Code\TransLayer.cs" />
     <Compile Include="Contactus.aspx.cs">
       <DependentUpon>Contactus.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
