@@ -210,4 +210,32 @@ namespace Zoyal.Code
         public int LINK_SIGNUPID { get; set; }
         public int LINK_TABID { get; set; }
     }
+
+    public class PARTNERS : SMVTS_MAIN
+    {
+        public int PARTNER_ID { get; set; }
+        public string PARTNER_NAME { get; set; }
+        public string PARTNER_EMAIL { get; set; }
+        public string PARTNER_SUBJECT { get; set; }
+        public string PARTNER_PHONENUMBER { get; set; }
+        public string PARTNER_MESSAGE { get; set; }
+        public int PARTNER_CREATEDBY { get; set; }
+        public DateTime PARTNER_CREATEDDATE { get; set; }
+        public int PARTNER_MODIFIEDBY { get; set; }
+        public DateTime PARTNER_MODIFIEDDATE { get; set; }
+    }
+    public class CONTACTUS : SMVTS_MAIN
+    {
+        public int CONTACT_ID { get; set; }
+        public string CONTACT_NAME { get; set; }
+        public string CONTACT_EMAIL { get; set; }
+        public string CONTACT_SUBJECT { get; set; }
+        public string CONTACT_PHONENUMBER { get; set; }
+        public string CONTACT_MESSAGE { get; set; }
+        public int CONTACT_CREATEDBY { get; set; }
+        public DateTime CONTACT_CREATEDDATE { get; set; }
+        public int CONTACT_MODIFIEDBY { get; set; }
+        public DateTime CONTACT_MODIFIEDDATE { get; set; }
+    }
+
 }

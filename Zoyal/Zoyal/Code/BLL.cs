@@ -76,10 +76,10 @@ namespace Zoyal.Code
             return str.Replace("'", "''");
         }
 
-        public static DataTable createuser(LBR_SIGNUP obj)
+        internal static bool INSERTCONTACT(CONTACTUS obj)
         {
-
-            DataTable status = BLL.ExecuteQuery("EXEC USP_LBR_SIGNUP @OPERATION='signup',@LBR_FIRSTNAME='" + obj.LBR_FIRSTNAME + "',@LBR_LASTNAME='" + obj.LBR_LASTNAME + "',@LBR_EMAILID='" + obj.LBR_EMAILID + "',@LBR_PASSWORD='" + BLL.Encrypt(obj.LBR_PASSWORD) + "',@LBR_PHONENUMBER='" + obj.LBR_PHONENUMBER + "',@LBR_ADDRESS='" + obj.LBR_ADDRESS + "',@LBR_CREATEDBY=1,@LBR_MODIFIEDBY=1,@LBR_MODIFIEDTYPE=1,@LBR_LOGINTYPE='" + obj.LBR_LOGINTYPE + "'");
+            bool status = false;
+            status = BLL.ExecuteNonQuery("EXEC USP_CONTACTUS @CONTACT_NAME='" + obj.CONTACT_NAME + "',@CONTACT_EMAIL='" + obj.CONTACT_EMAIL + "',@CONTACT_SUBJECT='" + obj.CONTACT_SUBJECT + "',@CONTACT_PHONENUMBER='" + obj.CONTACT_PHONENUMBER + "',@CONTACT_MESSAGE='" + obj.CONTACT_MESSAGE + "',@CONTACT_CREATEDBY=1,@CONTACT_MODIFIEDBY=1,@OPERATION='INSERCONTACT'");
             return status;
         }
         

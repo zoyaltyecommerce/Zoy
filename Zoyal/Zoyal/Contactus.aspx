@@ -202,7 +202,7 @@
 		
 		<!-- Begin Login -->
 		<div class="login-wrapper">
-			<form id="form-login" role="form">
+			<div id="form-login" >
 				<h4>Login</h4>
 				<p>If you're a member, login here.</p>
 				<div class="form-group">
@@ -218,13 +218,13 @@
 					<li><a href="#">Request new password</a></li>
 				</ul>
 				<button type="submit" class="btn btn-white">Log in</button>
-			</form>
+			</div>
 		</div>
 		<!-- End Login -->
 		
 		
 		<!-- Begin Main -->
-		<div role="main" class="main">
+		<div  class="main">
 		
 			<!-- Begin page top -->
 			<section class="page-top">
@@ -253,7 +253,8 @@
                                         </div>
                                         <div class="col-xs-6">
                                             <label for="customer_mail">Your Email*</label>
-                                            <input name="customer_mail" type="text" id="customer_mail" class="form-control" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." required>
+                                            <asp:TextBox runat="server" ID="txt_email" class="form-control" placeholder="Please enter your Email Address."></asp:TextBox>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -261,20 +262,26 @@
                                     <div class="row">
                                         <div class="col-xs-6">
                                             <label for="subject">Subject*</label>
-                                            <input name="subject" type="text" id="subject" class="form-control" value="" data-msg-required="Please enter the subject." required>
+                                            <asp:TextBox runat="server" ID="txt_subject" class="form-control" placeholder="Please enter the subject"></asp:TextBox>
+                                            
+                                    
                                         </div>
                                         <div class="col-xs-6">
                                             <label for="website">Phone number</label>
-                                            <input type="text" class="form-control" id="website" name="website" value="">
+                                            <asp:TextBox runat="server" ID="txt_phonenumber" class="form-control" placeholder="Please enter your Phone number."></asp:TextBox>
+                                            
+                                            
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="comments">Your Message*</label>
-                                    <textarea name="comments" id="comments" class="form-control" rows="3" data-msg-required="Please enter your message." required></textarea>
+                                    <asp:TextBox TextMode="MultiLine" ID="txt_message" runat="server" class="form-control" rows="3" placeholder="Please enter subject"></asp:TextBox> 
+                                    
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" value="Submit" class="btn btn-primary">
+                                    <asp:Button runat="server" ID="btn_submit" OnClick="btn_submit_Click" class="btn btn-primary" />
+                                    
                                 </div>
                             </div>
 						</div>
@@ -342,13 +349,13 @@
 						<div class="col-xs-6 col-sm-3">
 							<h2>Don’t miss out</h2>
 							<p>In venenatis neque a eros laoreet eu placerat erat suscipit. Fusce cursus, erat ut scelerisque.</p>
-							<form class="form-inline form-newsletter" role="form">
+							<div class="form-inline form-newsletter" >
 								<div class="form-group">
 									<label class="sr-only" for="exampleInputEmail2">Email address</label>
 									<input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter your email here">
 								</div>
 								<button type="submit" class="btn"><i class="fa fa-caret-right"></i></button>
-							</form>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -438,7 +445,7 @@
 								<li class="color"><a href="#" class="color4"></a></li>
 							</ul>
 
-							<form method="post" class="cart">
+							<div  class="cart">
 								<div class="quantity pull-left">
 									<input type="button" class="minus" value="-">
 									<input type="text" class="input-text qty" title="Qty" value="1" name="quantity" min="1" step="1">
@@ -448,7 +455,7 @@
 									<span><i class="fa fa-heart"></i></span>
 								</a>
 								<button href="#" class="btn btn-primary btn-icon"><i class="fa fa-shopping-cart"></i> Add to cart</button>
-							</form>
+							</div>
 							
 							<ul class="list-unstyled product-meta">
 								<li>Sku: 54329843</li>
@@ -533,7 +540,7 @@
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 				<p class="clearfix"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button></p>
-				<form class="form-inline form-search" role="form">
+				<div class="form-inline form-search" >
 					<div class="form-group">
 						<label class="sr-only" for="textsearch">Enter text search</label>
 						<input type="text" class="form-control input-lg" id="textsearch" placeholder="Enter text search">
