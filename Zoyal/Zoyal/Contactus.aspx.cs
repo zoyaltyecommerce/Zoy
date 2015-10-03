@@ -47,12 +47,12 @@ namespace Zoyal
             try
             {
                 CONTACTUS obj = new CONTACTUS();
-                obj.CONTACT_NAME = txt_name.Text;
-                obj.CONTACT_EMAIL = txt_email.Text;
-                obj.CONTACT_MESSAGE = txt_message.Text;
+                obj.CONTACT_NAME = BLL.ReplaceQuote(txt_name.Text);
+                obj.CONTACT_EMAIL = BLL.ReplaceQuote(txt_email.Text);
+                obj.CONTACT_MESSAGE = BLL.ReplaceQuote(txt_message.Text);
                 obj.CONTACT_MODIFIEDBY = 1;
                 obj.CONTACT_PHONENUMBER = txt_phonenumber.Text;
-                obj.CONTACT_SUBJECT = txt_subject.Text;
+                obj.CONTACT_SUBJECT = BLL.ReplaceQuote(txt_subject.Text);
                 bool status = BLL.INSERTCONTACT(obj);
                 if(status==true)
                 {
