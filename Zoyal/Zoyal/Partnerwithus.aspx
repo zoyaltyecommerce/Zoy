@@ -250,11 +250,26 @@
                                     <div class="row">
                                         <div class="col-xs-6">
                                             <label for="name">Your Name*</label>
-                                            <asp:TextBox ID="txt_yourname" runat="server" class="form-control" value=""  placeholder="Please enter your name."  ></asp:TextBox>
+                                            <asp:TextBox ID="txt_yourname" runat="server" class="form-control" value=""  placeholder="Please enter your name."   ></asp:TextBox>
+
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+                                                        ControlToValidate="txt_yourname" ErrorMessage="Please enter your name" Display="Dynamic" SetFocusOnError="true" ForeColor="Red">
+                                            </asp:RequiredFieldValidator>
+ 
                                                 </div>
                                         <div class="col-xs-6">
                                             <label for="customer_mail">Your Email*</label>
                                             <asp:TextBox ID="txt_email" runat="server" class="form-control" value=""  placeholder="Please enter a valid email address." ></asp:TextBox>
+                                              <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
+                                                        ControlToValidate="txt_email" ErrorMessage="Please enter a valid email address" Display="Dynamic" ForeColor="Red" SetFocusOnError="true">
+                                            </asp:RequiredFieldValidator>
+
+ <asp:RegularExpressionValidator Display="Dynamic" ForeColor="Red" ID="TxtEmailRegEx" runat="server" 
+       ErrorMessage="Enter a valid email address"
+       ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" 
+       ControlToValidate="txt_email" >
+ </asp:RegularExpressionValidator>
+
 
                                         </div>
                                     </div>
@@ -266,18 +281,30 @@
                                             <label for="website">Phone Number*</label>
                                          
                                             <asp:TextBox ID="txt_phonenumber" runat="server" class="form-control" value="" placeholder="Please enter phone-number."></asp:TextBox>
+                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
+                                                        ControlToValidate="txt_phonenumber" ErrorMessage="Please enter phone-number" Display="Dynamic" ForeColor="Red" SetFocusOnError="true">
+                                            </asp:RequiredFieldValidator>
+                                             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" Display="Dynamic" ForeColor="Red"
+                                                    ControlToValidate="txt_phonenumber" ErrorMessage="Enter the valid phone number"  
+                                                        ValidationExpression="[0-9]{10}">
+                                             </asp:RegularExpressionValidator>
                                         </div>
                                         <div class="col-xs-6">
                                             <label for="subject">Subject*</label>
                                             <asp:TextBox ID="txt_subject" runat="server" class="form-control" value="" placeholder="Please enter the subject."  ></asp:TextBox>
-                            
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server"
+                                                        ControlToValidate="txt_subject" ErrorMessage="Please enter the subject" Display="Dynamic" ForeColor="Red" SetFocusOnError="true">
+                                            </asp:RequiredFieldValidator>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="comments">Your Message*</label>
                                    <asp:TextBox ID="txt_comments" runat="server" class="form-control" rows="3" TextMode="MultiLine" placeholder="Please enter your message." ></asp:TextBox>
-                                     
+                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server"
+                                                        ControlToValidate="txt_comments" ErrorMessage="Please enter your message" Display="Dynamic" ForeColor="Red" SetFocusOnError="true">
+                                            </asp:RequiredFieldValidator>
+                              
                                 </div>
                                 <div class="form-group">
                                     <asp:Button ID="btn_partner" runat="server" class="btn btn-primary"  Text="Submit" OnClick="btn_partner_Click"  />

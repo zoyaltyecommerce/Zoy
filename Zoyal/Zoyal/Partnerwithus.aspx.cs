@@ -47,11 +47,11 @@ namespace Zoyal
             try
             {
                 PARTNERS obj = new PARTNERS();
-                obj.PARTNER_NAME = txt_yourname.Text;
-                obj.PARTNER_EMAIL = txt_email.Text;
-                obj.PARTNER_PHONENUMBER = txt_phonenumber.Text;
-                obj.PARTNER_SUBJECT = txt_subject.Text;
-                obj.PARTNER_MESSAGE = txt_comments.Text;
+                obj.PARTNER_NAME = BLL.ReplaceQuote(txt_yourname.Text);
+                obj.PARTNER_EMAIL = BLL.ReplaceQuote(txt_email.Text);
+                obj.PARTNER_PHONENUMBER =  txt_phonenumber.Text;
+                obj.PARTNER_SUBJECT = BLL.ReplaceQuote( txt_subject.Text);
+                obj.PARTNER_MESSAGE = BLL.ReplaceQuote(txt_comments.Text);
                 obj.PARTNER_MODIFIEDBY = 1;
                 bool status = BLL.INSERTPARTNER(obj);
                 if (status == true)
