@@ -280,7 +280,7 @@
                                     
                                 </div>
                                 <div class="form-group">
-                                    <asp:Button runat="server" ID="btn_submit" OnClick="btn_submit_Click" class="btn btn-primary" />
+                                    <asp:Button runat="server" ID="btn_submit" OnClick="btn_submit_Click" class="btn btn-primary"  Text="submit"/>
                                     
                                 </div>
                             </div>
