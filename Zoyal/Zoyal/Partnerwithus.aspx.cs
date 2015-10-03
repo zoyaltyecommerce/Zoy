@@ -17,7 +17,8 @@ namespace Zoyal
             {
                 try
                 {
-                    clearcontrols();
+                             clearcontrols();
+
                 }
                 catch (Exception ex)
                 {
@@ -61,6 +62,8 @@ namespace Zoyal
                 {
                     BLL.ShowMessage(this, "Please contact administrator");
                 }
+
+                clearcontrols();
             }
             catch (Exception ex)
             {

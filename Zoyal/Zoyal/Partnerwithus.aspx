@@ -250,11 +250,11 @@
                                     <div class="row">
                                         <div class="col-xs-6">
                                             <label for="name">Your Name*</label>
-                                            <asp:TextBox ID="txt_yourname" runat="server" class="form-control" value=""  data-msg-required="Please enter your name." required ></asp:TextBox>
+                                            <asp:TextBox ID="txt_yourname" runat="server" class="form-control" value=""  placeholder="Please enter your name."  ></asp:TextBox>
                                                 </div>
                                         <div class="col-xs-6">
                                             <label for="customer_mail">Your Email*</label>
-                                            <asp:TextBox ID="txt_email" runat="server" class="form-control" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." required></asp:TextBox>
+                                            <asp:TextBox ID="txt_email" runat="server" class="form-control" value=""  placeholder="Please enter a valid email address." ></asp:TextBox>
 
                                         </div>
                                     </div>
@@ -265,18 +265,18 @@
                                         <div class="col-xs-6">
                                             <label for="website">Phone Number*</label>
                                          
-                                            <asp:TextBox ID="txt_phonenumber" runat="server" class="form-control" value=""></asp:TextBox>
+                                            <asp:TextBox ID="txt_phonenumber" runat="server" class="form-control" value="" placeholder="Please enter phone-number."></asp:TextBox>
                                         </div>
                                         <div class="col-xs-6">
                                             <label for="subject">Subject*</label>
-                                            <asp:TextBox ID="txt_subject" runat="server" class="form-control" value="" data-msg-required="Please enter the subject." required ></asp:TextBox>
+                                            <asp:TextBox ID="txt_subject" runat="server" class="form-control" value="" placeholder="Please enter the subject."  ></asp:TextBox>
                             
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="comments">Your Message*</label>
-                                   <asp:TextBox ID="txt_comments" runat="server" class="form-control" rows="3" TextMode="MultiLine" data-msg-required="Please enter your message." required></asp:TextBox>
+                                   <asp:TextBox ID="txt_comments" runat="server" class="form-control" rows="3" TextMode="MultiLine" placeholder="Please enter your message." ></asp:TextBox>
                                      
                                 </div>
                                 <div class="form-group">
