@@ -238,4 +238,24 @@ namespace Zoyal.Code
         public DateTime CONTACT_MODIFIEDDATE { get; set; }
     }
 
+    public class USERS : SMVTS_MAIN
+    {
+        public int USER_ID { get; set; }
+        public string USER_FIRSTNAME { get; set; }
+        public string USER_LASTNAME { get; set; }
+        public string USER_EMAILID { get; set; }
+        public string USER_USERNAME { get; set; }
+        public string USER_PASSWORD { get; set; }
+        public int USER_CREATEDBY { get; set; }
+        public DateTime USER_CREATEDDATE { get; set; }
+        public int USER_MODIFIEDBY { get; set; }
+        public DateTime USER_MODIFIEDDATE { get; set; }
+
+
+        public string USER_STATUS { get; set; }
+
+        public string USER_LOGINTYPE { get; set; }
+
+        public string USER_PHONE { get; set; }
+    }
 }

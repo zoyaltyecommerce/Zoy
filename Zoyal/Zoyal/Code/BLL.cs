@@ -79,11 +79,55 @@ namespace Zoyal.Code
         internal static bool INSERTCONTACT(CONTACTUS obj)
         {
             bool status = false;
-            status = BLL.ExecuteNonQuery("EXEC USP_CONTACTUS @CONTACT_NAME='" + obj.CONTACT_NAME + "',@CONTACT_EMAIL='" + obj.CONTACT_EMAIL + "',@CONTACT_SUBJECT='" + obj.CONTACT_SUBJECT + "',@CONTACT_PHONENUMBER='" + obj.CONTACT_PHONENUMBER + "',@CONTACT_MESSAGE='" + obj.CONTACT_MESSAGE + "',@CONTACT_CREATEDBY=1,@CONTACT_MODIFIEDBY=1,@OPERATION='INSERCONTACT'");
+            status = BLL.ExecuteNonQuery("EXEC USP_CONTACTUS @CONTACT_NAME='" + obj.CONTACT_NAME + "',@CONTACT_EMAIL='" + obj.CONTACT_EMAIL + "',@CONTACT_SUBJECT='" + obj.CONTACT_SUBJECT + "',@CONTACT_PHONENUMBER='" + obj.CONTACT_PHONENUMBER + "',@CONTACT_MESSAGE='" + obj.CONTACT_MESSAGE + "',@CONTACT_CREATEDBY=1,@CONTACT_MODIFIEDBY=1,@OPERATION='INSERTCONTACT'");
             return status;
         }
-        
 
-       
+        internal static bool INSERTPARTNER(PARTNERS obj)
+        {
+            bool status = false;
+            status = BLL.ExecuteNonQuery("EXEC USP_PARTNERS @PARTNER_NAME='" + obj.PARTNER_NAME + "',@PARTNER_EMAIL='" + obj.PARTNER_EMAIL + "',@PARTNER_PHONENUMBER='" + obj.PARTNER_PHONENUMBER + "',@PARTNER_SUBJECT='" + obj.PARTNER_SUBJECT + "',@PARTNER_MESSAGE='" + obj.PARTNER_MESSAGE + "',@PARTNER_CREATEDBY=1,@OPERATION='INSERTPARTNER'");
+            return status;
+        }
+        internal static DataTable INSERTUSER(USERS obj)
+        {
+           
+          DataTable  dt = BLL.ExecuteQuery("EXEC USP_USERLOGIN @USER_FIRSTNAME='" + obj.USER_FIRSTNAME + "',@USER_PHONE='"+obj.USER_PHONE+ "',@USER_EMAILID='" + obj.USER_EMAILID + "',@USER_USERNAME='" + obj.USER_USERNAME + "',@USER_PASSWORD='" + obj.USER_PASSWORD + "',@USER_MODIFIEDBY='" + obj.USER_MODIFIEDBY + "',@USER_STATUS ='" + obj.USER_STATUS + "',@USER_LOGINTYPE='" + obj.USER_LOGINTYPE + "',@USER_CREATEDBY=1,@OPERATION='INSERTUSER'");
+            return dt;
+        }
+
+        //FUNCTION TO CHECK USER EXISIST ALREADY OR NOT
+        internal static DataTable checkusers(USERS obj)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                dt = BLL.ExecuteQuery("EXEC USP_USERLOGIN @OPERATION='CHECKEMAIL',@USER_EMAILID='"+ obj.USER_EMAILID +"'");
+            }
+            catch(Exception ex)
+            {
+
+            }
+            return dt;
+        }
+
+        internal static DataTable LOGIN(USERS obj)
+        {
+            
+         DataTable   dt = BLL.ExecuteQuery("EXEC USP_USERLOGIN @OPERATION='LOGIN',@USER_EMAILID='"+ obj.USER_EMAILID + "',@USER_PASSWORD='"+ BLL.Encrypt( obj.USER_PASSWORD) +"'");
+            return dt;
+        }
+
+        internal static DataTable FORGETPWD(USERS obj)
+        {
+
+            DataTable dt = BLL.ExecuteQuery("EXEC USP_USERLOGIN @OPERATION='FORGETPWD',@USER_EMAILID='" + obj.USER_EMAILID + "'");
+                return dt;
+        }
+
+
+
+
+
     }
 }
