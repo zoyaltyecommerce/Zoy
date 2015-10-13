@@ -30,7 +30,7 @@
             document.getElementById("li_login").style.display = "none";
             document.getElementById('btn_signup').style.display = "none";
             document.getElementById('btn_login').style.display = "inline-block";
-            document.getElementById('li_password').style.display = "block";
+            document.getElementById('li_password').style.display = "inline-block";
             document.getElementById('li_account').style.display = "inline-block";
            
            
@@ -82,7 +82,7 @@
         document.getElementById("li_login").style.display = "none";
         document.getElementById('btn_signup').style.display = "none";
         document.getElementById('btn_login').style.display = "inline-block";
-        document.getElementById('li_password').style.display = "block";
+        document.getElementById('li_password').style.display = "inline-block";
         document.getElementById('li_account').style.display = "inline-block";
         }
 
