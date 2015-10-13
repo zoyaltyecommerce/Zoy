@@ -89,7 +89,7 @@ namespace Zoyal
                 mailmessage.To.Add(dt_user.Rows[0]["USER_EMAILID"].ToString());
                 // mailmessage.CC.Add(emailid);
                 mailmessage.Subject = "your account is created";
-                mailmessage.Body = "<p> Dear " + dt_user.Rows[0]["USER_EMAILID"].ToString() + " " + ",<br /> <br />Your account is successfully created " + BLL.Decrypt(dt_user.Rows[0]["USER_EMAILID"].ToString()) + " please <a href=\"http://www.linkskart.com\">Click Here</a> to visit LINKSKART.</p></div>";
+                mailmessage.Body = "<p> Dear " + dt_user.Rows[0]["USER_EMAILID"].ToString() + " " + ",<br /> <br />Your account is successfully created " + " please <a href=\"http://www.linkskart.com\">Click Here</a> to visit LINKSKART.</p></div>";
                 client.EnableSsl = false;
                 try
                 {
