@@ -10,7 +10,7 @@
 namespace Zoyal {
     
     
-    public partial class Contactus {
+    public partial class contact {
         
         /// <summary>
         /// txt_yourname control.

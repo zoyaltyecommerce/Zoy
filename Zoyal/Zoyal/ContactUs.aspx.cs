@@ -8,55 +8,55 @@ using Zoyal.Code;
 
 namespace Zoyal
 {
-    public partial class Contactus : System.Web.UI.Page
+    public partial class contact : System.Web.UI.Page
     {
-        
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
-            { 
-            try
-            {
-                clearcontrols();
-            }
-            catch(Exception ex)
-            {
 
-            }
+       
+            if (!IsPostBack)
+            {
+                try
+                {
+                    clearcontrols();
+                }
+                catch (Exception ex)
+                {
+
+                }
             }
         }
 
         public void clearcontrols()
         {
             try
-            { 
-            txt_email.Text="";
-            txt_name.Text="";
-            txt_phonenumber.Text="";
-            txt_message.Text = "";
-            txt_subject.Text="";
-                }
-            catch(Exception ex)
+            {
+                txt_email.Text = "";
+                txt_yourname.Text = "";
+                txt_phonenumber.Text = "";
+                txt_comments.Text = "";
+                txt_subject.Text = "";
+            }
+            catch (Exception ex)
             {
 
             }
         }
-
         protected void btn_submit_Click(object sender, EventArgs e)
         {
             try
             {
                 CONTACTUS obj = new CONTACTUS();
-                obj.CONTACT_NAME = BLL.ReplaceQuote(txt_name.Text);
+                obj.CONTACT_NAME = BLL.ReplaceQuote(txt_yourname.Text);
                 obj.CONTACT_EMAIL = BLL.ReplaceQuote(txt_email.Text);
-                obj.CONTACT_MESSAGE = BLL.ReplaceQuote(txt_message.Text);
+                obj.CONTACT_MESSAGE = BLL.ReplaceQuote(txt_comments.Text);
                 obj.CONTACT_MODIFIEDBY = 1;
                 obj.CONTACT_PHONENUMBER = txt_phonenumber.Text;
                 obj.CONTACT_SUBJECT = BLL.ReplaceQuote(txt_subject.Text);
                 bool status = BLL.INSERTCONTACT(obj);
-                if(status==true)
+                if (status == true)
                 {
-                    BLL.ShowMessage(this,"Thank you for contacting us, one of our executive will reach you soon");
+                    BLL.ShowMessage(this, "Thank you for contacting us, one of our executive will reach you soon");
                     clearcontrols();
                 }
                 else
@@ -68,6 +68,7 @@ namespace Zoyal
             {
 
             }
+
         }
     }
 }

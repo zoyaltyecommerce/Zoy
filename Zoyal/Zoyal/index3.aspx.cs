@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Zoyal
 {
-    public partial class Aboutus1 : System.Web.UI.Page
+    public partial class index3 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

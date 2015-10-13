@@ -11,7 +11,7 @@ namespace Zoyal
 {
 
 
-    public partial class Aboutus1
+    public partial class shop_cart_full
     {
     }
 }

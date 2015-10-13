@@ -8,16 +8,15 @@ using Zoyal.Code;
 
 namespace Zoyal
 {
-    public partial class Partnerwithus1 : System.Web.UI.Page
+    public partial class partnerwithus : System.Web.UI.Page
     {
-   
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 try
                 {
-                             clearcontrols();
+                    clearcontrols();
 
                 }
                 catch (Exception ex)
@@ -30,7 +29,7 @@ namespace Zoyal
         {
             try
             {
-               txt_yourname .Text = "";
+                txt_yourname.Text = "";
                 txt_email.Text = "";
                 txt_phonenumber.Text = "";
                 txt_subject.Text = "";
@@ -42,6 +41,7 @@ namespace Zoyal
             }
         }
 
+
         protected void btn_partner_Click(object sender, EventArgs e)
         {
             try
@@ -49,8 +49,8 @@ namespace Zoyal
                 PARTNERS obj = new PARTNERS();
                 obj.PARTNER_NAME = BLL.ReplaceQuote(txt_yourname.Text);
                 obj.PARTNER_EMAIL = BLL.ReplaceQuote(txt_email.Text);
-                obj.PARTNER_PHONENUMBER =  txt_phonenumber.Text;
-                obj.PARTNER_SUBJECT = BLL.ReplaceQuote( txt_subject.Text);
+                obj.PARTNER_PHONENUMBER = txt_phonenumber.Text;
+                obj.PARTNER_SUBJECT = BLL.ReplaceQuote(txt_subject.Text);
                 obj.PARTNER_MESSAGE = BLL.ReplaceQuote(txt_comments.Text);
                 obj.PARTNER_MODIFIEDBY = 1;
                 bool status = BLL.INSERTPARTNER(obj);
@@ -71,5 +71,4 @@ namespace Zoyal
             }
         }
     }
-
 }
