@@ -124,7 +124,12 @@ namespace Zoyal.Code
             DataTable dt = BLL.ExecuteQuery("EXEC USP_USERLOGIN @OPERATION='FORGETPWD',@USER_EMAILID='" + obj.USER_EMAILID + "'");
                 return dt;
         }
-
+        //internal static bool InsertShopcart(shop_cart_full obj)
+        //{
+        //    bool status = false;
+        //    status = BLL.ExecuteNonQuery("EXEC USP_CONTACTUS @CONTACT_NAME='" + obj.CONTACT_NAME + "',@CONTACT_EMAIL='" + obj.CONTACT_EMAIL + "',@CONTACT_SUBJECT='" + obj.CONTACT_SUBJECT + "',@CONTACT_PHONENUMBER='" + obj.CONTACT_PHONENUMBER + "',@CONTACT_MESSAGE='" + obj.CONTACT_MESSAGE + "',@CONTACT_CREATEDBY=1,@CONTACT_MODIFIEDBY=1,@OPERATION='INSERTCONTACT'");
+        //    return status;
+        //}
 
 
 
