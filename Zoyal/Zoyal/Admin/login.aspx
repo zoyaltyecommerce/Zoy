@@ -15,6 +15,37 @@
 
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <script type="text/javascript">
+
+        function forgetpwd()
+        {
+            document.getElementById('lblmsg').style.display='inline-block'
+            document.getElementById('txt_fogetpassword').style.display = "inline-block";
+            document.getElementById('txt_username').style.display = 'none';
+            document.getElementById('txt_password').style.display = 'none';
+            document.getElementById('btn_submit').style.display = 'none';
+            document.getElementById('btn_forget').style.display = 'block';
+            document.getElementById('forget').style.display = 'none';
+            document.getElementById('backlogin').style.display = 'block';
+
+        }
+    </script>
+    <script type="text/javascript">
+
+        function backtologin()
+        {
+            document.getElementById('lblmsg').style.display = 'none';
+            document.getElementById('txt_fogetpassword').style.display = 'none';
+            document.getElementById('btn_forget').style.display = 'none';
+            document.getElementById('txt_username').style.display = 'block';
+            document.getElementById('txt_password').style.display = 'block';
+            document.getElementById('btn_submit').style.display = 'block';
+            document.getElementById('forget').style.display = 'inline-block';
+            document.getElementById('backlogin').style.display = 'none';
+
+        }
+    </script>
+
 
 </head>
 
@@ -29,17 +60,44 @@
 
             </div>
             <h3>Welcome to Admin</h3>
+            <h2 id="lblmsg" style="display:none">Enter your Email_id</h2>
           <%--  <p>Login in. To see it in action.</p>--%>
             <div class="m-t" >
                 <div class="form-group">
                     <asp:TextBox ID="txt_username" runat="server" class="form-control" placeholder="Username" ></asp:TextBox>
+                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ValidationGroup="login"
+                                                        ControlToValidate="txt_username" ErrorMessage="Enter valid Email" Display="Dynamic" SetFocusOnError="true" ForeColor="red">
+                                            </asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator Display="Dynamic" ForeColor="red" ID="RegularExpressionValidator2" runat="server" 
+       ErrorMessage="Enter a valid email address"
+       ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" 
+       ControlToValidate="txt_username" >
+ </asp:RegularExpressionValidator>
                 </div>
                 <div class="form-group">
                     <asp:TextBox ID="txt_password" runat="server" TextMode="Password" class="form-control" placeholder="Password" ></asp:TextBox>
+                 <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ValidationGroup="login"
+                                                        ControlToValidate="txt_password" ErrorMessage="Enter valid password" Display="Dynamic" SetFocusOnError="true" ForeColor="red">
+                                            </asp:RequiredFieldValidator>
                 </div>
-                 <asp:Button ID="btn_submit" runat="server" class="btn btn-primary block full-width m-b" Text="Login" OnClick="btn_submit_Click" />
+                <div class="form-group">
+                    <asp:TextBox ID="txt_fogetpassword" runat="server" class="form-control" placeholder="Username" style="display:none"  ></asp:TextBox>
+                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ValidationGroup="forget"
+                                                        ControlToValidate="txt_fogetpassword" ErrorMessage="Enter valid Email" Display="Dynamic" SetFocusOnError="true" ForeColor="red">
+                                            </asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator Display="Dynamic" ForeColor="red" ID="RegularExpressionValidator1" runat="server" 
+       ErrorMessage="Enter a valid email address"
+       ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" 
+       ControlToValidate="txt_fogetpassword" >
+ </asp:RegularExpressionValidator>
+                </div>
+                 <asp:Button ID="btn_submit" runat="server" class="btn btn-primary block full-width m-b" Text="Login" OnClick="btn_submit_Click1" />
+                <asp:Button ID="btn_forget" runat="server" class="btn btn-primary block full-width m-b" Text="send" OnClick="btn_forget_Click"  style="display:none" />
 
-                <a href="#"><small>Forgot password?</small></a>
+                <a id="forget" runat="server" href="#"  onclick="forgetpwd();" ><small>Forgot password?</small></a>
+                 <a id="backlogin" runat="server" href="#"  onclick="backtologin();" style="display:none" ><small>Back to Login</small></a>
+               
+              
                 
             </div>
             <p class="m-t"> <small>KonnectsU Technologies&copy; 2015</small> </p>
