@@ -30,7 +30,7 @@
             </div>
             <h3>Welcome to Admin</h3>
           <%--  <p>Login in. To see it in action.</p>--%>
-            <div class="m-t" role="form" action="index.aspx">
+            <div class="m-t" >
                 <div class="form-group">
                     <asp:TextBox ID="txt_username" runat="server" class="form-control" placeholder="Username" ></asp:TextBox>
                 </div>
