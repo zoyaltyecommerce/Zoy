@@ -141,6 +141,13 @@ namespace Zoyal.Code
         //    return status;
         //}
 
+        internal static DataTable ADMINLOGIN(ADMINLOGINS obj)
+        {
+            DataTable dt = BLL.ExecuteQuery("EXEC USP_ADMINLOGINS @OPERTION='ADMINLOGIN',@USER_EMAILID='"+obj.USER_EMAIL+"',@USER_PASSWORD='"+obj.USER_PASSWORD+"'");
+            return dt;
+                
+        }
+
 
 
 
