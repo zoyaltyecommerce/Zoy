@@ -7,6 +7,6 @@
     <title></title>
 </head>
 <body>
-   
+   welcome to index
 </body>
 </html>
