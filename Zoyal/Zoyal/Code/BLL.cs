@@ -141,6 +141,14 @@ namespace Zoyal.Code
         //    return status;
         //}
 
+
+        internal static bool winderinsert(ADMINLOGINS obj)
+        {
+            bool status = false;
+            status = BLL.ExecuteNonQuery("EXEC WINDER_INSERT @USER_NAME='" + obj.USER_NAME + "',@USER_EMAIL='" + obj.USER_EMAIL + "',@USER_PASSWORD='" + obj.USER_PASSWORD + "',@USER_CREATEDBY='" + obj.USER_CREATEDBY + "',@USER_MODIFIEDBY='" + obj.USER_MODIFIEDBY + "',@USER_ADMIN='" + obj.USER_ADMIN + "',@USER_LOCATIONID='" + obj.USER_LOCATIONID + "',@USER_STATUSID='" + obj.USER_STATUSID + "',@USER_ORGANIZATIONNAME='"+obj.USER_ORGANIZATIONNAME+"'");
+
+            return status;
+        }
         internal static DataTable ADMINLOGIN(ADMINLOGINS obj)
         {
             DataTable dt = BLL.ExecuteQuery("EXEC USP_ADMINLOGINS @OPERTION='ADMINLOGIN',@USER_EMAILID='"+obj.USER_EMAIL+"',@USER_PASSWORD='"+obj.USER_PASSWORD+"'");
@@ -148,6 +156,8 @@ namespace Zoyal.Code
                 
         }
 
+
+        
 
 
 

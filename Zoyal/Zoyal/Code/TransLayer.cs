@@ -259,6 +259,8 @@ namespace Zoyal.Code
         public string USER_PHONE { get; set; }
     }
 
+  
+
     public class ADMINLOGINS: SMVTS_MAIN
         {
         public int USER_ID { get; set; }
@@ -273,9 +275,14 @@ namespace Zoyal.Code
         public DateTime USER_CREATEDDATE { get; set; }
         public string USER_MODIFIEDBY { get; set; }
         public DateTime USER_MODIFIEDDATE { get; set; }
+        public string USER_ADDRESS { set; get; }
 
         public bool USER_ADMIN { get; set;}
+        public int USER_LOCATIONID { set; get; }
+        public int USER_STATUSID { set; get; }
+        public string USER_ORGANIZATIONNAME { get; set; }
 
 
     }
+
 }
