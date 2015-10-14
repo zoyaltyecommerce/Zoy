@@ -400,6 +400,7 @@
     <Content Include="vendor\owl-carousel\owl.transitions.css" />
     <Content Include="vendor\waypoints.min.js" />
     <Content Include="Web.config" />
+    <Content Include="WINDERINSERT.aspx" />
     <Content Include="_Layout.Master" />
   </ItemGroup>
   <ItemGroup>
@@ -530,6 +531,13 @@
     </Compile>
     <Compile Include="testone.aspx.designer.cs">
       <DependentUpon>testone.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WINDERINSERT.aspx.cs">
+      <DependentUpon>WINDERINSERT.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WINDERINSERT.aspx.designer.cs">
+      <DependentUpon>WINDERINSERT.aspx</DependentUpon>
     </Compile>
     <Compile Include="_Layout.Master.cs">
       <DependentUpon>_Layout.Master</DependentUpon>
