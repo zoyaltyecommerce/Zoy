@@ -204,26 +204,27 @@
 								<form action="#" id="" type="post">
                                     <div class="form-group">
                                         <label class="sr-only">Name</label>
-                                        <input type="text" value="" class="form-control" placeholder="Name">
+                                        
+                                        <asp:TextBox ID="txt_name" runat="server" class="form-control" placeholder="Name"></asp:TextBox>
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only">Email ID</label>
-                                        <input type="text" value="" class="form-control" placeholder="Email ID">
+                                        <asp:TextBox ID="txt_email" runat="server" class="form-control" placeholder="Email ID"></asp:TextBox>
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only">Phone Number</label>
-                                        <input type="text" value="" class="form-control" placeholder="Phone number">
+                                        <asp:TextBox ID="txt_phonenumber" runat="server" class="form-control" placeholder="Phone number"></asp:TextBox>
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only">Alternate Phone Number</label>
-                                        <input type="text" value="" class="form-control" placeholder="Phone number">
+                                        <asp:TextBox ID="txt_altphonenumber" runat="server" class="form-control" placeholder="Phone number"></asp:TextBox>
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only">Country</label>
                                         <div class="list-sort">
-                                            <select class="formDropdown">
-                                                <option value="">Select a country</option>
-                                            </select>
+                                            <asp:DropDownList ID="ddlcontry" runat="server" class="formDropdown">
+                                                <asp:ListItem>Select a country</asp:ListItem>
+                                            </asp:DropDownList>
                                         </div>
                                     </div>
 								</form>
@@ -238,19 +239,19 @@
 								<form action="#" id="" type="post">
                                     <div class="form-group">
                                         <label class="sr-only">State/Province</label>
-                                        <input type="text" value="" class="form-control" placeholder="State/Province">
+                                        <asp:TextBox ID="txt_state" runat="server" class="form-control" placeholder="State/Province"></asp:TextBox>
                                     </div>
 									<div class="form-group">
 										<label class="sr-only">City</label>
-										<input type="text" value="" class="form-control" placeholder="City">
+                                        <asp:TextBox ID="txt_city" runat="server" class="form-control" placeholder="City"></asp:TextBox>
 									</div>
                                     <div class="form-group">
                                         <label class="sr-only">Address Line1</label>
-                                        <textarea class="form-control" placeholder="Address Line1"></textarea>
+                                        <asp:TextBox ID="txt_addline1" runat="server" TextMode="MultiLine" class="form-control" placeholder="Address Line1"></asp:TextBox>
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only">Address Line2</label>
-                                        <textarea class="form-control" placeholder="Address Line2"></textarea>
+                                        <asp:TextBox ID="txt_addline2" runat="server" TextMode="MultiLine" class="form-control" placeholder="Address Line2"></asp:TextBox>
                                     </div>
 								</form>
 							</div>
@@ -264,10 +265,11 @@
 								<h4>Shopping bag summary</h4>
                                 <div class="form-group">
                                     <label class="sr-only">Promotional code</label>
-                                    <input type="text" value="" class="form-control" placeholder="Enter promotional code here">
+                                    <asp:TextBox ID="txt_promocode" runat="server" class="form-control" placeholder="Enter promotional code here"></asp:TextBox>
                                 </div>
                                 <div class="form-group">
-                                    <input type="submit" value="Apply Promotion" class="btn btn-grey btn-sm" data-loading-text="Loading...">
+                                   
+                                    <asp:Button ID="btn_submit" runat="server" class="btn btn-grey btn-sm" data-loading-text="Loading..." Text="Apply Promotion"/>
                                 </div>
 								<table cellspacing="0" class="cart-totals" width="100%">
 									<tbody>
@@ -297,8 +299,9 @@
 										</tr>
 									</tbody>
 								</table>
-								<p><input type="submit" value="Proceed To checkout" class="btn btn-primary btn-block btn-sm" data-loading-text="Loading..."></p>
-								<p><input type="submit" value="Continue Shopping" class="btn btn-grey btn-block btn-sm" data-loading-text="Loading..."></p>
+								<p><asp:Button ID="btn_procedchekout" runat="server" Text="Proceed To checkout" class="btn btn-primary btn-block btn-sm" data-loading-text="Loading..." /></p>
+								<p><asp:Button ID="btn_conshaping" runat="server" Text="Continue Shopping" class="btn btn-grey btn-block btn-sm" data-loading-text="Loading..." /></p>								<p>
+                             
 							</div>
 						</div>
 					</div>
