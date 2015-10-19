@@ -19,7 +19,12 @@ namespace Zoyal.Admin
             {
                 try
                 {
+                  if(Session["ADMINLOGINS"]!=null)
+                  {
+                        Response.Redirect("index.aspx");
+                   }
                     clearcontrols();
+
 
                 }
                 catch (Exception ex)
@@ -38,6 +43,7 @@ namespace Zoyal.Admin
         {
             try
             {
+               Session["ADMINLOGIN"] = null;
                 ADMINLOGINS obj = new ADMINLOGINS();
                 obj.USER_EMAIL = txt_username.Text.Trim();
                 obj.USER_PASSWORD = txt_password.Text.Trim();
@@ -45,7 +51,8 @@ namespace Zoyal.Admin
                 dt_admin = BLL.ADMINLOGIN(obj);
                 if (dt_admin.Rows.Count > 0)
                 {
-                    BLL.ShowMessage(this, "YOUR ACCOUNT SUCCESSFULLY LOGIN");
+                   Session["ADMINLOGIN"] = dt_admin;
+                    //BLL.ShowMessage(this, "YOUR ACCOUNT SUCCESSFULLY LOGIN");
                     Response.Redirect("index.aspx");
                     clearcontrols();
 
