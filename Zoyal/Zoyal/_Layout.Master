@@ -341,7 +341,7 @@
                      <li id="li_frgback" style="display:none" ><a onclick="forgetlogin();"  href="#">Back to Login</a></li>
                   
                     <li id="li_account" ><a onclick="Showregister();" href="#">Create new account</a></li>
-                    <li id="li_password" ><a onclick="forgetpassword();" href="#" >Forget password</a></li>
+                    <li id="li_password" ><a onclick="forgetpassword();" href="#" >Forgot password</a></li>
                 </ul>
               
                 <asp:Button ID="btn_login" runat="server" Text="Log in"  class="btn btn-active" OnClick="btn_login_Click" ValidationGroup="login" />
