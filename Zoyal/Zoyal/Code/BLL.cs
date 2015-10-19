@@ -161,8 +161,19 @@ namespace Zoyal.Code
             DataTable dt = BLL.ExecuteQuery("EXEC USP_ADMINLOGINS @OPERATION='ADMINFORGETPWD',@USER_EMAIL='" + obj.USER_EMAIL + "'");
             return dt;
         }
+        internal static DataTable Getlocations()
+        {
+            DataTable DT = BLL.ExecuteQuery("EXEC USP_GETTINGLOCATIONS @OPERATION='GETLOCATIONS'");
+            return DT;
+        }
 
-        
+        internal static DataTable GETIMAGES()
+        {
+            DataTable dt = BLL.ExecuteQuery("EXEC USP_PRODUCTS @OPERATION='GETIMAGES' ");
+            return dt;
+        }
+
+
 
 
 

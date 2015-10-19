@@ -259,15 +259,15 @@ namespace Zoyal.Code
         public string USER_PHONE { get; set; }
     }
 
-  
 
-    public class ADMINLOGINS: SMVTS_MAIN
-        {
+
+    public class ADMINLOGINS : SMVTS_MAIN
+    {
         public int USER_ID { get; set; }
 
         public string USER_NAME { get; set; }
 
-        public string USER_EMAIL { get; set;}
+        public string USER_EMAIL { get; set; }
 
         public string USER_PASSWORD { get; set; }
         public string USER_MOBILE { get; set; }
@@ -277,12 +277,38 @@ namespace Zoyal.Code
         public DateTime USER_MODIFIEDDATE { get; set; }
         public string USER_ADDRESS { set; get; }
 
-        public bool USER_ADMIN { get; set;}
+        public bool USER_ADMIN { get; set; }
         public int USER_LOCATIONID { set; get; }
         public int USER_STATUSID { set; get; }
         public string USER_ORGANIZATIONNAME { get; set; }
 
 
+    }
+
+    public class LOCATIONS:SMVTS_MAIN
+    {
+        public static int LOCATION_ID { get; set; }
+        public static int LOCATION_CITYID { get; set; }
+        public static string LOCATION_NAME { get; set; }
+        public static DateTime LOCATION_CREATEDDATE { get; set; }
+        public static int LOCATION_CREATEDBY { get; set; }
+        public static DateTime LOCATION_MODIFIEDDATE { get; set; }
+        public static int LOCATION_MODIFIEDBY { get; set; }
+    }
+
+    public class PRODUCT:SMVTS_MAIN
+    {
+         public static int      PRODUCT_ID { get; set; }
+        public static string PRODUCT_NAME { get; set; }
+             public static string PRODUCT_DESC { get; set; }
+        public static string PRODUCT_IMAGEURL { get; set; }
+            public static string PRODUCT_IMAGETITLE { get; set; }
+            public static int PRODUCT_CREATEDBY { get; set;}
+            public static DateTime PRODUCT_CREATEDDATE { get; set; }
+            public static int PRODUCT_MODIFIEDBY { get; set; }
+             public static DateTime PRODUCT_MODIFIEDDATE { get; set; }
+            public static bool PRODUCT_STATUS { get; set; }
+            public static string PRODUCT_TITLE { get; set; }
     }
 
 }
