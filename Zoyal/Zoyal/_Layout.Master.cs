@@ -22,7 +22,21 @@ namespace Zoyal
             {
                 try
                 {
+                    if(Session["ZOYALUSER"]!=null)
+                    {
+                        lbllogin.Visible = false;
+                        myaccount.Visible = true;
+                    }
                     clearcontrols();
+                    //loading locations
+                    DataTable dt_loc = BLL.Getlocations();
+                    string locations = "";
+                    for(int i=0;i<dt_loc.Rows.Count;i++)
+                    {
+                        locations= locations + "<li><a href=''>" + dt_loc.Rows[i]["location_name"].ToString() + "</a></li>";
+                        //locations = locations+dt_loc.Rows[i]["location_name"].ToString();
+                    }
+                    ul_locations.InnerHtml = locations;
                 }
                 catch (Exception exe)
                 {
@@ -109,6 +123,8 @@ namespace Zoyal
 
         protected void btn_login_Click(object sender, EventArgs e)
         {
+            Session["ZOYALUSER"] = null;
+
             USERS obj = new USERS();
             obj.USER_EMAILID = txt_username.Text.ToString().Trim();
             obj.USER_PASSWORD = txt_password.Text.ToString().Trim();
@@ -119,7 +135,8 @@ namespace Zoyal
                 dt_user = BLL.LOGIN(obj);
                 if (dt_user.Rows.Count > 0)
                 {
-                    BLL.ShowMessage(this, "YOUR ACCOUNT SUCCESSFULLY LOGIN");
+                Session["ZOYALUSER"] = dt_user;
+                    //BLL.ShowMessage(this, "YOUR ACCOUNT SUCCESSFULLY LOGIN");
                     clearcontrols();
                     lbllogin.Visible = false;
                     myaccount.Visible = true;
@@ -160,6 +177,21 @@ namespace Zoyal
                 // Label1.Text = ae.Message;
             }
 
+        }
+
+        protected void link_logout_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Session["ZOYALUSER"] = null;
+                lbllogin.Visible = true;
+                myaccount.Visible = false;
+
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
     }
 }

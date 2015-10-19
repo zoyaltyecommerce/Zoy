@@ -104,7 +104,7 @@
                         </li>-->
                         <li class="dropdown my-account">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hyderabad<span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
+                            <ul runat="server" id="ul_locations" class="dropdown-menu" role="menu">
                                 <li><a href="#">Hyderabad</a></li>
                                 <li><a href="#">Warangal</a></li>
                                 <li><a href="#">Karimnagar</a></li>
@@ -196,6 +196,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="#">My account</a></li>
                                 <li><a href="#">my order</a></li>
+                                 <li><asp:LinkButton runat="server" ID="link_logout" OnClick="link_logout_Click" Text="Logout"></asp:LinkButton></li>
                             </ul>
                         </li>
                          
