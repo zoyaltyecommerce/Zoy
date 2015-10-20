@@ -172,6 +172,11 @@ namespace Zoyal.Code
             DataTable dt = BLL.ExecuteQuery("EXEC USP_PRODUCTS @OPERATION='GETIMAGES' ");
             return dt;
         }
+        internal static DataTable GETPRODUCT()
+        {
+            DataTable dt = BLL.ExecuteQuery("EXEC USP_PRODUCTS @OPERATION='GETPRODUCT'");
+            return dt;
+        }
 
 
 
