@@ -83,9 +83,18 @@
         }
 
     </script>
+   <style type="text/css">
+       .imaheight
+       {
+          
+           height:300px;
+       }
+   </style>
 </head>
 <body>
+    
     <form id="form1" runat="server">
+       <asp:ScriptManager runat="server" EnablePageMethods="true"></asp:ScriptManager> 
     <div>
         <div id="page">
               <header>
