@@ -71,7 +71,7 @@ namespace Zoyal
                 obj.USER_USERNAME = BLL.ReplaceQuote(txt_email.Text);
                 obj.USER_PASSWORD = BLL.Encrypt(BLL.ReplaceQuote(txt_pwd.Text));
                 obj.USER_PHONE = BLL.ReplaceQuote(txt_phonenumber.Text);
-                obj.USER_MODIFIEDBY = 1;
+                obj.USER_CREATEDBY = 1;
                 DataTable dt = BLL.checkusers(obj);
                 DataTable dt_user = new DataTable();
                 if (dt.Rows.Count == 0)
