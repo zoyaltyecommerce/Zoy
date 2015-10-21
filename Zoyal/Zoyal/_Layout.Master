@@ -334,7 +334,7 @@
                      <div class="form-group">
                     <label for="inputpassword">phonenumber</label>
                    
-                    <asp:TextBox ID="txt_phonenumber" runat="server"  placeholder="phonenumber" class="form-control input-lg" ForeColor="White"></asp:TextBox>
+                    <asp:TextBox ID="txt_phonenumber" runat="server"  placeholder="phonenumber" class="form-control input-lg" ForeColor="White" MaxLength="12"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4"  ValidationGroup="register" runat="server"
                                                         ControlToValidate="txt_phonenumber" ErrorMessage="Please enter phone-number" Display="Dynamic" ForeColor="White" SetFocusOnError="true">
                                             </asp:RequiredFieldValidator>
