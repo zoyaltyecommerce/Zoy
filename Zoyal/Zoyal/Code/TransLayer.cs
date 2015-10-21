@@ -310,5 +310,33 @@ namespace Zoyal.Code
             public static bool PRODUCT_STATUS { get; set; }
             public static string PRODUCT_TITLE { get; set; }
     }
+    public class SHIPPINGADDRESS : SMVTS_MAIN
+    {
+        public int ADD_ID { get; set; }
+        public int ADD_USERID { get; set; }
+        public string ADD_FIRSTNAME { get; set; }
+        public string ADD_LADTNAME { set; get; }
+
+        public string ADD_EMAILID { set; get; }
+
+        public string ADD_ADDRESS { set; get; }
+
+        public string ADD_PRIMARYPHONE { set; get; }
+
+        public string ADD_ALTERNATEPHONE { set; get; }
+
+        public string ADD_ADDRESS2 { set; get; }
+
+        public int ADD_STATUS { set; get; }
+        public int ADD_CREATEDBY { set; get; }
+        public DateTime ADD_CREATEDDATE { set; get; }
+        public int ADD_MODIFIEDBY { set; get; }
+        public DateTime ADD_MODIFIEDDATE { set; get; }
+        public string ADD_COUNTRY { set; get; }
+        public string ADD_STATE { set; get; }
+
+        public string ADD_CITY { set; get; }
+
+    }
 
 }

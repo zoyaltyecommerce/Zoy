@@ -146,7 +146,6 @@ namespace Zoyal.Code
         {
             bool status = false;
             status = BLL.ExecuteNonQuery("EXEC WINDER_INSERT @USER_NAME='" + obj.USER_NAME + "',@USER_EMAIL='" + obj.USER_EMAIL + "',@USER_PASSWORD='" + obj.USER_PASSWORD + "',@USER_CREATEDBY='" + obj.USER_CREATEDBY + "',@USER_MODIFIEDBY='" + obj.USER_MODIFIEDBY + "',@USER_ADMIN='" + obj.USER_ADMIN + "',@USER_LOCATIONID='" + obj.USER_LOCATIONID + "',@USER_STATUSID='" + obj.USER_STATUSID + "',@USER_ORGANIZATIONNAME='"+obj.USER_ORGANIZATIONNAME+"'");
-
             return status;
         }
         internal static DataTable ADMINLOGIN(ADMINLOGINS obj)
@@ -167,17 +166,22 @@ namespace Zoyal.Code
             return DT;
         }
 
-        internal static DataTable GETIMAGES()
+        internal static DataTable GETALLPRODUCTS()
         {
-            DataTable dt = BLL.ExecuteQuery("EXEC USP_PRODUCTS @OPERATION='GETIMAGES' ");
+            DataTable dt = BLL.ExecuteQuery("EXEC USP_PRODUCTS @OPERATION='GETALLPRODUCTS' ");
             return dt;
         }
-        internal static DataTable GETPRODUCT()
+        internal static DataTable GETPRODUCTBYID(string PRODUCTID)
         {
-            DataTable dt = BLL.ExecuteQuery("EXEC USP_PRODUCTS @OPERATION='GETPRODUCT'");
+            DataTable dt = BLL.ExecuteQuery("EXEC USP_PRODUCTS @OPERATION='GETPRODUCTBYID',@PRODUCT_ID='"+ PRODUCTID +"'");
             return dt;
         }
-
+        internal static bool INSERTADDRESS(SHIPPINGADDRESS obj)
+        {
+            bool status = false;
+            status = BLL.ExecuteNonQuery("EXEC USP_SHIPPINGADDRESS @OPERATION='INSERTCART',@ADD_FIRSTNAME='" + obj.ADD_FIRSTNAME + "',@ADD_EMAILID='" + obj.ADD_EMAILID + "',@ADD_PRIMARYPHONE='" + obj.ADD_PRIMARYPHONE + "',@ADD_ALTERNATEPHONE='" + obj.ADD_ALTERNATEPHONE + "',@ADD_COUNTRY='" + obj.ADD_COUNTRY + "',@ADD_CITY='" + obj.ADD_CITY + "',@ADD_STATE='" + obj.ADD_STATE + "',@ADD_ADDRESS2='" + obj.ADD_ADDRESS + "',@ADD_ADDRESS1='" + obj.ADD_ADDRESS2 + "',@ADD_CREATEDBY =1");
+            return status;
+        }
 
 
 
