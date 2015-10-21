@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Zoyal.Code;
 
 namespace Zoyal
 {
@@ -11,7 +13,129 @@ namespace Zoyal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                try
+                {
 
+                    if (Request.QueryString["id"] != null)
+                    {
+                        string productid = Request.QueryString["id"].ToString();
+                        DataTable dt_product = BLL.GETPRODUCTBYID(productid);
+                        if(Session["CART"]==null)
+                        {
+                            Session["CART"] = dt_product;
+                        }
+                        else
+                        {
+                            DataTable dt_allpro = (DataTable)Session["CART"];
+                            dt_product.Merge(dt_allpro);
+                            // dt_allpro.Merge(dt_product);
+                            Session["CART"] = dt_product;
+                        }
+                    
+                    }
+                    if(Session["CART"]!=null)
+                    {
+                        DataTable dt_productall = (DataTable)Session["CART"];
+                        string html = parsehtmlcart(dt_productall);
+
+                        tb_cart.InnerHtml = html;
+                    }
+                    else
+                    {
+
+                    }
+                    
+
+                }
+                catch (Exception exe)
+                {
+
+                }
+                clearcontrol();
+
+            }
+
+
+        }
+
+        public string parsehtmlcart(DataTable dt_product)
+        {
+            string content = "";
+            for (int i = 0; i < dt_product.Rows.Count; i++)
+            {
+                content = content + "<tr class='cart_table_item'><td class='product-thumbnail'><img alt='' width='80' src='"+ dt_product.Rows[i]["PRODUCT_IMAGEURL"] +"'/></td><td class='product-name'><a href='shop-product-sidebar.html' >"+dt_product.Rows[i]["PRODUCT_NAME"] +"</a></td><td class='product-price'><span class='amount'>RS"+dt_product.Rows[i]["PRODUCT_PRICE"]+"</span></td><td class='product-quantity'><div class='quantity'><input type = 'button' class='minus' value='-'><input type = 'text' class='input-text qty text' title='Qty' value='1' name='quantity' min='1' step='1'><input type = 'button' class='plus' value='+'></div></td><td class='product-subtotal'><span class='amount'>RS300</span></td><td class='product-remove'><a title = 'Remove this item' class='remove' href='#'><i class='fa fa-times-circle'></i></a></td></tr>";
+            }
+            return content;
+        }
+        public void clearcontrol()
+        {
+            try
+            {
+                txt_name.Text = "";
+                txt_email.Text = "";
+                txt_phonenumber.Text = "";
+                txt_altphonenumber.Text = "";
+                ddlcontry.SelectedIndex = 0;
+
+                txt_state.Text = "";
+                txt_city.Text = "";
+                txt_addline1.Text = "";
+                txt_addline2.Text = "";
+
+
+
+            }
+            catch(Exception ex)
+            {
+
+            }
+
+        }
+        protected void btn_procedchekout_Click(object sender, EventArgs e)
+        {
+            try
+            { 
+            SHIPPINGADDRESS DA = new SHIPPINGADDRESS();
+            DA.ADD_FIRSTNAME = txt_name.Text;
+            DA.ADD_EMAILID = txt_email.Text;
+            DA.ADD_PRIMARYPHONE = txt_phonenumber.Text;
+            DA.ADD_ALTERNATEPHONE = txt_altphonenumber.Text;
+            DA.ADD_COUNTRY = ddlcontry.SelectedItem.ToString();
+            DA.ADD_STATE = txt_state.Text;
+            DA.ADD_CITY = txt_city.Text;
+            DA.ADD_ADDRESS = txt_addline1.Text;
+            DA.ADD_ADDRESS2 = txt_addline2.Text;
+            DA.ADD_CREATEDBY = 1;
+              
+            bool status = BLL.INSERTADDRESS(DA);
+                if(status==true)
+                {
+                    BLL.ShowMessage(this, "your successfully inserted");
+                    clearcontrol();
+                }
+                else
+                {
+                    BLL.ShowMessage(this, "contact to admin");
+                }
+            }
+            catch(Exception exe)
+            {
+
+            }
+        }
+
+        protected void btn_conshaping_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Response.Redirect("index.aspx");
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
     }
 }

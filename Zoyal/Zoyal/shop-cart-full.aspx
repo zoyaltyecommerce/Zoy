@@ -69,7 +69,7 @@
 						<h3>Your selection (3 items)</h3>
 						<div class="featured-box featured-box-cart">
 							<div class="box-content">
-								<form method="post" action="#">
+								<div >
 									<table cellspacing="0" class="shop_table" width="100%">
 										<thead>
 											<tr>
@@ -93,8 +93,71 @@
 												</th>
 											</tr>
 										</thead>
-										<tbody>
-											<tr class="cart_table_item">
+										<tbody runat="server" id="tb_cart">
+                                            <tr class='cart_table_item'>
+<td class='product-thumbnail'>
+<a href='shop-product-sidebar.html'><img alt='' width='80' src='images/content/products/product-thumb.jpg'></a>
+</td>
+<td class='product-name'>
+<a href='shop-product-sidebar.html'>Linen shirt with ribbon at the front</a>
+</td><td class='product-price'>
+<span class='amount'>RS299</span>
+</td>
+<td class='product-quantity'>
+<div class='quantity'><input type='button' class='minus' value='-'><input type='text' class='input-text qty text' title='Qty' value='1' name='quantity' min='1' step='1'>
+<input type='button' class='plus' value='+'>
+</div></td>
+<td class='product-subtotal'>
+<span class='amount'>RS299</span>
+</td>
+<td class='product-remove'><a title='Remove this item' class='remove' href='#'>
+<i class='fa fa-times-circle'></i>
+</a>
+</td>
+</tr>
+                                            <tr class='cart_table_item'>
+<td class='product-thumbnail'>
+<a href='shop-product-sidebar.html'><img alt='' width='80' src='images/content/products/product-thumb.jpg'></a>
+</td>
+<td class='product-name'>
+<a href='shop-product-sidebar.html'>Linen shirt with ribbon at the front</a>
+</td><td class='product-price'>
+<span class='amount'>RS299</span>
+</td>
+<td class='product-quantity'>
+<div class='quantity'><input type='button' class='minus' value='-'><input type='text' class='input-text qty text' title='Qty' value='1' name='quantity' min='1' step='1'>
+<input type='button' class='plus' value='+'>
+</div></td>
+<td class='product-subtotal'>
+<span class='amount'>RS299</span>
+</td>
+<td class='product-remove'><a title='Remove this item' class='remove' href='#'>
+<i class='fa fa-times-circle'></i>
+</a>
+</td>
+</tr>
+                                            <tr class='cart_table_item'>
+<td class='product-thumbnail'>
+<a href='shop-product-sidebar.html'><img alt='' width='80' src='images/content/products/product-thumb.jpg'></a>
+</td>
+<td class='product-name'>
+<a href='shop-product-sidebar.html'>Linen shirt with ribbon at the front</a>
+</td><td class='product-price'>
+<span class='amount'>RS299</span>
+</td>
+<td class='product-quantity'>
+<div class='quantity'><input type='button' class='minus' value='-'><input type='text' class='input-text qty text' title='Qty' value='1' name='quantity' min='1' step='1'>
+<input type='button' class='plus' value='+'>
+</div></td>
+<td class='product-subtotal'>
+<span class='amount'>RS299</span>
+</td>
+<td class='product-remove'><a title='Remove this item' class='remove' href='#'>
+<i class='fa fa-times-circle'></i>
+</a>
+</td>
+</tr>
+											<%--<tr class="cart_table_item">
 												
 												<td class="product-thumbnail">
 													<a href="shop-product-sidebar.html">
@@ -139,13 +202,13 @@
 													<span class="amount">RS72</span>
 												</td>
 												<td class="product-quantity">
-													<form enctype="multipart/form-data" method="post">
+													<div >
 														<div class="quantity">
 															<input type="button" class="minus" value="-">
 															<input type="text" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
 															<input type="button" class="plus" value="+">
 														</div>
-													</form>
+													</div>
 												</td>
 												<td class="product-subtotal">
 													<span class="amount">RS72</span>
@@ -170,13 +233,13 @@
 													<span class="amount">RS60</span>
 												</td>
 												<td class="product-quantity">
-													<form enctype="multipart/form-data" method="post">
+													<div >
 														<div class="quantity">
 															<input type="button" class="minus" value="-">
 															<input type="text" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
 															<input type="button" class="plus" value="+">
 														</div>
-													</form>
+													</div>
 												</td>
 												<td class="product-subtotal">
 													<span class="amount">RS60</span>
@@ -186,11 +249,11 @@
 														<i class="fa fa-times-circle"></i>
 													</a>
 												</td>
-											</tr>
+											</tr>--%>
 										</tbody>
 									</table>
 								
-							</form></div>
+							</div></div>
 						</div>
 					</div>
 				</div>
@@ -201,33 +264,61 @@
 							<div class="box-content">
 								<h4>Address</h4>
 								
-								<form action="#" id="" type="post">
+								<div >
                                     <div class="form-group">
                                         <label class="sr-only">Name</label>
                                         
                                         <asp:TextBox ID="txt_name" runat="server" class="form-control" placeholder="Name"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ValidationGroup="procedtocheckout"
+                                                        ControlToValidate="txt_name" ErrorMessage="Please enter your name" Display="Dynamic" SetFocusOnError="true" ForeColor="red">
+                                            </asp:RequiredFieldValidator>
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only">Email ID</label>
                                         <asp:TextBox ID="txt_email" runat="server" class="form-control" placeholder="Email ID"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ValidationGroup="procedtocheckout"
+                                                        ControlToValidate="txt_email" ErrorMessage="Enter valid Email" Display="Dynamic" SetFocusOnError="true" ForeColor="red">
+                                            </asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator Display="Dynamic" ForeColor="White" ID="RegularExpressionValidator2" runat="server" ValidationGroup="procedtocheckout"
+       ErrorMessage="Enter a valid email address"
+       ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" 
+       ControlToValidate="txt_email" >
+ </asp:RegularExpressionValidator>
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only">Phone Number</label>
-                                        <asp:TextBox ID="txt_phonenumber" runat="server" class="form-control" placeholder="Phone number"></asp:TextBox>
+                                        <asp:TextBox ID="txt_phonenumber" runat="server" class="form-control" placeholder="Phone number" MaxLength="12"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4"   runat="server" ValidationGroup="procedtocheckout"
+                                                        ControlToValidate="txt_phonenumber" ErrorMessage="Please enter phone-number" Display="Dynamic" ForeColor="red" SetFocusOnError="true">
+                                            </asp:RequiredFieldValidator>
+                                             <asp:RegularExpressionValidator  ID="RegularExpressionValidator1" runat="server" Display="Dynamic" ForeColor="red"
+                                                    ControlToValidate="txt_phonenumber" ErrorMessage="Enter the valid phone number"  
+                                                        ValidationExpression="[0-9]{10}" ValidationGroup="procedtocheckout">
+                                             </asp:RegularExpressionValidator>
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only">Alternate Phone Number</label>
-                                        <asp:TextBox ID="txt_altphonenumber" runat="server" class="form-control" placeholder="Phone number"></asp:TextBox>
+                                        <asp:TextBox ID="txt_altphonenumber" runat="server" class="form-control" placeholder="Phone number" MaxLength="12"></asp:TextBox>
+                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2"   runat="server" ValidationGroup="procedtocheckout"
+                                                        ControlToValidate="txt_altphonenumber" ErrorMessage="Please enter phone-number" Display="Dynamic" ForeColor="red" SetFocusOnError="true">
+                                            </asp:RequiredFieldValidator>
+                                             <asp:RegularExpressionValidator  ID="RegularExpressionValidator3" runat="server" Display="Dynamic" ForeColor="red"
+                                                    ControlToValidate="txt_altphonenumber" ErrorMessage="Enter the valid phone number"  ValidationGroup="procedtocheckout"
+                                                        ValidationExpression="[0-9]{10}">
+                                             </asp:RegularExpressionValidator>
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only">Country</label>
                                         <div class="list-sort">
                                             <asp:DropDownList ID="ddlcontry" runat="server" class="formDropdown">
                                                 <asp:ListItem>Select a country</asp:ListItem>
+                                                  <asp:ListItem>INDIA</asp:ListItem>
+                                                  <asp:ListItem>USA</asp:ListItem>
+                                                 <asp:ListItem>UK</asp:ListItem>
                                             </asp:DropDownList>
                                         </div>
                                     </div>
-								</form>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -236,24 +327,36 @@
 							<div class="box-content">
 								<h4>Address</h4>
 								
-								<form action="#" id="" type="post">
+							<div >
                                     <div class="form-group">
                                         <label class="sr-only">State/Province</label>
                                         <asp:TextBox ID="txt_state" runat="server" class="form-control" placeholder="State/Province"></asp:TextBox>
+                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ValidationGroup="procedtocheckout"
+                                                        ControlToValidate="txt_state" ErrorMessage="Please enter your state" Display="Dynamic" SetFocusOnError="true" ForeColor="red">
+                                            </asp:RequiredFieldValidator>
                                     </div>
 									<div class="form-group">
 										<label class="sr-only">City</label>
                                         <asp:TextBox ID="txt_city" runat="server" class="form-control" placeholder="City"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ValidationGroup="procedtocheckout"
+                                                        ControlToValidate="txt_city" ErrorMessage="Please enter your city name" Display="Dynamic" SetFocusOnError="true" ForeColor="red">
+                                            </asp:RequiredFieldValidator>
 									</div>
                                     <div class="form-group">
                                         <label class="sr-only">Address Line1</label>
                                         <asp:TextBox ID="txt_addline1" runat="server" TextMode="MultiLine" class="form-control" placeholder="Address Line1"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ValidationGroup="procedtocheckout"
+                                                        ControlToValidate="txt_addline1" ErrorMessage="Please enter your address1" Display="Dynamic" SetFocusOnError="true" ForeColor="red">
+                                            </asp:RequiredFieldValidator>
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only">Address Line2</label>
                                         <asp:TextBox ID="txt_addline2" runat="server" TextMode="MultiLine" class="form-control" placeholder="Address Line2"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ValidationGroup="procedtocheckout"
+                                                        ControlToValidate="txt_addline2" ErrorMessage="Please enter your address2" Display="Dynamic" SetFocusOnError="true" ForeColor="red">
+                                            </asp:RequiredFieldValidator>
                                     </div>
-								</form>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -271,7 +374,8 @@
                                    
                                     <asp:Button ID="btn_submit" runat="server" class="btn btn-grey btn-sm" data-loading-text="Loading..." Text="Apply Promotion"/>
                                 </div>
-								<table cellspacing="0" class="cart-totals" width="100%">
+                                <div id="producttbl" runat="server">
+								<table  cellspacing="0" class="cart-totals" width="100%">
 									<tbody>
 										<tr class="cart-subtotal">
 											<th>
@@ -299,8 +403,9 @@
 										</tr>
 									</tbody>
 								</table>
-								<p><asp:Button ID="btn_procedchekout" runat="server" Text="Proceed To checkout" class="btn btn-primary btn-block btn-sm" data-loading-text="Loading..." /></p>
-								<p><asp:Button ID="btn_conshaping" runat="server" Text="Continue Shopping" class="btn btn-grey btn-block btn-sm" data-loading-text="Loading..." /></p>								<p>
+                                    </div>
+								<p><asp:Button ID="btn_procedchekout" runat="server" Text="Proceed To checkout" class="btn btn-primary btn-block btn-sm" data-loading-text="Loading..." OnClick="btn_procedchekout_Click" ValidationGroup="procedtocheckout" /></p>
+								<p><asp:Button ID="btn_conshaping" runat="server" Text="Continue Shopping" class="btn btn-grey btn-block btn-sm" data-loading-text="Loading..." OnClick="btn_conshaping_Click" /></p>							
                              
 							</div>
 						</div>
