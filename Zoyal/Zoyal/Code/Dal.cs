@@ -19,7 +19,7 @@ namespace Zoyal.Code
 
 
         public static DataTable ExecuteQuery(string Query)
-        {
+       {
             // SMVTS_TRACE_ERROR_LOG _obj = new SMVTS_TRACE_ERROR_LOG();
             try
             {

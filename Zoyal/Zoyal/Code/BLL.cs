@@ -176,6 +176,12 @@ namespace Zoyal.Code
             DataTable dt = BLL.ExecuteQuery("EXEC USP_PRODUCTS @OPERATION='GETPRODUCTBYID',@PRODUCT_ID='"+ PRODUCTID +"'");
             return dt;
         }
+
+        //internal static DataTable GETPRODUCT_CART(string PRODUCTID)
+        //{
+        //    DataTable dt = BLL.ExecuteQuery("EXEC USP_PRODUCTS @OPERATION='GETPRODUCT_CART',@PRODUCT_ID='" + PRODUCTID + "'");
+        //    return dt;
+        //}
         internal static bool INSERTADDRESS(SHIPPINGADDRESS obj)
         {
             bool status = false;
