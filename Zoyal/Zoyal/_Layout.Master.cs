@@ -28,6 +28,8 @@ namespace Zoyal
                         myaccount.Visible = true;
                     }
                     clearcontrols();
+                    cart_visible();
+                   
                     //loading locations
                     DataTable dt_loc = BLL.Getlocations();
                     string locations = "";
@@ -37,12 +39,113 @@ namespace Zoyal
                         //locations = locations+dt_loc.Rows[i]["location_name"].ToString();
                     }
                     ul_locations.InnerHtml = locations;
+
+                   
+
                 }
+
                 catch (Exception exe)
                 {
 
                 }
+                if (Request.QueryString["id"] != null)
+                {
+                    string productid = Request.QueryString["id"].ToString();
+                    DataTable dt_productcart = BLL.GETPRODUCTBYID(productid);
+                   // DataTable dtcart = BLL.GETPRODUCTBYID(productid);
+                  
+                        //if (Session["CART"] == null)
+                        //{
+                        //    Session["CART"] = dt_productcart;
+                        //}
+                        //else
+                        //{
+                        //    DataTable dt_allprocart = (DataTable)Session["CART"];
+                        //    dt_productcart.Merge(dt_allprocart);
+                        //    //dt_allpro.Merge(dt_product);
+                        //    Session["CART"] = dt_productcart;
+                        //}
+                    
+                    
+
+                }
+                if (Session["CART"] != null)
+                {
+
+                    DataTable dt_productall = (DataTable)Session["CART"];
+                    string html = parsehtmlcart(dt_productall);
+                   
+
+                    CART_BAG.InnerHtml = html;
+                }
+                else
+                {
+
+                }
+
+               
+
             }
+        }
+
+       public  void cart_visible( )
+        {
+            try
+            {
+                DataTable dt_productall= (DataTable)Session["CART"];
+
+                if (dt_productall == null)
+                    {
+                        cart_head.Visible = false;
+                        cart_hed1.Visible = true;
+                        btn_viewcart.Visible = false;
+                        btn_checkout.Visible = false;
+                        ul_subtotal.Visible = false;
+                    }
+                    else
+                    {
+                        cart_head.Visible = true;
+                        cart_hed1.Visible = false;
+                        btn_viewcart.Visible = true;
+                        btn_checkout.Visible = true;
+                        ul_subtotal.Visible = true;
+                    }
+
+               
+            }
+            catch(Exception ex)
+            {
+            }
+        }
+        public string cart(DataTable dtcart)
+        {
+            
+            string cartproduct = "";
+            for (int i = 0; i <= dtcart.Rows.Count; i++)
+            {
+              
+                string productid = Request.QueryString["id"].ToString();
+                //DataTable dt_productcart = BLL.GETPRODUCTBYID(productid);
+
+                if ( dtcart.Rows[i]["PRODUCT_ID"].ToString()== productid)
+                {
+                    cartproduct = cartproduct + "<li class='product'><div class='product-thumb-info'><a href='#' class='product-remove'><i class='fa fa-trash-o'></i></a><div class='product-thumb-info-image'><a href='shop-product-detail1.html'><img alt='' width='60' src='" + dtcart.Rows[i]["PRODUCT_IMAGEURL"] + "'></a></div> <div class='product-thumb-info-content'><h4><a href='shop-product-detail2.html'>" + dtcart.Rows[i]["PRODUCT_IMAGETITLE"] + "</a></h4><span class='item-cat'><small><a href='#'>" + dtcart.Rows[i]["PRODUCT_NAME"] + "</a></small></span><span class='price'>" + dtcart.Rows[i]["PRODUCT_PRICE"] + "</span></div></div></li>";
+                   
+                }
+               
+                
+           }
+            return cartproduct;
+
+        }
+        public string parsehtmlcart(DataTable dt_productcart)
+        {
+            string content = "";
+            for (int i = 0; i < dt_productcart.Rows.Count; i++)
+            {
+                 content= content + "<li class='product'><div class='product-thumb-info'><a href='#' class='product-remove'><i class='fa fa-trash-o'></i></a><div class='product-thumb-info-image'><a href='shop-product-detail1.html'><img alt='' width='60' src='"+ dt_productcart.Rows[i]["PRODUCT_IMAGEURL"]+"'></a></div> <div class='product-thumb-info-content'><h4><a href='shop-product-detail2.html'>"+ dt_productcart.Rows[i]["PRODUCT_IMAGETITLE"]+"</a></h4><span class='item-cat'><small><a href='#'>"+ dt_productcart.Rows[i]["PRODUCT_NAME"]+"</a></small></span><span class='price'>"+ dt_productcart.Rows[i]["PRODUCT_PRICE"]+"</span></div></div></li>";  
+            }
+            return content;
         }
 
         public void clearcontrols()

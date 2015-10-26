@@ -40,6 +40,60 @@ namespace Zoyal {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ul_locations;
         
         /// <summary>
+        /// cart_head control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cart_head;
+        
+        /// <summary>
+        /// cart_hed1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cart_hed1;
+        
+        /// <summary>
+        /// CART_BAG control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CART_BAG;
+        
+        /// <summary>
+        /// ul_subtotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ul_subtotal;
+        
+        /// <summary>
+        /// btn_viewcart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_viewcart;
+        
+        /// <summary>
+        /// btn_checkout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_checkout;
+        
+        /// <summary>
         /// lbllogin control.
         /// </summary>
         /// <remarks>

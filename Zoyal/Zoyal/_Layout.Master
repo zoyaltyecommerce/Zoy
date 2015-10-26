@@ -83,6 +83,34 @@
         }
 
     </script>
+    <script type="text/javascript">
+        function cart_product()
+        {
+            // debugger;
+            
+            //document.getElementById('cart_hed1').style.display = "inline-block";
+            //document.getElementById('cart_head').style.display = "none";
+            //document.getElementById('btn_viewcart').style.display = "none";
+            //document.getElementById('btn_checkout').style.display = "none";
+            //document.getElementById('ul_subtotal').style.display = "none";
+        }
+
+    </script>
+   <%-- <script type="text/javascript">
+
+        function cart_visible()
+        {
+           // debugger;
+            
+            //document.getElementById('cart_head').style.display = 'visible';
+            //document.getElementById('cart_hed1').style.display = 'none';
+            //document.getElementById('btn_viewcart').style.display = 'visible';
+            //document.getElementById('btn_checkout').style.display = 'block';
+            //document.getElementById('ul_subtotal').style.display = 'block';
+            
+
+        }--%>
+    </script>
    <style type="text/css">
        .imaheight
        {
@@ -130,61 +158,22 @@
 
                             </ul>
                         </li>
-                        <li class="dropdown menu-shop">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-shopping-cart"></i> <span class="shopping-bag">9</span></a>
-                            <div class="dropdown-menu">
-                                <h3>Recently added item(s)</h3>
-                                <ul class="list-unstyled list-thumbs-pro">
-                                    <li class="product">
-                                        <div class="product-thumb-info">
-                                            <a href="#" class="product-remove"><i class="fa fa-trash-o"></i></a>
-                                            <div class="product-thumb-info-image">
-                                                <a href="shop-product-detail1.html"><img alt="" width="60" src="images/content/products/product-1.jpg"></a>
-                                            </div>
+                   <li class="dropdown menu-shop" >
+                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" onclick="cart_product();"><i class="fa fa-shopping-cart" ></i> <span class="shopping-bag">0</span></a>
+                       <div class="dropdown-menu"   >
+                                <h3 id="cart_head" runat="server">Recently added item(s)</h3>
+                                 <h3 id="cart_hed1" runat="server"> No item(s)</h3>
 
-                                            <div class="product-thumb-info-content">
-                                                <h4><a href="shop-product-detail2.html">Denim shirt</a></h4>
-                                                <span class="item-cat"><small><a href="#">Jackets</a></small></span>
-                                                <span class="price">29.99 USD</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="product">
-                                        <div class="product-thumb-info">
-                                            <a href="#" class="product-remove"><i class="fa fa-trash-o"></i></a>
-                                            <div class="product-thumb-info-image">
-                                                <a href="shop-product-detail1.html"><img alt="" width="60" src="images/content/products/product-2.jpg"></a>
-                                            </div>
-
-                                            <div class="product-thumb-info-content">
-                                                <h4><a href="shop-product-detail2.html">Poplin shirt with fine pleated bands</a></h4>
-                                                <span class="item-cat"><small><a href="#">Jackets</a></small></span>
-                                                <span class="price">29.99 USD</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="product">
-                                        <div class="product-thumb-info">
-                                            <a href="#" class="product-remove"><i class="fa fa-trash-o"></i></a>
-                                            <div class="product-thumb-info-image">
-                                                <a href="shop-product-detail1.html"><img alt="" width="60" src="images/content/products/product-3.jpg"></a>
-                                            </div>
-
-                                            <div class="product-thumb-info-content">
-                                                <h4><a href="shop-product-detail2.html">Contrasting shirt</a></h4>
-                                                <span class="item-cat"><small><a href="#">Jackets</a></small></span>
-                                                <span class="price">29.99 USD</span>
-                                            </div>
-                                        </div>
-                                    </li>
+                                <ul class="list-unstyled list-thumbs-pro" id="CART_BAG" runat="server">
+                               <%--<li class='product'><div class='product-thumb-info'><a href='#' class='product-remove'><i class='fa fa-trash-o'></i></a><div class='product-thumb-info-image'><a href='shop-product-detail1.html'><img alt='' width='60' src='images/content/products/product-2.jpg'></a></div> <div class='product-thumb-info-content'><h4><a href='shop-product-detail2.html'>Poplin shirt with fine pleated bands</a></h4><span class='item-cat'><small><a href='#'>Jackets</a></small></span><span class='price'>29.99 USD</span></div></div></li>--%>
                                 </ul>
-                                <ul class="list-inline cart-subtotals text-right">
+                                <ul class="list-inline cart-subtotals text-right" id="ul_subtotal" runat="server">
                                     <li class="cart-subtotal"><strong>Subtotal</strong></li>
                                     <li class="price"><span class="amount"><strong>RS431</strong></span></li>
                                 </ul>
                                 <div class="cart-buttons text-right">
-                                    <button class="btn btn-white">View Cart</button>
-                                    <button class="btn btn-primary">Checkout</button>
+                                    <button class="btn btn-white" id="btn_viewcart" runat="server" >View Cart</button>
+                                    <button class="btn btn-primary" id="btn_checkout" runat="server">Checkout</button>
                                 </div>
                             </div>
                         </li>
