@@ -116,6 +116,10 @@
     <Content Include="Aboutus.html" />
     <Content Include="Aboutus.aspx" />
     <Content Include="admin.aspx" />
+    <Content Include="Admin\img\logo.png" />
+    <Content Include="Admin\index.aspx" />
+    <Content Include="Admin\login.aspx" />
+    <Content Include="Admin\login.html" />
     <Content Include="blog-masonry.aspx" />
     <Content Include="blog-masonry.html" />
     <Content Include="blog-mini-sidebar.aspx" />
@@ -349,6 +353,15 @@
     <Content Include="page-contact2.html" />
     <Content Include="partnerwithus.aspx" />
     <Content Include="Partnerwithus.html" />
+    <Content Include="PRODUCT_IMG\AUTOMATIC.png" />
+    <Content Include="PRODUCT_IMG\Decorative Bike.jpg" />
+    <Content Include="PRODUCT_IMG\images %281%29.jpg" />
+    <Content Include="PRODUCT_IMG\images %282%29.jpg" />
+    <Content Include="PRODUCT_IMG\images.jpg" />
+    <Content Include="PRODUCT_IMG\product-2.jpg" />
+    <Content Include="PRODUCT_IMG\product-4_370x.jpg" />
+    <Content Include="PRODUCT_IMG\product-1.jpg" />
+    <Content Include="PRODUCT_IMG\product-3.jpg" />
     <Content Include="sample in bootstrap v2\bootstrap\css\bootstrap.css" />
     <Content Include="sample in bootstrap v2\bootstrap\css\bootstrap.min.css" />
     <Content Include="sample in bootstrap v2\bootstrap\img\glyphicons-halflings-white.png" />
@@ -430,6 +443,20 @@
     </Compile>
     <Compile Include="admin.aspx.designer.cs">
       <DependentUpon>admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -548,6 +575,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Admin\css\" />
+    <Folder Include="Admin\email_templates\" />
+    <Folder Include="Admin\font-awesome\" />
+    <Folder Include="Admin\fonts\" />
+    <Folder Include="Admin\js\" />
+    <Folder Include="Admin\LESS\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <PropertyGroup>
