@@ -37,10 +37,7 @@ namespace Zoyal
                             if(dt_temp.Rows[i]["PRODUCT_ID"].ToString()==Request.QueryString["id"])
                                 {
                                     sta = true;
-                                   
                                 }
-                            
-                               
                             }
                             if(sta==false)
                             { 
