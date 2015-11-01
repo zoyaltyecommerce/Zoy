@@ -96,26 +96,38 @@
         }
 
     </script>--%>
-  <%--<script type="text/javascript">
+  <script type="text/javascript">
 
-      function cartitem_delete()
+
+      function delete_cartitem(id)
       {
           debugger;
-          PageMethods.cartitem_delete1(document.getElementById('delete_cart').value, OnSuccess,onfailure);
+          var REMOVE_cart = document.getElementById('DELETE_CART' + id);
+          REMOVE_cart.remove(REMOVE_cart.id);
+          var REMOVE = document.getElementById('delete_product' + id);
+          REMOVE.remove(REMOVE.id);
+      }
 
-      }
-      function OnSuccess(response, userContext, cartitem_delete) {
-          debugger;
-          alert(response);
-      }
-      function onfailure(response) {
-          debugger;
-         // alert(response);
-      }
+
+
+     // function delete_cartitem()
+     // {
+     //     debugger;
+     //     PageMethods.cartitem_delete(document.getElementById('delete_cart').value, OnSuccess, onfailure);
+
+     //}
+     // function OnSuccess(response,cartitem_delete) {
+     //     debugger;
+     //     alert(response);
+     // }
+     // function onfailure(response) {
+     //     debugger;
+     //    // alert(response);
+     // }
 
 
       
-  </script>--%>
+  </script>
 
    <style type="text/css">
        .imaheight

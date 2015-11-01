@@ -141,7 +141,7 @@ namespace Zoyal
             string content = "";
             for (int i = 0; i < dt_productcart.Rows.Count; i++)
             {
-                content = content + "<li class='product'><div class='product-thumb-info'><a href='#' id='delete_cart' class='product-remove' onclick='delete_cartitem();'><i class='fa fa-trash-o'></i></a><div class='product-thumb-info-image'><a href='shop-product-detail1.html'><img alt='' width='60' src='" + dt_productcart.Rows[i]["PRODUCT_IMAGEURL"] + "'></a></div> <div class='product-thumb-info-content'><h4><a href='shop-product-detail2.html'>" + dt_productcart.Rows[i]["PRODUCT_IMAGETITLE"] + "</a></h4><span class='item-cat'><small><a href='#'>" + dt_productcart.Rows[i]["PRODUCT_NAME"] + "</a></small></span><span class='price'>" + dt_productcart.Rows[i]["PRODUCT_PRICE"] + "</span></div></div></li>";
+                content = content + "<li id='DELETE_CART"+dt_productcart.Rows[i]["PRODUCT_ID"]+"' class='product'><div class='product-thumb-info'><a href='#' id='delete_cart' class='product-remove' onclick='delete_cartitem(" + dt_productcart.Rows[i]["PRODUCT_ID"]+");' ><i class='fa fa-trash-o'></i></a><div class='product-thumb-info-image'><a href='shop-product-detail1.html'><img alt='' width='60' src='" + dt_productcart.Rows[i]["PRODUCT_IMAGEURL"] + "'></a></div> <div class='product-thumb-info-content'><h4><a href='shop-product-detail2.html'>" + dt_productcart.Rows[i]["PRODUCT_IMAGETITLE"] + "</a></h4><span class='item-cat'><small><a href='#'>" + dt_productcart.Rows[i]["PRODUCT_NAME"] + "</a></small></span><span class='price'>" + dt_productcart.Rows[i]["PRODUCT_PRICE"] + "</span></div></div></li>";
             }
             return content;
         }
@@ -296,7 +296,7 @@ namespace Zoyal
         }
 
 
-        protected void cartitem_delete1(string name)
+        protected void cartitem_delete(string name)
         {
 
             string productid = Request.QueryString["id"].ToString();
@@ -308,17 +308,13 @@ namespace Zoyal
         }
 
        [WebMethod]
-        public static string   cartitem_delete(string name)
+       
+        public static string cartitem_delete()
         {
-            string productid = "";
-            //string productid = Request.QueryString["id"].ToString();
-            //DataTable dt_productcart = BLL.GETPRODUCTBYID(productid);
-
-            //DataTable dt_productall = (DataTable)Session["CART"];
-            //Session["CART"] = productid;
-            //Session.Remove("CART");
-            //  return productid;
-            return productid;
+            string name = "";
+            return "Hello " + name + Environment.NewLine + "The Current Time is: "
+                   + DateTime.Now.ToString();
+            
 
 
         }
