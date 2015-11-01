@@ -171,11 +171,17 @@ namespace Zoyal.Code
             DataTable dt = BLL.ExecuteQuery("EXEC USP_PRODUCTS @OPERATION='GETALLPRODUCTS' ");
             return dt;
         }
+        
         internal static DataTable GETPRODUCTBYID(string PRODUCTID)
         {
             DataTable dt = BLL.ExecuteQuery("EXEC USP_PRODUCTS @OPERATION='GETPRODUCTBYID',@PRODUCT_ID='"+ PRODUCTID +"'");
             return dt;
         }
+        //internal static DataTable DELETE_CARTITEM(string PRODUCTID)
+        //{
+        //    DataTable dt = BLL.ExecuteQuery("EXEC USP_PRODUCT @OPERATION='DELETE_CARTITEM',@PRODUCT_ID='" + PRODUCTID + "'");
+        //    return dt;
+        //}
 
         //internal static DataTable GETPRODUCT_CART(string PRODUCTID)
         //{

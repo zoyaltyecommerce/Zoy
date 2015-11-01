@@ -22,25 +22,44 @@ namespace Zoyal
                     {
                         string productid = Request.QueryString["id"].ToString();
                         DataTable dt_product = BLL.GETPRODUCTBYID(productid);
-                        if(Session["CART"]==null)
+                        if (Session["CART"]==null)
                         {
+                           
                             Session["CART"] = dt_product;
+                            
                         }
                         else
                         {
+                            DataTable dt_temp = (DataTable)Session["CART"];
+                            bool sta = false;
+                            for(int i=0;i < dt_temp.Rows.Count; i++)
+                            { 
+                            if(dt_temp.Rows[i]["PRODUCT_ID"].ToString()==Request.QueryString["id"])
+                                {
+                                    sta = true;
+                                   
+                                }
+                            
+                               
+                            }
+                            if(sta==false)
+                            { 
                             DataTable dt_allpro = (DataTable)Session["CART"];
                             dt_product.Merge(dt_allpro);
                             // dt_allpro.Merge(dt_product);
                             Session["CART"] = dt_product;
+                           }
                         }
                     
                     }
                     if(Session["CART"]!=null)
                     {
+                         
                         DataTable dt_productall = (DataTable)Session["CART"];
                         string html = parsehtmlcart(dt_productall);
 
                         tb_cart.InnerHtml = html;
+                        
                     }
                     else
                     {
@@ -65,7 +84,7 @@ namespace Zoyal
             string content = "";
             for (int i = 0; i < dt_product.Rows.Count; i++)
             {
-                content = content + "<tr class='cart_table_item'><td class='product-thumbnail'><img alt='' width='80' src='"+ dt_product.Rows[i]["PRODUCT_IMAGEURL"] +"'/></td><td class='product-name'><a href='shop-product-sidebar.html' >"+dt_product.Rows[i]["PRODUCT_IMAGETITLE"] +"</a></td><td class='product-price'><span class='amount'>RS"+dt_product.Rows[i]["PRODUCT_PRICE"]+"</span></td><td class='product-quantity'><div class='quantity'><input type = 'button' class='minus' value='-'><input type = 'text' class='input-text qty text' title='Qty' value='1' name='quantity' min='1' step='1'><input type = 'button' class='plus' value='+'></div></td><td class='product-subtotal'><span class='amount'>RS300</span></td><td class='product-remove'><a title = 'Remove this item' class='remove' href='#'><i class='fa fa-times-circle'></i></a></td></tr>";
+                content = content + "<tr class='cart_table_item'><td class='product-thumbnail'><img alt='' width='80' src='"+ dt_product.Rows[i]["PRODUCT_IMAGEURL"] +"'/></td><td class='product-name'><a href='shop-product-sidebar.html' >"+dt_product.Rows[i]["PRODUCT_IMAGETITLE"] + "</a></td><td class='product-price'><span id='price_" + dt_product.Rows[i]["PRODUCT_PRICE"] + "' class='amount'>RS" + dt_product.Rows[i]["PRODUCT_PRICE"]+ "</span></td><td class='product-quantity'><div class='quantity'><input type = 'button' class='minus' value='-' onclick='qtyminus("+ dt_product.Rows[i]["product_id"]+","+dt_product.Rows[i]["PRODUCT_PRICE"] + ");'> <input type='text' ID='txtqty_" + dt_product.Rows[i]["PRODUCT_ID"] +"' class='input-text qty text' title='Qty' name='quantity'  value='1'  ><input type='button' ID='increement' class='plus' value='+' onclick='qtyincrees("+ dt_product.Rows[i]["PRODUCT_ID"] +","+dt_product.Rows[i]["PRODUCT_PRICE"]+");'></div></td><td class='product-subtotal'><span id='sub_amount_"+dt_product.Rows[i]["PRODUCT_ID"] + "' class='amount'>RS" + dt_product.Rows[i]["PRODUCT_PRICE"] + "</span></td><td class='product-remove'><a title = 'Remove this item' class='remove' href='#'><i class='fa fa-times-circle'></i></a></td></tr>";
             }
             return content;
         }

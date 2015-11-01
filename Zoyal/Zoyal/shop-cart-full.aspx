@@ -47,6 +47,32 @@
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
+     <script type="text/javascript">
+        function qtyincrees(id,price)
+        {
+            debugger;
+            document.getElementById('price_' + price).value = price;
+            document.getElementById('txtqty_' + id).value = parseInt(document.getElementById('txtqty_' + id).value) + 1;
+            
+            var result = document.getElementById('txtqty_' + id).value * price;
+           document.getElementById('sub_amount_'+id).innerHTML = result;
+       }
+    </script>
+     <script type="text/javascript">
+      
+        function qtyminus(id,price)
+        {
+            debugger;
+            if (parseInt(document.getElementById('txtqty_' + id).value) > 1)
+            {
+               // document.getElementById('price_' + price).value = price;
+                document.getElementById('txtqty_' + id).value = parseInt(document.getElementById('txtqty_' + id).value) - 1;
+                var result = document.getElementById('txtqty_' + id).value * price;
+                document.getElementById('sub_amount_' + id).innerHTML = result;
+            }
+        }
+    </script>
+   
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     	<!-- Begin Main -->
@@ -108,6 +134,7 @@
 <input type='button' class='plus' value='+'>
 </div></td>
 <td class='product-subtotal'>
+  
 <span class='amount'>RS299</span>
 </td>
 <td class='product-remove'><a title='Remove this item' class='remove' href='#'>
@@ -147,7 +174,8 @@
 </td>
 <td class='product-quantity'>
 <div class='quantity'><input type='button' class='minus' value='-'><input type='text' class='input-text qty text' title='Qty' value='1' name='quantity' min='1' step='1'>
-<input type='button' class='plus' value='+'>
+<input type='button' class='plus' value='+' >
+    
 </div></td>
 <td class='product-subtotal'>
 <span class='amount'>RS299</span>

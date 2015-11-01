@@ -11,6 +11,8 @@ using System.Net.Mail;
 using System.Drawing;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Web.UI.HtmlControls;
+using System.Web.Services;
 
 namespace Zoyal
 {
@@ -22,119 +24,115 @@ namespace Zoyal
             {
                 try
                 {
-                    if(Session["ZOYALUSER"]!=null)
+                    if (Session["ZOYALUSER"] != null)
                     {
                         lbllogin.Visible = false;
                         myaccount.Visible = true;
                     }
                     clearcontrols();
                     cart_visible();
-                   
+
+
                     //loading locations
                     DataTable dt_loc = BLL.Getlocations();
                     string locations = "";
-                    for(int i=0;i<dt_loc.Rows.Count;i++)
+                    for (int i = 0; i < dt_loc.Rows.Count; i++)
                     {
-                        locations= locations + "<li><a href=''>" + dt_loc.Rows[i]["location_name"].ToString() + "</a></li>";
+                        locations = locations + "<li><a href=''>" + dt_loc.Rows[i]["location_name"].ToString() + "</a></li>";
                         //locations = locations+dt_loc.Rows[i]["location_name"].ToString();
                     }
                     ul_locations.InnerHtml = locations;
-
-                   
-
                 }
 
                 catch (Exception exe)
                 {
 
                 }
+
+
                 if (Request.QueryString["id"] != null)
                 {
+
                     string productid = Request.QueryString["id"].ToString();
                     DataTable dt_productcart = BLL.GETPRODUCTBYID(productid);
-                   // DataTable dtcart = BLL.GETPRODUCTBYID(productid);
-                  
-                        //if (Session["CART"] == null)
-                        //{
-                        //    Session["CART"] = dt_productcart;
-                        //}
-                        //else
-                        //{
-                        //    DataTable dt_allprocart = (DataTable)Session["CART"];
-                        //    dt_productcart.Merge(dt_allprocart);
-                        //    //dt_allpro.Merge(dt_product);
-                        //    Session["CART"] = dt_productcart;
-                        //}
-                    
-                    
 
-                }
-                if (Session["CART"] != null)
-                {
 
-                    DataTable dt_productall = (DataTable)Session["CART"];
-                    string html = parsehtmlcart(dt_productall);
-                   
-
-                    CART_BAG.InnerHtml = html;
-                }
-                else
-                {
-
-                }
-
-               
-
-            }
-        }
-
-       public  void cart_visible( )
-        {
-            try
-            {
-                DataTable dt_productall= (DataTable)Session["CART"];
-
-                if (dt_productall == null)
+                    if (Session["CART"] != null)
                     {
-                        cart_head.Visible = false;
-                        cart_hed1.Visible = true;
-                        btn_viewcart.Visible = false;
-                        btn_checkout.Visible = false;
-                        ul_subtotal.Visible = false;
+
+                        DataTable dt_productall = (DataTable)Session["CART"];
+                        string html = parsehtmlcart(dt_productall);
+
+
+                        CART_BAG.InnerHtml = html;
+
                     }
                     else
                     {
-                        cart_head.Visible = true;
-                        cart_hed1.Visible = false;
-                        btn_viewcart.Visible = true;
-                        btn_checkout.Visible = true;
-                        ul_subtotal.Visible = true;
+
                     }
+                }
 
                
+
             }
-            catch(Exception ex)
+        }
+
+        public void cart_visible()
+        {
+            try
+            {
+              
+                DataTable dt_productall = (DataTable)Session["CART"];
+
+                if (dt_productall == null)
+                {
+                    cart_head.Visible = false;
+                    cart_hed1.Visible = true;
+                    btn_viewcart.Visible = false;
+                    btn_checkout.Visible = false;
+                    ul_subtotal.Visible = false;
+                }
+                else
+                {
+                    cart_head.Visible = true;
+                    cart_hed1.Visible = false;
+                    btn_viewcart.Visible = true;
+                    btn_checkout.Visible = true;
+                    ul_subtotal.Visible = true;
+
+
+
+                }
+                
+
+            }
+            catch (Exception ex)
             {
             }
         }
+
+
+
         public string cart(DataTable dtcart)
         {
-            
+
             string cartproduct = "";
             for (int i = 0; i <= dtcart.Rows.Count; i++)
             {
-              
+
                 string productid = Request.QueryString["id"].ToString();
                 //DataTable dt_productcart = BLL.GETPRODUCTBYID(productid);
-
-                if ( dtcart.Rows[i]["PRODUCT_ID"].ToString()== productid)
+                if (Request.QueryString["id"] == productid)
                 {
-                    cartproduct = cartproduct + "<li class='product'><div class='product-thumb-info'><a href='#' class='product-remove'><i class='fa fa-trash-o'></i></a><div class='product-thumb-info-image'><a href='shop-product-detail1.html'><img alt='' width='60' src='" + dtcart.Rows[i]["PRODUCT_IMAGEURL"] + "'></a></div> <div class='product-thumb-info-content'><h4><a href='shop-product-detail2.html'>" + dtcart.Rows[i]["PRODUCT_IMAGETITLE"] + "</a></h4><span class='item-cat'><small><a href='#'>" + dtcart.Rows[i]["PRODUCT_NAME"] + "</a></small></span><span class='price'>" + dtcart.Rows[i]["PRODUCT_PRICE"] + "</span></div></div></li>";
-                   
+                    if (dtcart.Rows[i]["PRODUCT_ID"].ToString() == productid)
+                    {
+                        cartproduct = cartproduct + "<li class='product'><div class='product-thumb-info'><a href='#' id='delete_cart' onclick='cartitem_delete();' class='product-remove'><i class='fa fa-trash-o'></i></a><div class='product-thumb-info-image'><a href='shop-product-detail1.html'><img alt='' width='60' src='" + dtcart.Rows[i]["PRODUCT_IMAGEURL"] + "'></a></div> <div class='product-thumb-info-content'><h4><a href='shop-product-detail2.html'>" + dtcart.Rows[i]["PRODUCT_IMAGETITLE"] + "</a></h4><span class='item-cat'><small><a href='#'>" + dtcart.Rows[i]["PRODUCT_NAME"] + "</a></small></span><span class='price'>" + dtcart.Rows[i]["PRODUCT_PRICE"] + "</span></div></div></li>";
+
+                    }
+
                 }
-               
-                
-           }
+            }
             return cartproduct;
 
         }
@@ -143,27 +141,27 @@ namespace Zoyal
             string content = "";
             for (int i = 0; i < dt_productcart.Rows.Count; i++)
             {
-                 content= content + "<li class='product'><div class='product-thumb-info'><a href='#' class='product-remove'><i class='fa fa-trash-o'></i></a><div class='product-thumb-info-image'><a href='shop-product-detail1.html'><img alt='' width='60' src='"+ dt_productcart.Rows[i]["PRODUCT_IMAGEURL"]+"'></a></div> <div class='product-thumb-info-content'><h4><a href='shop-product-detail2.html'>"+ dt_productcart.Rows[i]["PRODUCT_IMAGETITLE"]+"</a></h4><span class='item-cat'><small><a href='#'>"+ dt_productcart.Rows[i]["PRODUCT_NAME"]+"</a></small></span><span class='price'>"+ dt_productcart.Rows[i]["PRODUCT_PRICE"]+"</span></div></div></li>";  
+                content = content + "<li class='product'><div class='product-thumb-info'><a href='#' id='delete_cart' class='product-remove' onclick='delete_cartitem();'><i class='fa fa-trash-o'></i></a><div class='product-thumb-info-image'><a href='shop-product-detail1.html'><img alt='' width='60' src='" + dt_productcart.Rows[i]["PRODUCT_IMAGEURL"] + "'></a></div> <div class='product-thumb-info-content'><h4><a href='shop-product-detail2.html'>" + dt_productcart.Rows[i]["PRODUCT_IMAGETITLE"] + "</a></h4><span class='item-cat'><small><a href='#'>" + dt_productcart.Rows[i]["PRODUCT_NAME"] + "</a></small></span><span class='price'>" + dt_productcart.Rows[i]["PRODUCT_PRICE"] + "</span></div></div></li>";
             }
             return content;
         }
 
         public void clearcontrols()
         {
-                try
-                 {
+            try
+            {
                 txt_fullname.Text = "";
                 txt_email.Text = "";
                 txt_pwd.Text = "";
                 txt_phonenumber.Text = "";
 
-                 }
-                 catch(Exception exe)
-                 {
-                        
-                        
-                 }
             }
+            catch (Exception exe)
+            {
+
+
+            }
+        }
         protected void btn_signup_Click(object sender, EventArgs e)
         {
             try
@@ -231,26 +229,26 @@ namespace Zoyal
             USERS obj = new USERS();
             obj.USER_EMAILID = txt_username.Text.ToString().Trim();
             obj.USER_PASSWORD = txt_password.Text.ToString().Trim();
-          
-            
+
+
             DataTable dt_user = new DataTable();
-           
-                dt_user = BLL.LOGIN(obj);
-                if (dt_user.Rows.Count > 0)
-                {
+
+            dt_user = BLL.LOGIN(obj);
+            if (dt_user.Rows.Count > 0)
+            {
                 Session["ZOYALUSER"] = dt_user;
-                    //BLL.ShowMessage(this, "YOUR ACCOUNT SUCCESSFULLY LOGIN");
-                    clearcontrols();
-                    lbllogin.Visible = false;
-                    myaccount.Visible = true;
-                    
+                //BLL.ShowMessage(this, "YOUR ACCOUNT SUCCESSFULLY LOGIN");
+                clearcontrols();
+                lbllogin.Visible = false;
+                myaccount.Visible = true;
+
 
             }
             else
-                {
-                    BLL.ShowMessage(this, "incorrect email or password");
-                }
-           
+            {
+                BLL.ShowMessage(this, "incorrect email or password");
+            }
+
         }
 
         protected void btn_forget_Click(object sender, EventArgs e)
@@ -268,7 +266,7 @@ namespace Zoyal
             mailmessage.To.Add(dt_user.Rows[0]["USER_EMAILID"].ToString());
             // mailmessage.CC.Add(emailid);
             mailmessage.Subject = "Password request";
-            mailmessage.Body = "<p> Dear " + dt_user.Rows[0]["USER_FIRSTNAME"].ToString() + ",<br /> <br />You password is " +BLL.Decrypt( dt_user.Rows[0]["USER_PASSWORD"].ToString()) + " please <a href=\"http://www.linkskart.com\">Click Here</a> to visit LINKSKART.</p></div>";
+            mailmessage.Body = "<p> Dear " + dt_user.Rows[0]["USER_FIRSTNAME"].ToString() + ",<br /> <br />You password is " + BLL.Decrypt(dt_user.Rows[0]["USER_PASSWORD"].ToString()) + " please <a href=\"http://www.linkskart.com\">Click Here</a> to visit LINKSKART.</p></div>";
             client.EnableSsl = false;
             try
             {
@@ -291,10 +289,39 @@ namespace Zoyal
                 myaccount.Visible = false;
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
         }
+
+
+        protected void cartitem_delete1(string name)
+        {
+
+            string productid = Request.QueryString["id"].ToString();
+            DataTable dt_productcart = BLL.GETPRODUCTBYID(productid);
+
+            DataTable dt_productall = (DataTable)Session["CART"];
+            Session["CART"] = productid;
+            Session.Remove("CART");
+        }
+
+       [WebMethod]
+        public static string   cartitem_delete(string name)
+        {
+            string productid = "";
+            //string productid = Request.QueryString["id"].ToString();
+            //DataTable dt_productcart = BLL.GETPRODUCTBYID(productid);
+
+            //DataTable dt_productall = (DataTable)Session["CART"];
+            //Session["CART"] = productid;
+            //Session.Remove("CART");
+            //  return productid;
+            return productid;
+
+
+        }
     }
+
 }
