@@ -17,7 +17,7 @@ namespace Zoyal
             {
                 try
                 {
-
+                    
                     if (Request.QueryString["id"] != null)
                     {
                         string productid = Request.QueryString["id"].ToString();
