@@ -55,7 +55,8 @@
             document.getElementById('txtqty_' + id).value = parseInt(document.getElementById('txtqty_' + id).value) + 1;
             
             var result = document.getElementById('txtqty_' + id).value * price;
-           document.getElementById('sub_amount_'+id).innerHTML = result;
+            document.getElementById('sub_amount_' + id).innerHTML = result;
+            
        }
     </script>
      <script type="text/javascript">
@@ -72,6 +73,22 @@
             }
         }
     </script>
+
+   <%-- <script type="text/javascript">
+
+
+
+        function delete_item(id)
+        {
+           
+            var REMOVE = document.getElementById('delete_product' + id);
+            REMOVE.remove(REMOVE.id);
+            var REMOVE_cart = document.getElementById('DELETE_CART' + id);
+            REMOVE_cart.remove(REMOVE_cart.id);
+
+        }
+        
+    </script>--%>
    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

@@ -60,7 +60,10 @@ namespace Zoyal
                     }
                     else
                     {
-
+                        //if (Request.QueryString["action"] != null)
+                        //{
+                        //    Request.QueryString["action"] = null;
+                        //}
                     }
                     
 
@@ -81,7 +84,7 @@ namespace Zoyal
             string content = "";
             for (int i = 0; i < dt_product.Rows.Count; i++)
             {
-                content = content + "<tr class='cart_table_item'><td class='product-thumbnail'><img alt='' width='80' src='"+ dt_product.Rows[i]["PRODUCT_IMAGEURL"] +"'/></td><td class='product-name'><a href='shop-product-sidebar.html' >"+dt_product.Rows[i]["PRODUCT_IMAGETITLE"] + "</a></td><td class='product-price'><span id='price_" + dt_product.Rows[i]["PRODUCT_PRICE"] + "' class='amount'>RS" + dt_product.Rows[i]["PRODUCT_PRICE"]+ "</span></td><td class='product-quantity'><div class='quantity'><input type = 'button' class='minus' value='-' onclick='qtyminus("+ dt_product.Rows[i]["product_id"]+","+dt_product.Rows[i]["PRODUCT_PRICE"] + ");'> <input type='text' ID='txtqty_" + dt_product.Rows[i]["PRODUCT_ID"] +"' class='input-text qty text' title='Qty' name='quantity'  value='1'  ><input type='button' ID='increement' class='plus' value='+' onclick='qtyincrees("+ dt_product.Rows[i]["PRODUCT_ID"] +","+dt_product.Rows[i]["PRODUCT_PRICE"]+");'></div></td><td class='product-subtotal'><span id='sub_amount_"+dt_product.Rows[i]["PRODUCT_ID"] + "' class='amount'>RS" + dt_product.Rows[i]["PRODUCT_PRICE"] + "</span></td><td class='product-remove'><a title = 'Remove this item' class='remove' href='#'><i class='fa fa-times-circle'></i></a></td></tr>";
+                content = content + "<tr id='delete_product"+dt_product.Rows[i]["PRODUCT_ID"]+"' class='cart_table_item'><td class='product-thumbnail'><img alt='' width='80' src='"+ dt_product.Rows[i]["PRODUCT_IMAGEURL"] +"'/></td><td class='product-name'><a href='shop-product-sidebar.html' >"+dt_product.Rows[i]["PRODUCT_IMAGETITLE"] + "</a></td><td class='product-price'><span id='price_" + dt_product.Rows[i]["PRODUCT_PRICE"] + "' class='amount'>RS" + dt_product.Rows[i]["PRODUCT_PRICE"]+ "</span></td><td class='product-quantity'><div class='quantity'><input type = 'button' class='minus' value='-' onclick='qtyminus("+ dt_product.Rows[i]["product_id"]+","+dt_product.Rows[i]["PRODUCT_PRICE"] + ");'> <input type='text' ID='txtqty_" + dt_product.Rows[i]["PRODUCT_ID"] +"' class='input-text qty text' title='Qty' name='quantity'  value='1'  ><input type='button' ID='increement' class='plus' value='+' onclick='qtyincrees("+ dt_product.Rows[i]["PRODUCT_ID"] +","+dt_product.Rows[i]["PRODUCT_PRICE"]+");'></div></td><td class='product-subtotal'><span id='sub_amount_"+dt_product.Rows[i]["PRODUCT_ID"] + "' class='amount'>RS" + dt_product.Rows[i]["PRODUCT_PRICE"] + "</span></td><td class='product-remove'><a title = 'Remove this item'  class='remove' onclick='delete_cartitem(" + dt_product.Rows[i]["PRODUCT_ID"] + ");' href='#'><i class='fa fa-times-circle'></i></a></td></tr>";
             }
             return content;
         }
