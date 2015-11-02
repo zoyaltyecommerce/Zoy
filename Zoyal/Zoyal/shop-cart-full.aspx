@@ -58,10 +58,10 @@
             document.getElementById('sub_amount_' + id).innerHTML = result;
             document.getElementById('cart_price' + id).innerHTML = result;
 
-            var count = 0;
-            for (var i = 0; i < array.length; ++i) {
-                document.getElementById('cart_price' + id).innerHTML = result+;
-            }
+            //var count = 0;
+            //for (var i = 0; i < array.length; ++i) {
+            //    document.getElementById('cart_price' + id).innerHTML = result+;
+            //}
 
 
            // var result1 = parseInt(document.getElementById('cart_price' + result).value) + parseInt(document.getElementById('sub_amount_' + result).value);
