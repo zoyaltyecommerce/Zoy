@@ -56,7 +56,17 @@
             
             var result = document.getElementById('txtqty_' + id).value * price;
             document.getElementById('sub_amount_' + id).innerHTML = result;
-            
+            document.getElementById('cart_price' + id).innerHTML = result;
+
+            var count = 0;
+            for (var i = 0; i < array.length; ++i) {
+                document.getElementById('cart_price' + id).innerHTML = result+;
+            }
+
+
+           // var result1 = parseInt(document.getElementById('cart_price' + result).value) + parseInt(document.getElementById('sub_amount_' + result).value);
+            //var result1 = result + id;
+            //document.getElementById('sub_amount_cart' + result).innerHTML = result1;
        }
     </script>
      <script type="text/javascript">
@@ -70,6 +80,8 @@
                 document.getElementById('txtqty_' + id).value = parseInt(document.getElementById('txtqty_' + id).value) - 1;
                 var result = document.getElementById('txtqty_' + id).value * price;
                 document.getElementById('sub_amount_' + id).innerHTML = result;
+                document.getElementById('cart_price' + id).innerHTML = result;
+                
             }
         }
     </script>
