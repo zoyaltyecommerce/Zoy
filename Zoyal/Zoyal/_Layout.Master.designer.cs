@@ -76,6 +76,15 @@ namespace Zoyal {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ul_subtotal;
         
         /// <summary>
+        /// sub_amount_cart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sub_amount_cart;
+        
+        /// <summary>
         /// btn_viewcart control.
         /// </summary>
         /// <remarks>

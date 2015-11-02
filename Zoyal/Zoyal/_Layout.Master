@@ -106,7 +106,16 @@
           REMOVE_cart.remove(REMOVE_cart.id);
           var REMOVE = document.getElementById('delete_product' + id);
           REMOVE.remove(REMOVE.id);
+          PageMethods.delete_cartitem(document.getElementById('REMOVE_cart').value, OnSuccess, onfailure);
       }
+      function OnSuccess(response,cartitem_delete) {
+               debugger;
+               alert(response);
+           }
+           function onfailure(response) {
+               debugger;
+              // alert(response);
+           }
 
 
 
@@ -188,7 +197,7 @@
                                 </ul>
                                 <ul class="list-inline cart-subtotals text-right" id="ul_subtotal" runat="server">
                                     <li class="cart-subtotal"><strong>Subtotal</strong></li>
-                                    <li class="price"><span class="amount"><strong>RS431</strong></span></li>
+                                    <li class="price"><span class="amount"><strong id="sub_amount_cart" runat="server">RS431</strong></span></li>
                                 </ul>
                                 <div class="cart-buttons text-right">
                                     <button class="btn btn-white" id="btn_viewcart" runat="server" >View Cart</button>
