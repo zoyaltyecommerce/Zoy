@@ -47,44 +47,7 @@
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
-     <script type="text/javascript">
-        function qtyincrees(id,price)
-        {
-            debugger;
-            document.getElementById('price_' + price).value = price;
-            document.getElementById('txtqty_' + id).value = parseInt(document.getElementById('txtqty_' + id).value) + 1;
-            
-            var result = document.getElementById('txtqty_' + id).value * price;
-            document.getElementById('sub_amount_' + id).innerHTML = result;
-            document.getElementById('cart_price' + id).innerHTML = result;
-
-            //var count = 0;
-            //for (var i = 0; i < array.length; ++i) {
-            //    document.getElementById('cart_price' + id).innerHTML = result+;
-            //}
-
-
-           // var result1 = parseInt(document.getElementById('cart_price' + result).value) + parseInt(document.getElementById('sub_amount_' + result).value);
-            //var result1 = result + id;
-            //document.getElementById('sub_amount_cart' + result).innerHTML = result1;
-       }
-    </script>
-     <script type="text/javascript">
-      
-        function qtyminus(id,price)
-        {
-            debugger;
-            if (parseInt(document.getElementById('txtqty_' + id).value) > 1)
-            {
-               // document.getElementById('price_' + price).value = price;
-                document.getElementById('txtqty_' + id).value = parseInt(document.getElementById('txtqty_' + id).value) - 1;
-                var result = document.getElementById('txtqty_' + id).value * price;
-                document.getElementById('sub_amount_' + id).innerHTML = result;
-                document.getElementById('cart_price' + id).innerHTML = result;
-                
-            }
-        }
-    </script>
+     
 
    <%-- <script type="text/javascript">
 
@@ -101,6 +64,7 @@
         }
         
     </script>--%>
+   
    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
