@@ -49,21 +49,7 @@
 	<![endif]-->
      
 
-   <%-- <script type="text/javascript">
-
-
-
-        function delete_item(id)
-        {
-           
-            var REMOVE = document.getElementById('delete_product' + id);
-            REMOVE.remove(REMOVE.id);
-            var REMOVE_cart = document.getElementById('DELETE_CART' + id);
-            REMOVE_cart.remove(REMOVE_cart.id);
-
-        }
-        
-    </script>--%>
+  
    
    
 </asp:Content>

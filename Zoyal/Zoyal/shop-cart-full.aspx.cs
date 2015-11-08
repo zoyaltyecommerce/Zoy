@@ -23,6 +23,10 @@ namespace Zoyal
                     {
                         string productid = Request.QueryString["id"].ToString();
                         DataTable dt_product = BLL.GETPRODUCTBYID(productid);
+                        dt_product.Columns.Add("PRODUCT_QTY", typeof(System.Int32));
+                        dt_product.Columns.Add("PRODUCT_SUB_TOTAL", typeof(System.Decimal));
+                        //DataRow dt = dt_product.NewRow();
+                        //dt["PRODUCT_QTY"] = 1;
                         if (Session["CART"] == null)
                         {
 
@@ -83,7 +87,9 @@ namespace Zoyal
             for (int i = 0; i < dt_product.Rows.Count; i++)
             {
                 content = content + "<tr id='delete_product" + dt_product.Rows[i]["PRODUCT_ID"] + "' class='cart_table_item'><td class='product-thumbnail'><img alt='' width='80' src='" + dt_product.Rows[i]["PRODUCT_IMAGEURL"] + "'/></td><td class='product-name'><a href='shop-product-sidebar.html' >" + dt_product.Rows[i]["PRODUCT_IMAGETITLE"] + "</a></td><td class='product-price'><span id='price_" + dt_product.Rows[i]["PRODUCT_PRICE"] + "' class='amount'>RS" + dt_product.Rows[i]["PRODUCT_PRICE"] + "</span></td><td class='product-quantity'><div class='quantity'><input type = 'button' class='minus' value='-' onclick='qtyminus(" + dt_product.Rows[i]["product_id"] + "," + dt_product.Rows[i]["PRODUCT_PRICE"] + ");'> <input type='text' ID='txtqty_" + dt_product.Rows[i]["PRODUCT_ID"] + "' class='input-text qty text' title='Qty' name='quantity'  value='1'  ><input type='button' ID='increement' class='plus' value='+' onclick='qtyincrees(" + dt_product.Rows[i]["PRODUCT_ID"] + "," + dt_product.Rows[i]["PRODUCT_PRICE"] + ");'></div></td><td class='product-subtotal'><span id='sub_amount_" + dt_product.Rows[i]["PRODUCT_ID"] + "' class='amount'>RS" + dt_product.Rows[i]["PRODUCT_PRICE"] + "</span></td><td class='product-remove'><a title = 'Remove this item'  class='remove' onclick='delete_cartitem(" + dt_product.Rows[i]["PRODUCT_ID"] + ");' href='#'><i class='fa fa-times-circle'></i></a></td></tr>";
+                
             }
+           
             return content;
         }
         public void clearcontrol()
@@ -176,6 +182,35 @@ namespace Zoyal
             return "true";
 
         }
+        [WebMethod]
+        public static string cartprice(decimal result,int id)
+        {
+            DataTable dt_price = (DataTable)HttpContext.Current.Session["CART"];
+
+            string productid = id.ToString();
+
+            DataRow[] result1 = dt_price.Select("product_id = " +id + "");
+            foreach (DataRow row in result1)
+            {
+                if (row["PRODUCT_ID"].ToString().Equals("" + productid + ""))
+                {
+                    //dt_cart.Rows.Remove(row);
+
+                    // dt_price.Select("product_price=" + result + "");
+                    //  HttpContext.Current.Session["CART"] = result;
+                    // dt_price.Rows.Add("product_price=" + result + "");
+                    row["PRODUCT_SUB_TOTAL"] = result;
+
+                }
+            }
+           
+            HttpContext.Current.Session["CART"] = dt_price;
+            
+            return "true";
+              //  return SessionParameter["PRODUCT_SUB_TOTAL"];
+
+        }
+        
     }
     
 }
