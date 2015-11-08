@@ -18,9 +18,12 @@ namespace Zoyal
             {
                 try
                 {
+
+                  
+                
                    // if (Session["PRODUCTIMAGE"]!=null)
-                  //  {
-                        DataTable dt_img = BLL.GETALLPRODUCTS();
+                   //  {
+                DataTable dt_img = BLL.GETALLPRODUCTS();
                     if(dt_img.Rows.Count>0)
                     { 
                         string images = "";
@@ -32,19 +35,95 @@ namespace Zoyal
                        // ClientScript.RegisterStartupScript(GetType(), "hiya", "document.getElementById('owl-product-slide').innerHTML =\""+ images +"\"", true);
                         product_img.InnerHtml = images;
                         // }
+
+
+
+
                     }
                     else
                     {
 
                     }
+                    cities da = new cities();
+                    DataTable dt_loc1 = BLL.GETCITIES(da);
+                   
+                    string selectcity = "<select onchange='dropcity(this);'  class=\"selectpicker\" data-style=\"btn-success\">";
+                    for (int i = 0; i < dt_loc1.Rows.Count; i++)
+                    {
+
+                        selectcity = selectcity + "<option value='" + dt_loc1.Rows[i]["city_id"] + "'  >" + dt_loc1.Rows[i]["CITY_NAME"].ToString() + "</option>";
+                        // locations = locations + "<li><a href=''>" + dt_loc.Rows[i]["location_name"].ToString() + "</a></li>";
+                   
+                        //selectcity.calfunction(dt_loc1.Rows[i]["city_id"].ToString());
+                    }
+                   
+                    try
+
+                    {
+                        dropselectcity.InnerHtml = selectcity + "</select>";
+                       
+                    }
+                    catch(Exception ex)
+                    {
+                      
+                    }
+
+                    LOCATIONS loc = new LOCATIONS();
+                    DataTable dt_location = BLL.GETLOCATION(loc);
+                    string selectlocation = "<select   class=\"selectpicker\" data-style=\"btn-success\">";
+                    for (int i = 0; i < dt_location.Rows.Count; i++)
+                    {
+
+                        selectlocation = selectlocation + "<option >" + dt_location.Rows[i]["location_name"].ToString() + "</option>";
+                        // locations = locations + "<li><a href=''>" + dt_loc.Rows[i]["location_name"].ToString() + "</a></li>";
+
+                    }
+
+                   
+                    try
+
+                    {
+                        dropselectlocation.InnerHtml = selectlocation + "</select>";
+
+                    }
+                    catch (Exception ex)
+                {
 
                 }
-                catch(Exception exe)
+
+
+
+            }
+                catch (Exception exe)
                 {
 
                 }
             }
         }
+        //public void calfunction()
+        //    {
+            
+        //            LOCATIONS loc = new LOCATIONS();
+        //DataTable dt_location = BLL.GETLOCATION(loc);
+        //string selectlocation = "<select  class=\"selectpicker\" data-style=\"btn-success\">";
+        //            for (int i = 0; i<dt_location.Rows.Count; i++)
+        //            {
+
+        //                selectlocation = selectlocation + "<option >" + dt_location.Rows[i]["location_name"].ToString() + "</option>";
+        //                // locations = locations + "<li><a href=''>" + dt_loc.Rows[i]["location_name"].ToString() + "</a></li>";
+
+        //            }
+        //            try
+
+        //            {
+        //                dropselectloction.InnerHtml = selectlocation + "</select>";
+                        
+        //            }
+        //            catch (Exception ex)
+        //            {
+
+        //            }
+        //    }
 
         //public void cartitem_delete()
         //{
@@ -89,6 +168,24 @@ namespace Zoyal
             return images;
 
         }
+        [WebMethod]
+        public static string dropcityselect(string x)
+        {
+            LOCATIONS loc = new LOCATIONS();
+            loc.LOCATION_CITYID = Int32.Parse(x);
+            DataTable dt_location = BLL.GETLOCATION(loc);
+            string selectlocation = "<select   class=\"selectpicker\" data-style=\"btn-success\">";
+            for (int i = 0; i < dt_location.Rows.Count; i++)
+            {
 
+                selectlocation = selectlocation + "<option >" + dt_location.Rows[i]["location_name"].ToString() + "</option>";
+            }
+            selectlocation = selectlocation + "</select>";
+           
+            return selectlocation;
+
+        }
     }
+  
+
 }

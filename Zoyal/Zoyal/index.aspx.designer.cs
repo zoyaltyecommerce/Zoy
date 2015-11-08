@@ -13,6 +13,24 @@ namespace Zoyal {
     public partial class index {
         
         /// <summary>
+        /// dropselectcity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dropselectcity;
+        
+        /// <summary>
+        /// dropselectlocation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dropselectlocation;
+        
+        /// <summary>
         /// product_img control.
         /// </summary>
         /// <remarks>

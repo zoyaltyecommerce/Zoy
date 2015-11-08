@@ -53,6 +53,25 @@
             height: 27px;
         }
     </style>
+    <script type="text/javascript">
+        function dropcity(id)
+        {
+            debugger;
+            var x = id.value;
+         
+            PageMethods.dropcityselect(x,OnSuccess,onerror)
+
+            function OnSuccess(result)
+            {
+                document.getElementById('dropselectlocation').innerHTML = result;
+               
+            }
+            function onerror()
+            {
+               // alert("somthing error")
+            }
+        }
+    </script>
 
     
 </asp:Content>
@@ -103,55 +122,48 @@
             </div>
         </section>
         <!-- End Main Slide -->
-
         <section style="margin-top: 10px; margin-bottom: 10px">
             <div class="row">
-
                 <div class="col-md-12" style="text-align: center; align-content: center; align-items: center">
                     <div class="container" style="background-color: #333333; padding-bottom: 10px">
                         <div>
-                            <div class="bs-docs-example">
-                                <select class="selectpicker" data-style="btn-success">
-                                    <option selected>Select City</option>
-                                    <option>Hyderabad</option>
-                                    <option>Warangal</option>
-                                </select>
+                         <div  class="bs-docs-example" runat="server" id="dropselectcity" >
+                                
+
+                                
                             </div>
-                            <div class="bs-docs-example">
+                            <div class="bs-docs-example" id="dropselectlocation" runat="server" >
                                 <select class="selectpicker" data-style="btn-success">
                                     <option selected>Select Location</option>
-                                    <option>Begumpet</option>
-                                    <option>Punjagutta</option>
+                                   
                                 </select>
                             </div>
                             <div class="bs-docs-example">
                                 <input type="text" class="form-control" name="x" placeholder="No of Audience">
                             </div>
                             <div class="bs-docs-example">
-
-
                                 <div class='input-group date' style="display: inline-table" id='datetimepicker1'>
                                     <input type='text' placeholder="Start Date" style="float: none !important; padding-top: 7px;" class="form-control" name="date_input" id="date_input">
                                     <span class="input-group-addon" style="height: 27px; padding: 5px 9px">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
                                 </div>
-
-
-
                             </div>
                             <div class="bs-docs-example">
-
-
                                 <div class='input-group date' style="display: inline-table" id='datetimepicker1'>
-                                    <input type='text' placeholder="Start Date" style="float: none !important; padding-top: 7px;" class="form-control" name="date_input" id="date_input">
+                                   
+                                   <%--<asp:TextBox ID="txt_startdate" runat="server"  placeholder="Start Date" style="float: none !important; padding-top: 7px;" class="form-control" ></asp:TextBox>
+                                    <asp:ImageButton ID="imgPopup" ImageUrl="images/calendar.png" ImageAlign="Bottom"
+    runat="server" />
+<cc1:CalendarExtender ID="Calendar1" PopupButtonID="imgPopup" runat="server" TargetControlID="txt_startdate"
+    Format="dd/MM/yyyy">
+</cc1:CalendarExtender>--%>
+
+                                     <input type='text' placeholder="Start Date" style="float: none !important; padding-top: 7px;" class="form-control" name="date_input" id="date_input">
                                     <span class="input-group-addon" style="height: 27px; padding: 5px 9px">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
                                 </div>
-
-
-
                             </div>
                             <div class="bs-docs-example">
                                 <input type="hidden" name="search_param" value="all" id="search_param">
