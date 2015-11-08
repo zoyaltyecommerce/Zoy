@@ -160,12 +160,22 @@ namespace Zoyal.Code
             DataTable dt = BLL.ExecuteQuery("EXEC USP_ADMINLOGINS @OPERATION='ADMINFORGETPWD',@USER_EMAIL='" + obj.USER_EMAIL + "'");
             return dt;
         }
-        internal static DataTable Getlocations()
+        //internal static DataTable Getlocations()
+        //{
+        //    DataTable DT = BLL.ExecuteQuery("EXEC USP_GETTINGLOCATIONS @OPERATION='GETLOCATIONS'");
+        //    return DT;
+        //}
+        internal static DataTable GETCITIES(cities obj)
         {
-            DataTable DT = BLL.ExecuteQuery("EXEC USP_GETTINGLOCATIONS @OPERATION='GETLOCATIONS'");
+            DataTable DT = BLL.ExecuteQuery("EXEC USP_CITIES @OPERATION='GETCITIES'");
             return DT;
         }
-
+        internal static DataTable GETLOCATION(LOCATIONS obj1)
+        {
+            cities obj = new cities();
+            DataTable DT = BLL.ExecuteQuery("EXEC USP_GETTINGLOCATIONS @OPERATION='GETLOCATION',@LOCATION_CITYID='"+obj1.LOCATION_CITYID+"'");
+            return DT;
+        }
         internal static DataTable GETALLPRODUCTS()
         {
             DataTable dt = BLL.ExecuteQuery("EXEC USP_PRODUCTS @OPERATION='GETALLPRODUCTS' ");

@@ -287,13 +287,13 @@ namespace Zoyal.Code
 
     public class LOCATIONS:SMVTS_MAIN
     {
-        public static int LOCATION_ID { get; set; }
-        public static int LOCATION_CITYID { get; set; }
-        public static string LOCATION_NAME { get; set; }
-        public static DateTime LOCATION_CREATEDDATE { get; set; }
-        public static int LOCATION_CREATEDBY { get; set; }
-        public static DateTime LOCATION_MODIFIEDDATE { get; set; }
-        public static int LOCATION_MODIFIEDBY { get; set; }
+        public  int LOCATION_ID { get; set; }
+        public  int LOCATION_CITYID { get; set; }
+        public  string LOCATION_NAME { get; set; }
+        public  DateTime LOCATION_CREATEDDATE { get; set; }
+        public  int LOCATION_CREATEDBY { get; set; }
+        public  DateTime LOCATION_MODIFIEDDATE { get; set; }
+        public  int LOCATION_MODIFIEDBY { get; set; }
     }
 
     public class PRODUCT:SMVTS_MAIN
@@ -337,6 +337,16 @@ namespace Zoyal.Code
 
         public string ADD_CITY { set; get; }
 
+    }
+    public class cities: SMVTS_MAIN
+    {
+       public int city_id { set; get; }
+public int city_stateid { set; get; }
+public string city_name { set; get; }
+public int city_createdby { set; get; }
+public DateTime city_createddate { set; get; }
+public int city_modifiedby { set; get; }
+public DateTime city_modifieddate { set; get; }
     }
 
 }
