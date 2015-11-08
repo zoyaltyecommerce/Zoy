@@ -83,19 +83,7 @@
         }
 
     </script>
-    <%--<script type="text/javascript">
-        function cart_product()
-        {
-            // debugger;
-            
-            //document.getElementById('cart_hed1').style.display = "inline-block";
-            //document.getElementById('cart_head').style.display = "none";
-            //document.getElementById('btn_viewcart').style.display = "none";
-            //document.getElementById('btn_checkout').style.display = "none";
-            //document.getElementById('ul_subtotal').style.display = "none";
-        }
-
-    </script>--%>
+  
   <script type="text/javascript">
 
 
@@ -106,38 +94,75 @@
           REMOVE_cart.remove(REMOVE_cart.id);
           var REMOVE = document.getElementById('delete_product' + id);
           REMOVE.remove(REMOVE.id);
-          PageMethods.delete_cartitem(document.getElementById('REMOVE_cart').value, OnSuccess, onfailure);
+          // PageMethods.delete_cartitem(document.getElementById('REMOVE_cart').value, OnSuccess, onfailure);
+          PageMethods.delete_cartitemweb(id, OnSuccessDelete, onfailureDelete)
+         
       }
-      function OnSuccess(response,cartitem_delete) {
+      function OnSuccessDelete(response) {
                debugger;
                alert(response);
            }
-           function onfailure(response) {
+      function onfailureDelete(response) {
                debugger;
               // alert(response);
            }
 
 
 
-     // function delete_cartitem()
-     // {
-     //     debugger;
-     //     PageMethods.cartitem_delete(document.getElementById('delete_cart').value, OnSuccess, onfailure);
-
-     //}
-     // function OnSuccess(response,cartitem_delete) {
-     //     debugger;
-     //     alert(response);
-     // }
-     // function onfailure(response) {
-     //     debugger;
-     //    // alert(response);
-     // }
 
 
       
   </script>
+    <script type="text/javascript">
+        function qtyincrees(id,price)
+        {
+            debugger;
+            document.getElementById('price_' + price).value = price;
+            document.getElementById('txtqty_' + id).value = parseInt(document.getElementById('txtqty_' + id).value) + 1;
+            
+            var result = document.getElementById('txtqty_' + id).value * price;
+            document.getElementById('sub_amount_' + id).innerHTML = result;
+            document.getElementById('cart_price' + id).innerHTML = result;
+            //document.getElementById('sub_amount_cart').innerHTML = result + price;
+            PageMethods.cartprice(result,id,OnSuccessprice,Onfailureprice)
+            function OnSuccessprice(result)
+            {
+                //cartprice('" + result + "');
+                //document.getElementById('cart_price').innerHTML = true;
+            }
+            function Onfailureprice()
+            {
 
+            }
+
+
+        }
+        
+    </script>
+     <script type="text/javascript">
+      
+        function qtyminus(id,price)
+        {
+            debugger;
+            if (parseInt(document.getElementById('txtqty_' + id).value) > 1)
+            {
+               // document.getElementById('price_' + price).value = price;
+                document.getElementById('txtqty_' + id).value = parseInt(document.getElementById('txtqty_' + id).value) - 1;
+                var result = document.getElementById('txtqty_' + id).value * price;
+                document.getElementById('sub_amount_' + id).innerHTML = result;
+                document.getElementById('cart_price' + id).innerHTML = result;
+                PageMethods.cartprice(result,id,OnSuccessminus,Onfailureminus)
+                function OnSuccessminus(result)
+                {
+                    document.getElementById('sub_amount_'+id).innerHTML = result;
+                    document.getElementById('cart_price'+id).innerHTML = result;
+                }
+                function Onfailureminus()
+                {
+                }
+            }
+        }
+    </script>
    <style type="text/css">
        .imaheight
        {
@@ -145,6 +170,7 @@
            height:300px;
        }
    </style>
+
 </head>
 <body>
     
@@ -170,9 +196,9 @@
                         <li class="dropdown my-account">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hyderabad<span class="caret"></span></a>
                             <ul runat="server" id="ul_locations" class="dropdown-menu" role="menu">
-                                <li><a href="#">Hyderabad</a></li>
+                               <%-- <li><a href="#">Hyderabad</a></li>
                                 <li><a href="#">Warangal</a></li>
-                                <li><a href="#">Karimnagar</a></li>
+                                <li><a href="#">Karimnagar</a></li>--%>
 
                             </ul>
                         </li>

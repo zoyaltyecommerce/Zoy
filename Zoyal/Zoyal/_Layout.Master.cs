@@ -34,14 +34,16 @@ namespace Zoyal
 
 
                     //loading locations
-                    DataTable dt_loc = BLL.Getlocations();
+                    cities da = new cities();
+                    DataTable dt_loc = BLL.GETCITIES(da);
                     string locations = "";
                     for (int i = 0; i < dt_loc.Rows.Count; i++)
                     {
-                        locations = locations + "<li><a href=''>" + dt_loc.Rows[i]["location_name"].ToString() + "</a></li>";
+                        locations = locations + "<li><a href=''>" + dt_loc.Rows[i]["CITY_NAME"].ToString() + "</a></li>";
                         //locations = locations+dt_loc.Rows[i]["location_name"].ToString();
                     }
                     ul_locations.InnerHtml = locations;
+                    
                 }
 
                 catch (Exception exe)
@@ -73,10 +75,8 @@ namespace Zoyal
                     }
                 }
 
-               
-
-            }
-        }
+    }
+}
 
         public void cart_visible()
         {
@@ -113,6 +113,18 @@ namespace Zoyal
         }
 
 
+        public string parsehtmlcart(DataTable dt_productcart)
+        {
+            string content = "";
+            for (int i = 0; i < dt_productcart.Rows.Count; i++)
+            {
+                content = content + "<li id='DELETE_CART" + dt_productcart.Rows[i]["PRODUCT_ID"] + "' class='product'><div class='product-thumb-info'><a href='#' id='delete_cart' class='product-remove' onclick='delete_cartitem(" + dt_productcart.Rows[i]["PRODUCT_ID"] + ");' ><i class='fa fa-trash-o'></i></a><div class='product-thumb-info-image'><a href='shop-product-detail1.html'><img alt='' width='60' src='" + dt_productcart.Rows[i]["PRODUCT_IMAGEURL"] + "'></a></div> <div class='product-thumb-info-content'><h4><a href='shop-product-detail2.html'>" + dt_productcart.Rows[i]["PRODUCT_IMAGETITLE"] + "</a></h4><span class='item-cat'><small><a href='#'>" + dt_productcart.Rows[i]["PRODUCT_NAME"] + "</a></small></span><span id='cart_price" + dt_productcart.Rows[i]["PRODUCT_ID"] + "' class='price'>" + dt_productcart.Rows[i]["PRODUCT_PRICE"] + "</span></div></div></li>";
+                //sub_amount_cart.InnerHtml = dt_productcart.Rows[i]["PRODUCT_SUB_TOTAL"].ToString();
+                
+            }
+           
+            return content;
+        }
 
         public string cart(DataTable dtcart)
         {
@@ -136,16 +148,7 @@ namespace Zoyal
             return cartproduct;
 
         }
-        public string parsehtmlcart(DataTable dt_productcart)
-        {
-            string content = "";
-            for (int i = 0; i < dt_productcart.Rows.Count; i++)
-            {
-                content = content + "<li id='DELETE_CART"+dt_productcart.Rows[i]["PRODUCT_ID"]+"' class='product'><div class='product-thumb-info'><a href='#' id='delete_cart' class='product-remove' onclick='delete_cartitem(" + dt_productcart.Rows[i]["PRODUCT_ID"]+");' ><i class='fa fa-trash-o'></i></a><div class='product-thumb-info-image'><a href='shop-product-detail1.html'><img alt='' width='60' src='" + dt_productcart.Rows[i]["PRODUCT_IMAGEURL"] + "'></a></div> <div class='product-thumb-info-content'><h4><a href='shop-product-detail2.html'>" + dt_productcart.Rows[i]["PRODUCT_IMAGETITLE"] + "</a></h4><span class='item-cat'><small><a href='#'>" + dt_productcart.Rows[i]["PRODUCT_NAME"] + "</a></small></span><span id='cart_price"+dt_productcart.Rows[i]["PRODUCT_ID"]+"' class='price'>" + dt_productcart.Rows[i]["PRODUCT_PRICE"] + "</span></div></div></li>";
-            }
-            return content;
-        }
-
+      
         public void clearcontrols()
         {
             try
@@ -316,8 +319,9 @@ namespace Zoyal
                    + DateTime.Now.ToString();
             
 
-
+ 
         }
+       
     }
 
 }
