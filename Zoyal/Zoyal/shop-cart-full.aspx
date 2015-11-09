@@ -48,7 +48,13 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
      
+    <script type="text/javascript">
 
+        function OnSuccessprice(GRAND_TOTAL) {
+            document.getElementById("cart_total_footer").innerHTML = GRAND_TOTAL;
+            document.getElementById("total_footer").innerHTML = GRAND_TOTAL;
+            }
+    </script>
   
    
    
@@ -389,7 +395,7 @@
 												Cart Subtotal
 											</th>
 											<td>
-												<span class="amount">RS431</span>
+												<span class="amount" id="cart_total_footer" runat="server">RS431</span>
 											</td>
 										</tr>
 										<tr class="shipping">
@@ -405,7 +411,7 @@
 												Total
 											</th>
 											<td>
-												<span class="amount">RS431</span>
+												<span class="amount" id="total_footer" runat="server" >RS431</span>
 											</td>
 										</tr>
 									</tbody>
