@@ -119,22 +119,27 @@
             debugger;
             document.getElementById('price_' + price).value = price;
             document.getElementById('txtqty_' + id).value = parseInt(document.getElementById('txtqty_' + id).value) + 1;
-            
+            var QNANTITY = document.getElementById('txtqty_' + id).value;
             var result = document.getElementById('txtqty_' + id).value * price;
             document.getElementById('sub_amount_' + id).innerHTML = result;
             document.getElementById('cart_price' + id).innerHTML = result;
             //document.getElementById('sub_amount_cart').innerHTML = result + price;
-            PageMethods.cartprice(result,id,OnSuccessprice,Onfailureprice)
-            function OnSuccessprice(result)
+            PageMethods.cartprice(result, id,QNANTITY,OnSuccessprice, Onfailureprice)
+            function OnSuccessprice(GRAND_TOTAL)
             {
-                //cartprice('" + result + "');
-                //document.getElementById('cart_price').innerHTML = true;
+                debugger;
+                document.getElementById("sub_amount_cart").innerHTML = GRAND_TOTAL;
+               // alertOne();
+                 //document.getElementById(''). = GRAND_TOTAL;
+                //function call(GRAND_TOTAL) {
+                //document.getElementById("cart_total_footer").innerHTML = 'GRAND_TOTAL';
+                //}
             }
             function Onfailureprice()
             {
 
             }
-
+           
 
         }
         
@@ -147,15 +152,19 @@
             if (parseInt(document.getElementById('txtqty_' + id).value) > 1)
             {
                // document.getElementById('price_' + price).value = price;
+                
                 document.getElementById('txtqty_' + id).value = parseInt(document.getElementById('txtqty_' + id).value) - 1;
+                var QNANTITY = document.getElementById('txtqty_' + id).value;
                 var result = document.getElementById('txtqty_' + id).value * price;
                 document.getElementById('sub_amount_' + id).innerHTML = result;
                 document.getElementById('cart_price' + id).innerHTML = result;
-                PageMethods.cartprice(result,id,OnSuccessminus,Onfailureminus)
-                function OnSuccessminus(result)
+                PageMethods.cartprice(result,id,QNANTITY,OnSuccessminus, Onfailureminus)
+                function OnSuccessminus(GRAND_TOTAL)
                 {
-                    document.getElementById('sub_amount_'+id).innerHTML = result;
-                    document.getElementById('cart_price'+id).innerHTML = result;
+                    debugger;
+                    document.getElementById("sub_amount_cart").innerHTML = GRAND_TOTAL;
+                    document.getElementById('total_footer').innerHTML = GRAND_TOTAL;
+                    document.getElementById('cart_total_footer').innerHTML = GRAND_TOTAL;
                 }
                 function Onfailureminus()
                 {

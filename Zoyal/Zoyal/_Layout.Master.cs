@@ -31,10 +31,12 @@ namespace Zoyal
                     }
                     clearcontrols();
                     cart_visible();
+                   
 
 
                     //loading locations
                     cities da = new cities();
+                    DataTable dt_price = (DataTable)Session["CART"];
                     DataTable dt_loc = BLL.GETCITIES(da);
                     string locations = "";
                     for (int i = 0; i < dt_loc.Rows.Count; i++)
@@ -43,7 +45,10 @@ namespace Zoyal
                         //locations = locations+dt_loc.Rows[i]["location_name"].ToString();
                     }
                     ul_locations.InnerHtml = locations;
-                    
+
+                  //  object GRAND_TOTAL = dt_price.Compute("Sum(PRODUCT_SUB_TOTAL)", string.Empty);
+                    sub_amount_cart.InnerHtml = dt_price.Compute("Sum(PRODUCT_SUB_TOTAL)", string.Empty).ToString();
+
                 }
 
                 catch (Exception exe)
@@ -64,7 +69,6 @@ namespace Zoyal
 
                         DataTable dt_productall = (DataTable)Session["CART"];
                         string html = parsehtmlcart(dt_productall);
-
 
                         CART_BAG.InnerHtml = html;
 
@@ -99,7 +103,11 @@ namespace Zoyal
                     cart_hed1.Visible = false;
                     btn_viewcart.Visible = true;
                     btn_checkout.Visible = true;
+
+
                     ul_subtotal.Visible = true;
+
+                    
 
 
 
@@ -115,17 +123,14 @@ namespace Zoyal
 
         public string parsehtmlcart(DataTable dt_productcart)
         {
+            DataTable dt =  (DataTable)Session["CART"];
             string content = "";
             for (int i = 0; i < dt_productcart.Rows.Count; i++)
             {
-                content = content + "<li id='DELETE_CART" + dt_productcart.Rows[i]["PRODUCT_ID"] + "' class='product'><div class='product-thumb-info'><a href='#' id='delete_cart' class='product-remove' onclick='delete_cartitem(" + dt_productcart.Rows[i]["PRODUCT_ID"] + ");' ><i class='fa fa-trash-o'></i></a><div class='product-thumb-info-image'><a href='shop-product-detail1.html'><img alt='' width='60' src='" + dt_productcart.Rows[i]["PRODUCT_IMAGEURL"] + "'></a></div> <div class='product-thumb-info-content'><h4><a href='shop-product-detail2.html'>" + dt_productcart.Rows[i]["PRODUCT_IMAGETITLE"] + "</a></h4><span class='item-cat'><small><a href='#'>" + dt_productcart.Rows[i]["PRODUCT_NAME"] + "</a></small></span><span id='cart_price" + dt_productcart.Rows[i]["PRODUCT_ID"] + "' class='price'>" + dt_productcart.Rows[i]["PRODUCT_PRICE"] + "</span></div></div></li>";
-                //sub_amount_cart.InnerHtml = dt_productcart.Rows[i]["PRODUCT_SUB_TOTAL"].ToString();
-                
+                content = content + "<li id='DELETE_CART" + dt_productcart.Rows[i]["PRODUCT_ID"] + "' class='product'><div class='product-thumb-info'><a href='#' id='delete_cart' class='product-remove' onclick='delete_cartitem(" + dt_productcart.Rows[i]["PRODUCT_ID"] + ");' ><i class='fa fa-trash-o'></i></a><div class='product-thumb-info-image'><a href='shop-product-detail1.html'><img alt='' width='60' src='" + dt_productcart.Rows[i]["PRODUCT_IMAGEURL"] + "'></a></div> <div class='product-thumb-info-content'><h4><a href='shop-product-detail2.html'>" + dt_productcart.Rows[i]["PRODUCT_IMAGETITLE"] + "</a></h4><span class='item-cat'><small><a href='#'>" + dt_productcart.Rows[i]["PRODUCT_NAME"] + "</a></small></span><span id='cart_price" + dt_productcart.Rows[i]["PRODUCT_ID"] + "' class='price'>" + dt_productcart.Rows[i]["PRODUCT_SUB_TOTAL"] + "</span></div></div></li>";
             }
-           
-            return content;
+           return content;
         }
-
         public string cart(DataTable dtcart)
         {
 
