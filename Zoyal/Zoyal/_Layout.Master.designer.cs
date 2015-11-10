@@ -40,6 +40,15 @@ namespace Zoyal {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ul_locations;
         
         /// <summary>
+        /// cart_count control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cart_count;
+        
+        /// <summary>
         /// cart_head control.
         /// </summary>
         /// <remarks>
@@ -91,7 +100,7 @@ namespace Zoyal {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btn_viewcart;
+        protected global::System.Web.UI.WebControls.Button btn_viewcart;
         
         /// <summary>
         /// btn_checkout control.

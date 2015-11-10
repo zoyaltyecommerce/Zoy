@@ -7,171 +7,7 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-   <script type="text/javascript">
-       function Showregister()
-       {
-           document.getElementById('div_login').style.display = "none";
-           document.getElementById('div_reg').style.display = "block";
-           document.getElementById('li_login').style.display = "inline-block";
-           document.getElementById('li_account').style.display = " visible";
-           document.getElementById('btn_signup').style.display = " inline-block";
-           document.getElementById('li_password').style.display = "none";
-           document.getElementById('btn_login').style.display = "none";
-           document.getElementById('li_account').style.display = "none";
-
-       }
-   </script>
-    <script  type="text/javascript">
-        function login() {
-            document.getElementById('div_login').style.display = "block";
-            document.getElementById("div_reg").style.display = "none";
-            document.getElementById("li_login").style.display = "none";
-            document.getElementById('btn_signup').style.display = "none";
-            document.getElementById('btn_login').style.display = "inline-block";
-            document.getElementById('li_password').style.display = "inline-block";
-            document.getElementById('li_account').style.display = "inline-block";
-        }
-       
-
-    </script>
-    <script type="text/javascript">
-
-        function forgetpassword()
-        {
-            
-            document.getElementById('h4login').style.display = "none";
-            document.getElementById('h4forgetpwd').style.display = "block";
-            document.getElementById('loginlbl').style.display = 'none';
-            document.getElementById('lblemail').style.display = 'none';
-            document.getElementById('txt_username').style.display = "none";
-            document.getElementById('lbl2').style.display = 'block';
-            document.getElementById('lbpwd').style.display = 'none';
-            document.getElementById("txt_password").style.display = "none";
-            document.getElementById("li_account").style.display = "none";
-            document.getElementById("li_password").style.display = "none";
-            document.getElementById('lbpwd').style.display = 'none';
-            document.getElementById("btn_login").style.display = "none";
-            document.getElementById('txt_forgetemail').style.display = "block";
-            document.getElementById('li_frgback').style.display = "block";
-            document.getElementById("btn_forget").style.display = "block";
-           
-        }
-    </script>
-    <script type="text/javascript">
-        function forgetlogin()
-        {
-            document.getElementById('h4login').style.display = "block";
-        document.getElementById('li_frgback').style.display = "none";
-        document.getElementById("btn_forget").style.display = "none";
-        document.getElementById('txt_forgetemail').style.display = "none";
-        document.getElementById('lbl2').style.display = 'none';
-        document.getElementById('h4forgetpwd').style.display = "none";
-        document.getElementById('loginlbl').style.display = 'block';
-        document.getElementById('lblemail').style.display = 'block';
-        document.getElementById('txt_username').style.display = 'block';
-        document.getElementById('lbpwd').style.display = 'block';
-        document.getElementById('txt_password').style.display = 'block';
-
-
-        document.getElementById('div_login').style.display = "block";
-        document.getElementById("div_reg").style.display = "none";
-        document.getElementById("li_login").style.display = "none";
-        document.getElementById('btn_signup').style.display = "none";
-        document.getElementById('btn_login').style.display = "inline-block";
-        document.getElementById('li_password').style.display = "inline-block";
-        document.getElementById('li_account').style.display = "inline-block";
-        }
-
-    </script>
   
-  <script type="text/javascript">
-
-
-      function delete_cartitem(id)
-      {
-          debugger;
-          var REMOVE_cart = document.getElementById('DELETE_CART' + id);
-          REMOVE_cart.remove(REMOVE_cart.id);
-          var REMOVE = document.getElementById('delete_product' + id);
-          REMOVE.remove(REMOVE.id);
-          // PageMethods.delete_cartitem(document.getElementById('REMOVE_cart').value, OnSuccess, onfailure);
-          PageMethods.delete_cartitemweb(id, OnSuccessDelete, onfailureDelete)
-         
-      }
-      function OnSuccessDelete(response) {
-               debugger;
-               alert(response);
-           }
-      function onfailureDelete(response) {
-               debugger;
-              // alert(response);
-           }
-
-
-
-
-
-      
-  </script>
-    <script type="text/javascript">
-        function qtyincrees(id,price)
-        {
-            debugger;
-            document.getElementById('price_' + price).value = price;
-            document.getElementById('txtqty_' + id).value = parseInt(document.getElementById('txtqty_' + id).value) + 1;
-            var QNANTITY = document.getElementById('txtqty_' + id).value;
-            var result = document.getElementById('txtqty_' + id).value * price;
-            document.getElementById('sub_amount_' + id).innerHTML = result;
-            document.getElementById('cart_price' + id).innerHTML = result;
-            //document.getElementById('sub_amount_cart').innerHTML = result + price;
-            PageMethods.cartprice(result, id,QNANTITY,OnSuccessprice, Onfailureprice)
-            function OnSuccessprice(GRAND_TOTAL)
-            {
-                debugger;
-                document.getElementById("sub_amount_cart").innerHTML = GRAND_TOTAL;
-               // alertOne();
-                 //document.getElementById(''). = GRAND_TOTAL;
-                //function call(GRAND_TOTAL) {
-                //document.getElementById("cart_total_footer").innerHTML = 'GRAND_TOTAL';
-                //}
-            }
-            function Onfailureprice()
-            {
-
-            }
-           
-
-        }
-        
-    </script>
-     <script type="text/javascript">
-      
-        function qtyminus(id,price)
-        {
-            debugger;
-            if (parseInt(document.getElementById('txtqty_' + id).value) > 1)
-            {
-               // document.getElementById('price_' + price).value = price;
-                
-                document.getElementById('txtqty_' + id).value = parseInt(document.getElementById('txtqty_' + id).value) - 1;
-                var QNANTITY = document.getElementById('txtqty_' + id).value;
-                var result = document.getElementById('txtqty_' + id).value * price;
-                document.getElementById('sub_amount_' + id).innerHTML = result;
-                document.getElementById('cart_price' + id).innerHTML = result;
-                PageMethods.cartprice(result,id,QNANTITY,OnSuccessminus, Onfailureminus)
-                function OnSuccessminus(GRAND_TOTAL)
-                {
-                    debugger;
-                    document.getElementById("sub_amount_cart").innerHTML = GRAND_TOTAL;
-                    document.getElementById('total_footer').innerHTML = GRAND_TOTAL;
-                    document.getElementById('cart_total_footer').innerHTML = GRAND_TOTAL;
-                }
-                function Onfailureminus()
-                {
-                }
-            }
-        }
-    </script>
    <style type="text/css">
        .imaheight
        {
@@ -222,8 +58,8 @@
                             </ul>
                         </li>
                    <li class="dropdown menu-shop" >
-                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" ><i class="fa fa-shopping-cart" ></i> <span class="shopping-bag">0</span></a>
-                       <div class="dropdown-menu"   >
+                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" ><i class="fa fa-shopping-cart" ></i> <span class="shopping-bag" id="cart_count" runat="server">0</span></a>
+                       <div class="dropdown-menu" >
                                 <h3 id="cart_head" runat="server">Recently added item(s)</h3>
                                  <h3 id="cart_hed1" runat="server"> No item(s)</h3>
 
@@ -235,7 +71,8 @@
                                     <li class="price"><span class="amount"><strong id="sub_amount_cart" runat="server">RS431</strong></span></li>
                                 </ul>
                                 <div class="cart-buttons text-right">
-                                    <button class="btn btn-white" id="btn_viewcart" runat="server" >View Cart</button>
+                                    <asp:Button class="btn btn-white" id="btn_viewcart" runat="server" text="View Cart" OnClick="btn_viewcart_Click"/>
+                                   
                                     <button class="btn btn-primary" id="btn_checkout" runat="server">Checkout</button>
                                 </div>
                             </div>
@@ -656,5 +493,157 @@
 
     </div>
     </form>
+     <script type="text/javascript">
+       function Showregister()
+       {
+           document.getElementById('div_login').style.display = "none";
+           document.getElementById('div_reg').style.display = "block";
+           document.getElementById('li_login').style.display = "inline-block";
+           document.getElementById('li_account').style.display = " visible";
+           document.getElementById('btn_signup').style.display = " inline-block";
+           document.getElementById('li_password').style.display = "none";
+           document.getElementById('btn_login').style.display = "none";
+           document.getElementById('li_account').style.display = "none";
+
+       }
+   </script>
+    <script  type="text/javascript">
+        function login() {
+            document.getElementById('div_login').style.display = "block";
+            document.getElementById("div_reg").style.display = "none";
+            document.getElementById("li_login").style.display = "none";
+            document.getElementById('btn_signup').style.display = "none";
+            document.getElementById('btn_login').style.display = "inline-block";
+            document.getElementById('li_password').style.display = "inline-block";
+            document.getElementById('li_account').style.display = "inline-block";
+        }
+       
+
+    </script>
+    <script type="text/javascript">
+
+        function forgetpassword()
+        {
+            
+            document.getElementById('h4login').style.display = "none";
+            document.getElementById('h4forgetpwd').style.display = "block";
+            document.getElementById('loginlbl').style.display = 'none';
+            document.getElementById('lblemail').style.display = 'none';
+            document.getElementById('txt_username').style.display = "none";
+            document.getElementById('lbl2').style.display = 'block';
+            document.getElementById('lbpwd').style.display = 'none';
+            document.getElementById("txt_password").style.display = "none";
+            document.getElementById("li_account").style.display = "none";
+            document.getElementById("li_password").style.display = "none";
+            document.getElementById('lbpwd').style.display = 'none';
+            document.getElementById("btn_login").style.display = "none";
+            document.getElementById('txt_forgetemail').style.display = "block";
+            document.getElementById('li_frgback').style.display = "block";
+            document.getElementById("btn_forget").style.display = "block";
+           
+        }
+    </script>
+    <script type="text/javascript">
+        function forgetlogin()
+        {
+            document.getElementById('h4login').style.display = "block";
+        document.getElementById('li_frgback').style.display = "none";
+        document.getElementById("btn_forget").style.display = "none";
+        document.getElementById('txt_forgetemail').style.display = "none";
+        document.getElementById('lbl2').style.display = 'none';
+        document.getElementById('h4forgetpwd').style.display = "none";
+        document.getElementById('loginlbl').style.display = 'block';
+        document.getElementById('lblemail').style.display = 'block';
+        document.getElementById('txt_username').style.display = 'block';
+        document.getElementById('lbpwd').style.display = 'block';
+        document.getElementById('txt_password').style.display = 'block';
+
+
+        document.getElementById('div_login').style.display = "block";
+        document.getElementById("div_reg").style.display = "none";
+        document.getElementById("li_login").style.display = "none";
+        document.getElementById('btn_signup').style.display = "none";
+        document.getElementById('btn_login').style.display = "inline-block";
+        document.getElementById('li_password').style.display = "inline-block";
+        document.getElementById('li_account').style.display = "inline-block";
+        }
+
+    </script>
+  
+  <script type="text/javascript">
+
+
+      function delete_cartitem(id)
+      {
+          debugger;
+          var REMOVE_cart = document.getElementById('DELETE_CART' + id);
+          REMOVE_cart.remove(REMOVE_cart.id);
+          var REMOVE = document.getElementById('delete_product' + id);
+          REMOVE.remove(REMOVE.id);
+          // PageMethods.delete_cartitem(document.getElementById('REMOVE_cart').value, OnSuccess, onfailure);
+          PageMethods.delete_cartitemweb(id, OnSuccessDelete, onfailureDelete)
+      }
+      function OnSuccessDelete(count) {
+               
+          document.getElementById('ContentPlaceHolder1_lbl_count_item').innerHTML = "Your selection(" + count + "   items)";
+          document.getElementById('cart_count').innerHTML = count;
+
+           }
+      function onfailureDelete(response) {
+               debugger;
+              // alert(response);
+           }
+  </script>
+    <script type="text/javascript">
+        function qtyincrees(id,price)
+        {
+            debugger;
+            document.getElementById('price_' + price).value = price;
+            document.getElementById('txtqty_' + id).value = parseInt(document.getElementById('txtqty_' + id).value) + 1;
+            var QNANTITY = document.getElementById('txtqty_' + id).value;
+            var result = document.getElementById('txtqty_' + id).value * price;
+            document.getElementById('sub_amount_' + id).innerHTML = result;
+            document.getElementById('cart_price' + id).innerHTML = result;
+            //document.getElementById('sub_amount_cart').innerHTML = result + price;
+            PageMethods.cartprice(result, id,QNANTITY,OnSuccessprice, Onfailureprice)
+            function OnSuccessprice(GRAND_TOTAL)
+            {
+                document.getElementById("sub_amount_cart").innerHTML = GRAND_TOTAL;
+                document.getElementById("ContentPlaceHolder1_cart_total_footer").innerHTML = GRAND_TOTAL;
+                document.getElementById("ContentPlaceHolder1_total_footer").innerHTML = GRAND_TOTAL;
+            }
+            function Onfailureprice()
+            {
+            }
+        }
+        
+    </script>
+     <script type="text/javascript">
+      
+        function qtyminus(id,price)
+        {
+           
+            if (parseInt(document.getElementById('txtqty_' + id).value) > 1)
+            {
+               // document.getElementById('price_' + price).value = price;
+                
+                document.getElementById('txtqty_' + id).value = parseInt(document.getElementById('txtqty_' + id).value) - 1;
+                var QNANTITY = document.getElementById('txtqty_' + id).value;
+                var result = document.getElementById('txtqty_' + id).value * price;
+                document.getElementById('sub_amount_' + id).innerHTML = result;
+                document.getElementById('cart_price' + id).innerHTML = result;
+                PageMethods.cartprice(result,id,QNANTITY,OnSuccessminus, Onfailureminus)
+                function OnSuccessminus(GRAND_TOTAL)
+                {
+                    document.getElementById("sub_amount_cart").innerHTML = GRAND_TOTAL;
+                    document.getElementById('ContentPlaceHolder1_cart_total_footer').innerHTML = GRAND_TOTAL;
+                    document.getElementById('ContentPlaceHolder1_total_footer').innerHTML = GRAND_TOTAL;
+                }
+                function Onfailureminus()
+                {
+                }
+            }
+        }
+    </script>
 </body>
 </html>
