@@ -59,11 +59,11 @@
             debugger;
             var x = id.value;
          
-            PageMethods.dropcityselect(x,OnSuccess,onerror)
+            PageMethods.dropcityselect(x, OnSuccess, onerror)
 
             function OnSuccess(result)
             {
-                document.getElementById('dropselectlocation').innerHTML = result;
+                document.getElementById('ContentPlaceHolder1_dropselectlocation').innerHTML = result;
                
             }
             function onerror()
@@ -132,9 +132,10 @@
 
                                 
                             </div>
-                            <div class="bs-docs-example" id="dropselectlocation" runat="server" >
+                            <div class="bs-docs-example" id="dropselectlocation" runat="server">
                                 <select class="selectpicker" data-style="btn-success">
-                                    <option selected>Select Location</option>
+                                  <%--  <option selected>Select Location</option>--%>
+                                   <%-- <option>hyddd</option>--%>
                                    
                                 </select>
                             </div>

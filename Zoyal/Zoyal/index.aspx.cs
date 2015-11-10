@@ -175,14 +175,20 @@ namespace Zoyal
             loc.LOCATION_CITYID = Int32.Parse(x);
             DataTable dt_location = BLL.GETLOCATION(loc);
             string selectlocation = "<select   class=\"selectpicker\" data-style=\"btn-success\">";
+
+           
             for (int i = 0; i < dt_location.Rows.Count; i++)
             {
 
                 selectlocation = selectlocation + "<option >" + dt_location.Rows[i]["location_name"].ToString() + "</option>";
+               
             }
+      
             selectlocation = selectlocation + "</select>";
            
+
             return selectlocation;
+            
 
         }
     }
