@@ -77,7 +77,7 @@
 
 				<div class="row featured-boxes">
 					<div class="col-md-12">
-						<h3>Your selection (3 items)</h3>
+						<h3 id="lbl_count_item" runat="server">Your selection (3 items)</h3>
 						<div class="featured-box featured-box-cart">
 							<div class="box-content">
 								<div >
@@ -91,13 +91,13 @@
 													Product name
 												</th>
 												<th class="product-price">
-													Price
+													Price(Rupees)
 												</th>
 												<th class="product-quantity">
 													Quantity
 												</th>
 												<th class="product-subtotal">
-													SubTotal
+													SubTotal(Rupees)
 												</th>
 												<th class="product-remove">
 													&nbsp;

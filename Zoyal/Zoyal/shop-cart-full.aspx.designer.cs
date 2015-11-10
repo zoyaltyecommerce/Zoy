@@ -13,6 +13,15 @@ namespace Zoyal {
     public partial class shop_cart_full {
         
         /// <summary>
+        /// lbl_count_item control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_count_item;
+        
+        /// <summary>
         /// tb_cart control.
         /// </summary>
         /// <remarks>
