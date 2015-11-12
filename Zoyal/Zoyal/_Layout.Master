@@ -109,24 +109,29 @@
                             </li>
 
                             <li>
+                                
                                 <a href="Aboutus.aspx">About Us</a>
 
                             </li>
 
                             <li>
+                                
                                 <a href="Partnerwithus.aspx">Patner with us</a>
 
                             </li>
                             <li>
+                                
                                 <a href="blog.aspx">Blog</a>
 
                             </li>
                             <li>
+                              
                                 <a href="Careers.aspx">Careers</a>
 
                             </li>
 
                             <li>
+                                
                                 <a href="ContactUs.aspx">Contact Us</a>
 
                             </li>
@@ -138,8 +143,10 @@
 
         <!-- Begin Login -->
         <div class="login-wrapper">
+           
             <div id="form-login" role="form">
                 <div id="div_login">
+                    <li class="active">
                 <h4 id="h4login">Login</h4>
                      <h4 id="h4forgetpwd" style="display:none">FORGET PASSWORD</h4>
                 <p id="loginlbl">If you're a member, login here.</p>
@@ -583,10 +590,17 @@
           // PageMethods.delete_cartitem(document.getElementById('REMOVE_cart').value, OnSuccess, onfailure);
           PageMethods.delete_cartitemweb(id, OnSuccessDelete, onfailureDelete)
       }
-      function OnSuccessDelete(count) {
-               
-          document.getElementById('ContentPlaceHolder1_lbl_count_item').innerHTML = "Your selection(" + count + "   items)";
-          document.getElementById('cart_count').innerHTML = count;
+      function OnSuccessDelete(result) {
+          var res = result.split(',');
+          document.getElementById('ContentPlaceHolder1_lbl_count_item').innerHTML = "Your selection(" + res[1] + "   items)";
+          document.getElementById('cart_count').innerHTML = res[1];
+          document.getElementById("ContentPlaceHolder1_cart_total_footer").innerHTML = res[0];
+          document.getElementById("ContentPlaceHolder1_total_footer").innerHTML = res[0];
+          document.getElementById("sub_amount_cart").innerHTML = res[0];
+          //document.getElementById('cart_head').innerHTML = "Your selection items(" + res[1] + ")";
+
+
+       
 
            }
       function onfailureDelete(response) {
