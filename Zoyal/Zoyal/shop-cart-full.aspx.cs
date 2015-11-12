@@ -195,8 +195,13 @@ namespace Zoyal
             }
             
             HttpContext.Current.Session["CART"] = dt_cart;
+            object delamount = dt_cart.Compute("Sum(PRODUCT_SUB_TOTAL)", string.Empty);
+         
             int count = dt_cart.Rows.Count;
-            return count.ToString();
+           // return count.ToString();
+            return delamount.ToString()+","+count.ToString();
+          
+           
 
         }
         [WebMethod]

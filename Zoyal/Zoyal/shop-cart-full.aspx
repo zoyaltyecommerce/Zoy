@@ -53,6 +53,8 @@
         function OnSuccessprice(GRAND_TOTAL) {
             document.getElementById("cart_total_footer").innerHTML = GRAND_TOTAL;
             document.getElementById("total_footer").innerHTML = GRAND_TOTAL;
+            //document.getElementById("cart_total_footer").innerHTML = result;
+            //document.getElementById("total_footer").innerHTML = result;
             }
     </script>
   
