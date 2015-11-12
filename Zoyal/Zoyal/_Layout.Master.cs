@@ -29,17 +29,8 @@ namespace Zoyal
                         lbllogin.Visible = false;
                         myaccount.Visible = true;
                     }
-                    clearcontrols();
-                    if (Session["CART"] != null)
-                    {
-                       
-                        
+                        clearcontrols();
                         cart_visible();
-                        
-                    }
-                   
-
-
                     //loading locations
                     cities da = new cities();
                     DataTable dt_price = (DataTable)Session["CART"];
@@ -47,48 +38,36 @@ namespace Zoyal
                     string locations = "";
                     for (int i = 0; i < dt_loc.Rows.Count; i++)
                     {
-                        locations = locations + "<li><a href=''>" + dt_loc.Rows[i]["CITY_NAME"].ToString() + "</a></li>";
+                        locations = locations + "<li ><a href='http://localhost:50847/index.aspx?cityid" + dt_loc.Rows[i]["city_id"] + " >" + dt_loc.Rows[i]["CITY_NAME"].ToString() + "</a></li>";
                         //locations = locations+dt_loc.Rows[i]["location_name"].ToString();
                     }
                     ul_locations.InnerHtml = locations;
-
                   //  object GRAND_TOTAL = dt_price.Compute("Sum(PRODUCT_SUB_TOTAL)", string.Empty);
                     sub_amount_cart.InnerHtml = dt_price.Compute("Sum(PRODUCT_SUB_TOTAL)", string.Empty).ToString();
 
                 }
-
                 catch (Exception exe)
                 {
 
                 }
 
-
                 if (Request.QueryString["id"] != null)
                 {
-
                     string productid = Request.QueryString["id"].ToString();
                     DataTable dt_productcart = BLL.GETPRODUCTBYID(productid);
 
 
                     if (Session["CART"] != null)
                     {
-
                         DataTable dt_productall = (DataTable)Session["CART"];
                         string html = parsehtmlcart(dt_productall);
-
                         CART_BAG.InnerHtml = html;
-                 
-
                     }
-                   
-                   
-         
                     else
                     {
 
                     }
                 }
-
     }
 }
 
@@ -346,6 +325,27 @@ namespace Zoyal
         {
             Response.Redirect("shop-cart-full.aspx");
         }
-    }
+        [WebMethod]
+        protected static string product_change(int x)
+        {
+            //DataTable dt_img = BLL.GETALLPRODUCTS();
+           
+            //PRODUCT dt = new PRODUCT();
+            //dt.PRODUCT_CITYID =x;
+            //if (dt_img.Rows.Count > 0)
+            //{
+            //    string images = "";
+            //    for (int i = 0; i < dt_img.Rows.Count; i++)
+            //    {
+
+            //        images = images + " <div class='col-md-3 animation'><div class='item product'><div class='product-thumb-info'><div class='product-thumb-info-image'><span class='product-thumb-info-act'><a href='shop-cart-full.aspx?id=" + dt_img.Rows[i]["PRODUCT_ID"] + "' class='add-to-cart-product' > <span><i class='fa fa-shopping-cart'></i></span></a> </span><img alt='' class='imaheight' class='img-responsive' src='" + dt_img.Rows[i]["PRODUCT_IMAGEURL"].ToString() + "'></div><div class='product-thumb-info-content'><span class='price pull-right'>" + dt_img.Rows[i]["PRODUCT_PRICE"] + "/Rs</span><h4><a href='shop-product-detail2.html'>" + dt_img.Rows[i]["PRODUCT_IMAGETITLE"].ToString() + "</a></h4> <span class='item-cat'><small><a href='#'>" + dt_img.Rows[i]["PRODUCT_NAME"].ToString() + " </a></small></span></div></div></div></div>";
+            //    }
+            //    // ClientScript.RegisterStartupScript(GetType(), "hiya", "document.getElementById('owl-product-slide').innerHTML =\""+ images +"\"", true);
+            //    //  product_img.InnerHtml = images;
+            //    // }
+            //    return images.ToString();
+            return "";
+            }
+        }
 
 }

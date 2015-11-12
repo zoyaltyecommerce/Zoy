@@ -40,7 +40,7 @@
                         </li>-->
                         <li class="dropdown my-account">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hyderabad<span class="caret"></span></a>
-                            <ul runat="server" id="ul_locations" class="dropdown-menu" role="menu">
+                            <ul runat="server" id="ul_locations" class="dropdown-menu" role="menu" >
                                <%-- <li><a href="#">Hyderabad</a></li>
                                 <li><a href="#">Warangal</a></li>
                                 <li><a href="#">Karimnagar</a></li>--%>
@@ -644,6 +644,23 @@
                 }
             }
         }
+    </script>
+    <script type="text/javascript">
+        function city_change_product(id)
+        {
+            debugger;
+            var y = id.value;
+            PageMethods.product_change(x,OnSuccess,onerror)
+            function OnSuccess(images) {
+                document.getElementById('product_img').innerHTML = images;
+              
+
+            }
+            function onerror() {
+                // alert("somthing error")
+            }
+        }
+
     </script>
 </body>
 </html>
