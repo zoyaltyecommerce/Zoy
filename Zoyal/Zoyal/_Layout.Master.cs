@@ -38,7 +38,7 @@ namespace Zoyal
                     string locations = "";
                     for (int i = 0; i < dt_loc.Rows.Count; i++)
                     {
-                        locations = locations + "<li ><a href='http://localhost:50847/index.aspx?cityid" + dt_loc.Rows[i]["city_id"] + " >" + dt_loc.Rows[i]["CITY_NAME"].ToString() + "</a></li>";
+                        locations = locations + "<li ><a href='http://localhost:50847/index.aspx?city_id=" + dt_loc.Rows[i]["CITY_ID"] + "'>" + dt_loc.Rows[i]["CITY_NAME"].ToString() + "</a></li>";
                         //locations = locations+dt_loc.Rows[i]["location_name"].ToString();
                     }
                     ul_locations.InnerHtml = locations;
