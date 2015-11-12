@@ -23,7 +23,9 @@ namespace Zoyal
                 
                    // if (Session["PRODUCTIMAGE"]!=null)
                    //  {
+
                 DataTable dt_img = BLL.GETALLPRODUCTS();
+                  //  if(Request.QueryString["id"]=)
                     if(dt_img.Rows.Count>0)
                     { 
                         string images = "";
@@ -191,6 +193,28 @@ namespace Zoyal
             
 
         }
+        [WebMethod]
+        protected static string product_change(int x)
+        {
+            //DataTable dt_img = BLL.GETALLPRODUCTS();
+
+            //PRODUCT dt = new PRODUCT();
+            //dt.PRODUCT_CITYID = x;
+            //if (dt_img.Rows.Count > 0)
+            //{
+            //    string images = "";
+            //    for (int i = 0; i < dt_img.Rows.Count; i++)
+            //    {
+
+            //        images = images + " <div class='col-md-3 animation'><div class='item product'><div class='product-thumb-info'><div class='product-thumb-info-image'><span class='product-thumb-info-act'><a href='shop-cart-full.aspx?id=" + dt_img.Rows[i]["PRODUCT_ID"] + "' class='add-to-cart-product' > <span><i class='fa fa-shopping-cart'></i></span></a> </span><img alt='' class='imaheight' class='img-responsive' src='" + dt_img.Rows[i]["PRODUCT_IMAGEURL"].ToString() + "'></div><div class='product-thumb-info-content'><span class='price pull-right'>" + dt_img.Rows[i]["PRODUCT_PRICE"] + "/Rs</span><h4><a href='shop-product-detail2.html'>" + dt_img.Rows[i]["PRODUCT_IMAGETITLE"].ToString() + "</a></h4> <span class='item-cat'><small><a href='#'>" + dt_img.Rows[i]["PRODUCT_NAME"].ToString() + " </a></small></span></div></div></div></div>";
+            //    }
+            //    // ClientScript.RegisterStartupScript(GetType(), "hiya", "document.getElementById('owl-product-slide').innerHTML =\""+ images +"\"", true);
+            //    //  product_img.InnerHtml = images;
+            //    // }
+            //    return images.ToString();
+                return "";
+        }
+
     }
   
 
