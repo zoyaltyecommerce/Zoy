@@ -298,17 +298,18 @@ namespace Zoyal.Code
 
     public class PRODUCT:SMVTS_MAIN
     {
-         public static int      PRODUCT_ID { get; set; }
-        public static string PRODUCT_NAME { get; set; }
-             public static string PRODUCT_DESC { get; set; }
-        public static string PRODUCT_IMAGEURL { get; set; }
-            public static string PRODUCT_IMAGETITLE { get; set; }
-            public static int PRODUCT_CREATEDBY { get; set;}
-            public static DateTime PRODUCT_CREATEDDATE { get; set; }
-            public static int PRODUCT_MODIFIEDBY { get; set; }
-             public static DateTime PRODUCT_MODIFIEDDATE { get; set; }
-            public static bool PRODUCT_STATUS { get; set; }
-            public static string PRODUCT_TITLE { get; set; }
+         public  int      PRODUCT_ID { get; set; }
+        public string PRODUCT_NAME { get; set; }
+             public  string PRODUCT_DESC { get; set; }
+        public  string PRODUCT_IMAGEURL { get; set; }
+            public  string PRODUCT_IMAGETITLE { get; set; }
+            public int PRODUCT_CREATEDBY { get; set;}
+            public  DateTime PRODUCT_CREATEDDATE { get; set; }
+            public int PRODUCT_MODIFIEDBY { get; set; }
+             public  DateTime PRODUCT_MODIFIEDDATE { get; set; }
+            public bool PRODUCT_STATUS { get; set; }
+            public string PRODUCT_TITLE { get; set; }
+        public int PRODUCT_CITYID { set; get; }
     }
     public class SHIPPINGADDRESS : SMVTS_MAIN
     {

@@ -178,7 +178,8 @@ namespace Zoyal.Code
         }
         internal static DataTable GETALLPRODUCTS()
         {
-            DataTable dt = BLL.ExecuteQuery("EXEC USP_PRODUCTS @OPERATION='GETALLPRODUCTS' ");
+            PRODUCT obj = new PRODUCT();
+            DataTable dt = BLL.ExecuteQuery("EXEC USP_PRODUCTS @OPERATION='GETALLPRODUCTS',@PRODUCT_CITYID='" +obj.PRODUCT_CITYID + "' ");
             return dt;
         }
         
