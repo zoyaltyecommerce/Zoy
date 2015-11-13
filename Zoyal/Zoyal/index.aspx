@@ -72,6 +72,7 @@
             }
         }
     </script>
+    
 
     
 </asp:Content>
@@ -122,7 +123,7 @@
             </div>
         </section>
         <!-- End Main Slide -->
-        <section style="margin-top: 10px; margin-bottom: 10px">
+   <%--     <section style="margin-top: 10px; margin-bottom: 10px">
             <div class="row">
                 <div class="col-md-12" style="text-align: center; align-content: center; align-items: center">
                     <div class="container" style="background-color: #333333; padding-bottom: 10px">
@@ -134,13 +135,14 @@
                             </div>
                             <div class="bs-docs-example" id="dropselectlocation" runat="server">
                                 <select class="selectpicker" data-style="btn-success">
-                                  <%--  <option selected>Select Location</option>--%>
-                                   <%-- <option>hyddd</option>--%>
+                              <option selected>Select Location</option>
+                                <option>hyddd</option>
                                    
                                 </select>
                             </div>
                             <div class="bs-docs-example">
-                                <input type="text" class="form-control" name="x" placeholder="No of Audience">
+                              <asp:TextBox ID="txt_noaudience" runat="server" class="form-control" name="x" placeholder="No of Audience"></asp:TextBox>
+
                             </div>
                             <div class="bs-docs-example">
                                 <div class='input-group date' style="display: inline-table" id='datetimepicker1'>
@@ -159,7 +161,7 @@
 <cc1:CalendarExtender ID="Calendar1" PopupButtonID="imgPopup" runat="server" TargetControlID="txt_startdate"
     Format="dd/MM/yyyy">
 </cc1:CalendarExtender>--%>
-                                    <asp:TextBox ID="txt_enddate" runat="server" placeholder="End Date" style="float: none !important; padding-top: 7px;" class="form-control" name="date_input"  ></asp:TextBox>
+<%--                                    <asp:TextBox ID="txt_enddate" runat="server" placeholder="End Date" style="float: none !important; padding-top: 7px;" class="form-control" name="date_input"  ></asp:TextBox>
                                     
                                     <span class="input-group-addon" style="height: 27px; padding: 5px 9px">
                                         <span class="glyphicon glyphicon-calendar"></span>
@@ -180,6 +182,7 @@
                     </div>
 
                 </div>
+
                 <!--<div class="input-group" style="display:inline-block">
 
 
@@ -187,7 +190,8 @@
 
 
             </div>
-        </section>
+        </section>--%>
+
         <%--<script type="text/javascript">
             window.onload = function () {
                 RS('.selectpicker').selectpicker();
