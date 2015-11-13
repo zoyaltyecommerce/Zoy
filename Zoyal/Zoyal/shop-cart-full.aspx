@@ -370,7 +370,16 @@
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ValidationGroup="procedtocheckout"
                                                         ControlToValidate="txt_addline2" ErrorMessage="Please enter your address2" Display="Dynamic" SetFocusOnError="true" ForeColor="red">
                                             </asp:RequiredFieldValidator>
+
                                     </div>
+                                 <div class="form-group">
+                                    <label class="sr-only">Promotional code</label>
+                                    <asp:TextBox ID="txt_promocode" runat="server" class="form-control" placeholder="Enter promotional code here"></asp:TextBox>
+                                </div>
+                                <div class="form-group">
+                                   
+                                    <asp:Button ID="btn_submit" runat="server" class="btn btn-grey btn-sm" data-loading-text="Loading..." Text="Apply Promotion"/>
+                                </div>
 								</div>
 							</div>
 						</div>
@@ -381,18 +390,39 @@
 						<div class="featured-box featured-box-secondary">
 							<div class="box-content">
 								<h4>Shopping bag summary</h4>
-                                <div class="form-group">
-                                    <label class="sr-only">Promotional code</label>
-                                    <asp:TextBox ID="txt_promocode" runat="server" class="form-control" placeholder="Enter promotional code here"></asp:TextBox>
-                                </div>
-                                <div class="form-group">
-                                   
-                                    <asp:Button ID="btn_submit" runat="server" class="btn btn-grey btn-sm" data-loading-text="Loading..." Text="Apply Promotion"/>
-                                </div>
+                               
                                 <div id="producttbl" runat="server">
 								<table  cellspacing="0" class="cart-totals" width="100%">
 									<tbody>
+                                        <tr class="cart-subtotal">
+
+											<th>
+												No of Audience
+											</th>
+											<td>
+												<span class="amount" id="Span3" runat="server">100</span>
+											</td>
+										</tr>
+                                        <tr class="cart-subtotal">
+
+											<th>
+												start date
+											</th>
+											<td>
+												<span class="amount" id="Span2" runat="server">12/2/2015</span>
+											</td>
+										</tr>
+                                        <tr class="cart-subtotal">
+
+											<th>
+												End date
+											</th>
+											<td>
+												<span class="amount" id="Span1" runat="server">1/1/2016</span>
+											</td>
+										</tr>
 										<tr class="cart-subtotal">
+
 											<th>
 												Cart Subtotal
 											</th>
