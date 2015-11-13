@@ -19,81 +19,93 @@ namespace Zoyal
                 try
                 {
 
-                  
-                
-                   // if (Session["PRODUCTIMAGE"]!=null)
-                   //  {
-
-                DataTable dt_img = BLL.GETALLPRODUCTS();
-                  //  if(Request.QueryString["id"]=)
-                    if(dt_img.Rows.Count>0)
-                    { 
-                        string images = "";
-                        for (int i = 0; i < dt_img.Rows.Count; i++)
+                    
+                   
+                    PRODUCT daa = new PRODUCT();
+                    if (Request.QueryString["city_id"] == null)
+                    {
+                        DataTable dt_img = BLL.GETALLPRODUCTS();
+                        if (dt_img.Rows.Count > 0)
                         {
-
-                            images = images + " <div class='col-md-3 animation'><div class='item product'><div class='product-thumb-info'><div class='product-thumb-info-image'><span class='product-thumb-info-act'><a href='shop-cart-full.aspx?id="+ dt_img.Rows[i]["PRODUCT_ID"] + "' class='add-to-cart-product' > <span><i class='fa fa-shopping-cart'></i></span></a> </span><img alt='' class='imaheight' class='img-responsive' src='" + dt_img.Rows[i]["PRODUCT_IMAGEURL"].ToString() + "'></div><div class='product-thumb-info-content'><span class='price pull-right'>"+dt_img.Rows[i]["PRODUCT_PRICE"]+"/Rs</span><h4><a href='shop-product-detail2.html'>" + dt_img.Rows[i]["PRODUCT_IMAGETITLE"].ToString() + "</a></h4> <span class='item-cat'><small><a href='#'>" + dt_img.Rows[i]["PRODUCT_NAME"].ToString()+" </a></small></span></div></div></div></div>";
-                           }
-                       // ClientScript.RegisterStartupScript(GetType(), "hiya", "document.getElementById('owl-product-slide').innerHTML =\""+ images +"\"", true);
-                        product_img.InnerHtml = images;
-                        // }
-
-
-
+                            string images = "";
+                            for (int i = 0; i < dt_img.Rows.Count; i++)
+                            {
+                                images = images + " <div class='col-md-3 animation'><div class='item product'><div class='product-thumb-info'><div class='product-thumb-info-image'><span class='product-thumb-info-act'><a href='shop-cart-full.aspx?id=" + dt_img.Rows[i]["PRODUCT_ID"] + "' class='add-to-cart-product' > <span><i class='fa fa-shopping-cart'></i></span></a> </span><img alt='' class='imaheight' class='img-responsive' src='" + dt_img.Rows[i]["PRODUCT_IMAGEURL"].ToString() + "'></div><div class='product-thumb-info-content'><span class='price pull-right'>" + dt_img.Rows[i]["PRODUCT_PRICE"] + "/Rs</span><h4><a href='shop-product-detail2.html'>" + dt_img.Rows[i]["PRODUCT_IMAGETITLE"].ToString() + "</a></h4> <span class='item-cat'><small><a href='#'>" + dt_img.Rows[i]["PRODUCT_NAME"].ToString() + " </a></small></span></div></div></div></div>";
+                            }
+                            // ClientScript.RegisterStartupScript(GetType(), "hiya", "document.getElementById('owl-product-slide').innerHTML =\""+ images +"\"", true);
+                            product_img.InnerHtml = images;
+                        }
 
                     }
                     else
                     {
+                        int cityid = Int32.Parse(Request.QueryString["city_id"].ToString());
+                        DataTable dt_img1 = BLL.GETSELECTPRODUCTS(cityid);
+                        
 
-                    }
-                    cities da = new cities();
-                    DataTable dt_loc1 = BLL.GETCITIES(da);
+                            string images = "";
+                            for (int i = 0; i < dt_img1.Rows.Count; i++)
+                            {
+
+
+                                images = images + " <div class='col-md-3 animation'><div class='item product'><div class='product-thumb-info'><div class='product-thumb-info-image'><span class='product-thumb-info-act'><a href='shop-cart-full.aspx?id=" + dt_img1.Rows[i]["PRODUCT_ID"] + "' class='add-to-cart-product' > <span><i class='fa fa-shopping-cart'></i></span></a> </span><img alt='' class='imaheight' class='img-responsive' src='" + dt_img1.Rows[i]["PRODUCT_IMAGEURL"].ToString() + "'></div><div class='product-thumb-info-content'><span class='price pull-right'>" + dt_img1.Rows[i]["PRODUCT_PRICE"] + "/Rs</span><h4><a href='shop-product-detail2.html'>" + dt_img1.Rows[i]["PRODUCT_IMAGETITLE"].ToString() + "</a></h4> <span class='item-cat'><small><a href='#'>" + dt_img1.Rows[i]["PRODUCT_NAME"].ToString() + " </a></small></span></div></div></div></div>";
+                            }
+                            // ClientScript.RegisterStartupScript(GetType(), "hiya", "document.getElementById('owl-product-slide').innerHTML =\""+ images +"\"", true);
+                            product_img.InnerHtml = images;
+                            // }
                    
-                    string selectcity = "<select onchange='dropcity(this);'  class=\"selectpicker\" data-style=\"btn-success\">";
-                    for (int i = 0; i < dt_loc1.Rows.Count; i++)
-                    {
 
-                        selectcity = selectcity + "<option value='" + dt_loc1.Rows[i]["city_id"] + "'  >" + dt_loc1.Rows[i]["CITY_NAME"].ToString() + "</option>";
-                        // locations = locations + "<li><a href=''>" + dt_loc.Rows[i]["location_name"].ToString() + "</a></li>";
-                   
-                        //selectcity.calfunction(dt_loc1.Rows[i]["city_id"].ToString());
-                    }
-                   
-                    try
-
-                    {
-                        dropselectcity.InnerHtml = selectcity + "</select>";
-                       
-                    }
-                    catch(Exception ex)
-                    {
-                      
-                    }
-
-                    LOCATIONS loc = new LOCATIONS();
-                    DataTable dt_location = BLL.GETLOCATION(loc);
-                    string selectlocation = "<select   class=\"selectpicker\" data-style=\"btn-success\">";
-                    for (int i = 0; i < dt_location.Rows.Count; i++)
-                    {
-
-                        selectlocation = selectlocation + "<option >" + dt_location.Rows[i]["location_name"].ToString() + "</option>";
-                        // locations = locations + "<li><a href=''>" + dt_loc.Rows[i]["location_name"].ToString() + "</a></li>";
 
                     }
 
-                   
-                    try
 
-                    {
-                        dropselectlocation.InnerHtml = selectlocation + "</select>";
+                        cities da = new cities();
+                        DataTable dt_loc1 = BLL.GETCITIES(da);
+                        string selectcity = "<select onchange='dropcity(this);'  class=\"selectpicker\" data-style=\"btn-success\">";
+                        for (int i = 0; i < dt_loc1.Rows.Count; i++)
+                        {
 
-                    }
-                    catch (Exception ex)
-                {
+                            selectcity = selectcity + "<option value='" + dt_loc1.Rows[i]["city_id"] + "'  >" + dt_loc1.Rows[i]["CITY_NAME"].ToString() + "</option>";
+                            // locations = locations + "<li><a href=''>" + dt_loc.Rows[i]["location_name"].ToString() + "</a></li>";
 
-                }
+                            //selectcity.calfunction(dt_loc1.Rows[i]["city_id"].ToString());
+                        }
+
+                        try
+
+                        {
+                            dropselectcity.InnerHtml = selectcity + "</select>";
+
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+
+                        LOCATIONS loc = new LOCATIONS();
+                        DataTable dt_location = BLL.GETLOCATION(loc);
+                        string selectlocation = "<select   class=\"selectpicker\" data-style=\"btn-success\">";
+                        for (int i = 0; i < dt_location.Rows.Count; i++)
+                        {
+
+                            selectlocation = selectlocation + "<option >" + dt_location.Rows[i]["location_name"].ToString() + "</option>";
+                            // locations = locations + "<li><a href=''>" + dt_loc.Rows[i]["location_name"].ToString() + "</a></li>";
+
+                        }
 
 
+                        try
+
+                        {
+                            dropselectlocation.InnerHtml = selectlocation + "</select>";
+
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+
+                    
 
             }
                 catch (Exception exe)
@@ -215,6 +227,10 @@ namespace Zoyal
                 return "";
         }
 
+        protected void search_item_Click(object sender, EventArgs e)
+        {
+
+        }
     }
   
 

@@ -144,7 +144,7 @@
                             </div>
                             <div class="bs-docs-example">
                                 <div class='input-group date' style="display: inline-table" id='datetimepicker1'>
-                                    <input type='text' placeholder="Start Date" style="float: none !important; padding-top: 7px;" class="form-control" name="date_input" id="date_input">
+                                    <asp:TextBox ID="txt_startdate" runat="server" placeholder="Start Date" style="float: none !important; padding-top: 7px;" class="form-control" name="date_input"  ></asp:TextBox>
                                     <span class="input-group-addon" style="height: 27px; padding: 5px 9px">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -159,8 +159,8 @@
 <cc1:CalendarExtender ID="Calendar1" PopupButtonID="imgPopup" runat="server" TargetControlID="txt_startdate"
     Format="dd/MM/yyyy">
 </cc1:CalendarExtender>--%>
-
-                                     <input type='text' placeholder="Start Date" style="float: none !important; padding-top: 7px;" class="form-control" name="date_input" id="date_input">
+                                    <asp:TextBox ID="txt_enddate" runat="server" placeholder="End Date" style="float: none !important; padding-top: 7px;" class="form-control" name="date_input"  ></asp:TextBox>
+                                    
                                     <span class="input-group-addon" style="height: 27px; padding: 5px 9px">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                     </span>
@@ -168,13 +168,14 @@
                             </div>
                             <div class="bs-docs-example">
                                 <input type="hidden" name="search_param" value="all" id="search_param">
-                                <input type="text" class="form-control" name="x" placeholder="Search term..." style="padding-top: 8px;">
-                            </div>
+                               
                             <div class="bs-docs-example">
                                 <span>
-                                    <button class="btn btn-default" type="button" value="Search" style="background-color: #1abc9c; padding: 7px 15px 13px; height: 35px">Search</button>
+                                    
+                                    <asp:Button ID="search_item" runat="server" Text="search" class="btn btn-default" value="Search" style="background-color: #1abc9c; padding: 7px 15px 13px; height: 35px" OnClick="search_item_Click"/>
                                 </span>
                             </div>
+                                 </div>
                         </div>
                     </div>
 

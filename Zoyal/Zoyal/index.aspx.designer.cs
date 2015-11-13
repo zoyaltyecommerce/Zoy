@@ -31,6 +31,33 @@ namespace Zoyal {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl dropselectlocation;
         
         /// <summary>
+        /// txt_startdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_startdate;
+        
+        /// <summary>
+        /// txt_enddate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_enddate;
+        
+        /// <summary>
+        /// search_item control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button search_item;
+        
+        /// <summary>
         /// product_img control.
         /// </summary>
         /// <remarks>
