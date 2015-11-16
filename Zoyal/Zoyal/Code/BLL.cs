@@ -124,7 +124,7 @@ namespace Zoyal.Code
         internal static DataTable LOGIN(USERS obj)
         {
             
-         DataTable   dt = BLL.ExecuteQuery("EXEC USP_USERLOGIN @OPERATION='LOGIN',@USER_EMAILID='"+ obj.USER_EMAILID + "',@USER_PASSWORD='"+ BLL.Encrypt( obj.USER_PASSWORD) +"'");
+           DataTable   dt = BLL.ExecuteQuery("EXEC USP_USERLOGIN @OPERATION='LOGIN',@USER_EMAILID='"+ obj.USER_EMAILID + "',@USER_PASSWORD='"+ BLL.Encrypt( obj.USER_PASSWORD) +"'");
             return dt;
         }
 
@@ -170,10 +170,10 @@ namespace Zoyal.Code
             DataTable DT = BLL.ExecuteQuery("EXEC USP_CITIES @OPERATION='GETCITIES'");
             return DT;
         }
-        internal static DataTable GETLOCATION(LOCATIONS obj1)
+        internal static DataTable GETLOCATION(LOCATIONS obj)
         {
-            cities obj = new cities();
-            DataTable DT = BLL.ExecuteQuery("EXEC USP_GETTINGLOCATIONS @OPERATION='GETLOCATION',@LOCATION_CITYID='"+obj1.LOCATION_CITYID+"'");
+           // cities obj = new cities();
+            DataTable DT = BLL.ExecuteQuery("EXEC USP_GETTINGLOCATIONS @OPERATION='GETLOCATION',@LOCATION_CITYID='"+obj.LOCATION_CITYID+"'");
             return DT;
         }
         internal static DataTable GETALLPRODUCTS()
