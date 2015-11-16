@@ -71,68 +71,40 @@ namespace Zoyal
                         DataTable dt_productall = (DataTable)Session["CART"];
                         string html = parsehtmlcart(dt_productall);
                         tb_cart.InnerHtml = html;
-
                     }
                     else
                     {
 
                     }
                     cities da = new cities();
+
                     DataTable dt_loc1 = BLL.GETCITIES(da);
-                    string selectcity = "<select onchange='dropcity(this);'  class=\"selectpicker\" data-style=\"btn-success\">";
+                    string selectcity = "<select onchange='dropcity(this);'  class=\"formDropdown\" data-style=\"btn-success\">";
+
                     for (int i = 0; i < dt_loc1.Rows.Count; i++)
                     {
 
                         selectcity = selectcity + "<option value='" + dt_loc1.Rows[i]["city_id"] + "'  >" + dt_loc1.Rows[i]["CITY_NAME"].ToString() + "</option>";
-                        // locations = locations + "<li><a href=''>" + dt_loc.Rows[i]["location_name"].ToString() + "</a></li>";
-
-                        //selectcity.calfunction(dt_loc1.Rows[i]["city_id"].ToString());
+                      
                     }
-
                     try
-
                     {
-                      //  ddlcontry.InnerHtml = selectcity + "</select>";
-                       // ddlcontry.SelectedIndexChanged
-
+                        select_city.InnerHtml = selectcity + "</select>";
                     }
                     catch (Exception ex)
                     {
 
                     }
-
-                    LOCATIONS loc = new LOCATIONS();
-                    DataTable dt_location = BLL.GETLOCATION(loc);
-                    string selectlocation = "<select   class=\"selectpicker\" data-style=\"btn-success\">";
-                    for (int i = 0; i < dt_location.Rows.Count; i++)
-                    {
-
-                        selectlocation = selectlocation + "<option >" + dt_location.Rows[i]["location_name"].ToString() + "</option>";
-                        // locations = locations + "<li><a href=''>" + dt_loc.Rows[i]["location_name"].ToString() + "</a></li>";
-
-                    }
-
-
-                    try
-
-                    {
-               //dropselectlocation.InnerHtml = selectlocation + "</select>";
-
-                    }
-                    catch (Exception ex)
-                    {
-
-                    }
-
+                   
 
 
 
                 }
-                catch (Exception exe)
+                    catch (Exception exe)
                 {
 
                 }
-                clearcontrol();
+              //  clearcontrol();
 
             }
 
@@ -165,8 +137,8 @@ namespace Zoyal
                 txt_altphonenumber.Text = "";
                 ddlcontry.SelectedIndex = 0;
 
-                txt_state.Text = "";
-                txt_city.Text = "";
+                //txt_state.Text = "";
+                //txt_city.Text = "";
                 txt_addline1.Text = "";
                 txt_addline2.Text = "";
 
@@ -183,34 +155,67 @@ namespace Zoyal
         {
             try
             {
-                SHIPPINGADDRESS DA = new SHIPPINGADDRESS();
-                DA.ADD_FIRSTNAME = txt_name.Text;
-                DA.ADD_EMAILID = txt_email.Text;
-                DA.ADD_PRIMARYPHONE = txt_phonenumber.Text;
-                DA.ADD_ALTERNATEPHONE = txt_altphonenumber.Text;
-                DA.ADD_COUNTRY = ddlcontry.SelectedItem.ToString();
-                DA.ADD_STATE = txt_state.Text;
-                DA.ADD_CITY = txt_city.Text;
-                DA.ADD_ADDRESS = txt_addline1.Text;
-                DA.ADD_ADDRESS2 = txt_addline2.Text;
-                DA.ADD_CREATEDBY = 1;
 
-                bool status = BLL.INSERTADDRESS(DA);
+               
+
+                SHIPPINGADDRESS DA = new SHIPPINGADDRESS();
+               // string[] sessionData = { txt_name.Text,txt_email.Text,txt_phonenumber.Text,txt_altphonenumber.Text,ddlcontry.Text,select_city.InnerText,select_location.InnerText,txt_altphonenumber.Text,txt_addline2.Text };
+               // Session["CART"] = sessionData;
+                if (Session["ZOYALUSER"] != null)
+                {
+
+
+                    Session["CART-name"] = txt_name.Text;
+                    Session["CART-email"] = txt_email.Text;
+                    Session["CART-phone"] = txt_phonenumber.Text;
+                    Session["CART-altphone"] = txt_altphonenumber.Text;
+                    Session["CART-con"] = ddlcontry.SelectedItem.ToString();
+                    // DA.ADD_STATE = txt_state.Text;
+                    //  DA.ADD_CITY = txt_city.Text;
+                    Session["CART-add1"] = txt_addline1.Text;
+                    Session["CART-add2"] = txt_addline2.Text;
+
+                    //DA.ADD_FIRSTNAME = txt_name.Text;
+                    //DA.ADD_EMAILID = txt_email.Text;
+                    //DA.ADD_PRIMARYPHONE = txt_phonenumber.Text;
+                    //DA.ADD_ALTERNATEPHONE = txt_altphonenumber.Text;
+                    //DA.ADD_COUNTRY = ddlcontry.SelectedItem.ToString();
+                    //// DA.ADD_STATE = txt_state.Text;
+                    ////  DA.ADD_CITY = txt_city.Text;
+                    //DA.ADD_ADDRESS = txt_addline1.Text;
+                    //DA.ADD_ADDRESS2 = txt_addline2.Text;
+                    //DA.ADD_CREATEDBY = 1;
+                   // string[] sessionData = { txt_name.Text, txt_email.Text, txt_phonenumber.Text, txt_altphonenumber.Text, ddlcontry.Text, select_city.InnerText, select_location.InnerText, txt_altphonenumber.Text, txt_addline2.Text };
+              // Session["CART"] = sessionData;
+
+                    bool status = BLL.INSERTADDRESS(DA);
                 if (status == true)
                 {
                     BLL.ShowMessage(this, "your successfully inserted");
-                    clearcontrol();
+                // clearcontrol();
+                     
                 }
                 else
                 {
                     BLL.ShowMessage(this, "contact to admin");
                 }
+                }
+                else
+                {
+                    Response.Redirect("logincheck.aspx");
+                }
+
             }
+
+
+
             catch (Exception exe)
             {
 
             }
-        }
+
+       
+    }
 
         protected void btn_conshaping_Click(object sender, EventArgs e)
         {
@@ -278,7 +283,31 @@ namespace Zoyal
             
 
         }
-        
+
+        [WebMethod]
+        public static string dropcityselect(string x)
+        {
+            LOCATIONS loc = new LOCATIONS();
+            loc.LOCATION_CITYID = Int32.Parse(x);
+            DataTable dt_location = BLL.GETLOCATION(loc);
+            string selectlocation = "<select    class=\"formDropdown\" data-style=\"btn-success\">";
+
+
+            for (int i = 0; i < dt_location.Rows.Count; i++)
+            {
+
+                selectlocation = selectlocation + "<option >" + dt_location.Rows[i]["location_name"].ToString() + "</option>";
+
+            }
+
+            selectlocation = selectlocation + "</select>";
+
+
+            return selectlocation;
+
+
+        }
+
     }
-    
+
 }

@@ -57,6 +57,25 @@
             //document.getElementById("total_footer").innerHTML = result;
             }
     </script>
+     <script type="text/javascript">
+        function dropcity(id)
+        {
+            debugger;
+            var x = id.value;
+         
+            PageMethods.dropcityselect(x, OnSuccess, onerror)
+
+            function OnSuccess(result)
+            {
+                document.getElementById('ContentPlaceHolder1_select_location').innerHTML = result;
+               
+            }
+            function onerror()
+            {
+               // alert("somthing error")
+            }
+        }
+    </script>
   
    
    
@@ -343,19 +362,30 @@
 								<h4>Address</h4>
 								
 							<div >
-                                    <div class="form-group">
+                                    <div class="form-group" id="select_city" runat="server">
                                         <label class="sr-only">State/Province</label>
-                                        <asp:TextBox ID="txt_state" runat="server" class="form-control" placeholder="State/Province"></asp:TextBox>
-                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ValidationGroup="procedtocheckout"
+                                       <%-- <asp:DropDownList ID="txt_state" runat="server" class="form-control" AutoPostBack="true" OnSelectedIndexChanged="txt_state_SelectedIndexChanged"  >
+                                            <asp:ListItem>State/Province</asp:ListItem>
+                                        </asp:DropDownList>--%>
+                                        <select class="form-control"   >
+  <option value="volvo">--Select-City--</option>
+ 
+</select>
+                                      <%--  <asp:TextBox ID="txt_state" runat="server" class="form-control" placeholder="State/Province"></asp:TextBox>--%>
+                                        <%-- <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
                                                         ControlToValidate="txt_state" ErrorMessage="Please enter your state" Display="Dynamic" SetFocusOnError="true" ForeColor="red">
-                                            </asp:RequiredFieldValidator>
+                                            </asp:RequiredFieldValidator>--%>
                                     </div>
-									<div class="form-group">
+									<div class="form-group" id="select_location" runat="server">
 										<label class="sr-only">City</label>
-                                        <asp:TextBox ID="txt_city" runat="server" class="form-control" placeholder="City"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ValidationGroup="procedtocheckout"
+                                          <select class="form-control"   >
+  <option value="volvo">--Select-Location--</option>
+ 
+</select>
+                                       <%-- <asp:TextBox ID="txt_city" runat="server" class="form-control" placeholder="City"></asp:TextBox>--%>
+                                      <%--  <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ValidationGroup="procedtocheckout"
                                                         ControlToValidate="txt_city" ErrorMessage="Please enter your city name" Display="Dynamic" SetFocusOnError="true" ForeColor="red">
-                                            </asp:RequiredFieldValidator>
+                                            </asp:RequiredFieldValidator>--%>
 									</div>
                                     <div class="form-group">
                                         <label class="sr-only">Address Line1</label>
