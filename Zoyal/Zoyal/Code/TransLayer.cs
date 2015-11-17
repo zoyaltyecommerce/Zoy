@@ -349,5 +349,14 @@ public DateTime city_createddate { set; get; }
 public int city_modifiedby { set; get; }
 public DateTime city_modifieddate { set; get; }
     }
+     
+    public class COUPONS: SMVTS_MAIN
+    {
+        public int COUPON_ID { get; set; }
+        public string COUPON_NAME { get; set; }
+        public int COUPON_DISCOUNT { get; set; }
+        public decimal COUPON_PRICE { get; set; }
+        public int COUPON_STATUS { get; set; }
+    }
 
 }

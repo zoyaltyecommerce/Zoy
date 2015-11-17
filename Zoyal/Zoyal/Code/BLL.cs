@@ -211,7 +211,11 @@ namespace Zoyal.Code
             status = BLL.ExecuteNonQuery("EXEC USP_SHIPPINGADDRESS @OPERATION='INSERTCART',@ADD_FIRSTNAME='" + obj.ADD_FIRSTNAME + "',@ADD_EMAILID='" + obj.ADD_EMAILID + "',@ADD_PRIMARYPHONE='" + obj.ADD_PRIMARYPHONE + "',@ADD_ALTERNATEPHONE='" + obj.ADD_ALTERNATEPHONE + "',@ADD_COUNTRY='" + obj.ADD_COUNTRY + "',@ADD_CITY='" + obj.ADD_CITY + "',@ADD_STATE='" + obj.ADD_STATE + "',@ADD_ADDRESS2='" + obj.ADD_ADDRESS + "',@ADD_ADDRESS1='" + obj.ADD_ADDRESS2 + "',@ADD_CREATEDBY =1");
             return status;
         }
-
+        internal static DataTable GETCOUPON(COUPONS obj)
+        {
+            DataTable dt = BLL.ExecuteQuery("EXEC USP_COUPON @OPERATION ='COUPON_PRICE',@COUPON_NAME='" + obj.COUPON_NAME + "'");
+            return dt;
+        }
 
 
 
