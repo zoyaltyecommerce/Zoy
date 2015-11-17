@@ -676,6 +676,31 @@
         }
 
     </script>
+    <script type="text/javascript">
+        function coupon_price()
+        {
+            debugger;
+            var code = document.getElementById('ContentPlaceHolder1_txt_promocode').value;
+
+            PageMethods.coupon(code, OnSuccess, onerror)
+            function OnSuccess(result)
+            {
+                var res = result.split(',');
+                document.getElementById("sub_amount_cart").innerHTML =res[0];
+                document.getElementById('ContentPlaceHolder1_cart_total_footer').innerHTML = res[0];
+                document.getElementById('ContentPlaceHolder1_total_footer').innerHTML = res[0];
+                document.getElementById("sub_amount_cart").innerHTML = res[1];
+                document.getElementById('ContentPlaceHolder1_cart_total_footer').innerHTML = res[1];
+                document.getElementById('ContentPlaceHolder1_total_footer').innerHTML = res[1];
+
+            }
+            function onerror()
+            {
+                alert('Invalid Coupon')
+            }
+
+        }
+    </script>
   
     
 </body>
