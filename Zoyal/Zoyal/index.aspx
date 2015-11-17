@@ -53,25 +53,7 @@
             height: 27px;
         }
     </style>
-    <script type="text/javascript">
-        function dropcity(id)
-        {
-            debugger;
-            var x = id.value;
-         
-            PageMethods.dropcityselect(x, OnSuccess, onerror)
-
-            function OnSuccess(result)
-            {
-                document.getElementById('ContentPlaceHolder1_dropselectlocation').innerHTML = result;
-               
-            }
-            function onerror()
-            {
-               // alert("somthing error")
-            }
-        }
-    </script>
+   
     
 
     
