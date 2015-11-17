@@ -408,7 +408,8 @@
                                 </div>
                                 <div class="form-group">
                                    
-                                    <asp:Button ID="btn_submit" runat="server" class="btn btn-grey btn-sm" data-loading-text="Loading..." Text="Apply Promotion"/>
+                                    <%--<asp:Button ID="btn_submit" runat="server" class="btn btn-grey btn-sm"  data-loading-text="Loading..." Text="Apply Promotion"/>--%>
+                                    <input type="button" class="btn btn-grey btn-sm" runat="server" onclick="coupon_price()" value="Apply Promotion" />
                                 </div>
 								</div>
 							</div>

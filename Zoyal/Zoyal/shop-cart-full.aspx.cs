@@ -122,6 +122,7 @@ namespace Zoyal
             }
             cart_total_footer.InnerHtml = dt_price.Compute("Sum(PRODUCT_SUB_TOTAL)", string.Empty).ToString();
             total_footer.InnerHtml= dt_price.Compute("Sum(PRODUCT_SUB_TOTAL)", string.Empty).ToString();
+           Session["total_price"] = dt_price.Compute("Sum(PRODUCT_SUB_TOTAL)", string.Empty).ToString();
             int count = dt_price.Rows.Count;
             lbl_count_item.InnerHtml = "Your selection(" + count + "   items)";
            
@@ -159,22 +160,35 @@ namespace Zoyal
                
 
                 SHIPPINGADDRESS DA = new SHIPPINGADDRESS();
-               // string[] sessionData = { txt_name.Text,txt_email.Text,txt_phonenumber.Text,txt_altphonenumber.Text,ddlcontry.Text,select_city.InnerText,select_location.InnerText,txt_altphonenumber.Text,txt_addline2.Text };
-               // Session["CART"] = sessionData;
                 if (Session["ZOYALUSER"] != null)
                 {
 
+                    DataTable dt_details = new DataTable("DETAILS");
+                    dt_details.Columns.Add("FRIST_NAME", typeof(string));
+                    dt_details.Columns.Add("EMAIL_ID", typeof(string));
+                    dt_details.Columns.Add("PRIMARYPHONE", typeof(string));
+                    dt_details.Columns.Add("ALTPHONE", typeof(string));
+                    dt_details.Columns.Add("CITY", typeof(string));
+                    dt_details.Columns.Add("LOCATION", typeof(string));
+                    dt_details.Columns.Add("ADDRESS1", typeof(string));
+                    dt_details.Columns.Add("ADDRESS2", typeof(string));
+                    dt_details.Columns.Add("PROMOCODE", typeof(string));
 
-                    Session["CART-name"] = txt_name.Text;
-                    Session["CART-email"] = txt_email.Text;
-                    Session["CART-phone"] = txt_phonenumber.Text;
-                    Session["CART-altphone"] = txt_altphonenumber.Text;
-                    Session["CART-con"] = ddlcontry.SelectedItem.ToString();
-                    // DA.ADD_STATE = txt_state.Text;
-                    //  DA.ADD_CITY = txt_city.Text;
-                    Session["CART-add1"] = txt_addline1.Text;
-                    Session["CART-add2"] = txt_addline2.Text;
+                        DataRow column = dt_details.NewRow();
+                        dt_details.Rows.Add(column);
+                        column["FRIST_NAME"] = txt_name.Text;
+                        column["EMAIL_ID"] = txt_email.Text;
+                        column["PRIMARYPHONE"] = txt_phonenumber.Text;
+                        column["ALTPHONE"] = txt_altphonenumber.Text;
+                        column["CITY"]= 
+                        //column["LOCATION"]=
+                        column["ADDRESS1"] = txt_addline1.Text;
+                        column["ADDRESS2"] = txt_addline2.Text;
 
+                        Session["DETAILS"] = dt_details;
+                  
+                   
+                  
                     //DA.ADD_FIRSTNAME = txt_name.Text;
                     //DA.ADD_EMAILID = txt_email.Text;
                     //DA.ADD_PRIMARYPHONE = txt_phonenumber.Text;
@@ -185,20 +199,20 @@ namespace Zoyal
                     //DA.ADD_ADDRESS = txt_addline1.Text;
                     //DA.ADD_ADDRESS2 = txt_addline2.Text;
                     //DA.ADD_CREATEDBY = 1;
-                   // string[] sessionData = { txt_name.Text, txt_email.Text, txt_phonenumber.Text, txt_altphonenumber.Text, ddlcontry.Text, select_city.InnerText, select_location.InnerText, txt_altphonenumber.Text, txt_addline2.Text };
-              // Session["CART"] = sessionData;
+                    // string[] sessionData = { txt_name.Text, txt_email.Text, txt_phonenumber.Text, txt_altphonenumber.Text, ddlcontry.Text, select_city.InnerText, select_location.InnerText, txt_altphonenumber.Text, txt_addline2.Text };
+                    // Session["CART"] = sessionData;
 
-                    bool status = BLL.INSERTADDRESS(DA);
-                if (status == true)
-                {
-                    BLL.ShowMessage(this, "your successfully inserted");
-                // clearcontrol();
-                     
-                }
-                else
-                {
-                    BLL.ShowMessage(this, "contact to admin");
-                }
+                    //        bool status = BLL.INSERTADDRESS(DA);
+                    //    if (status == true)
+                    //    {
+                    //        BLL.ShowMessage(this, "your successfully inserted");
+                    //    // clearcontrol();
+
+                    //    }
+                    //    else
+                    //    {
+                    //        BLL.ShowMessage(this, "contact to admin");
+                    //    }
                 }
                 else
                 {
@@ -277,6 +291,8 @@ namespace Zoyal
                 }
             }
        object GRAND_TOTAL= dt_price.Compute("Sum(PRODUCT_SUB_TOTAL)", string.Empty);
+            string incrment_price = GRAND_TOTAL.ToString();
+            HttpContext.Current.Session["incr_price"] = incrment_price;
             HttpContext.Current.Session["CART"] = dt_price;
            
             return GRAND_TOTAL.ToString();
@@ -306,6 +322,51 @@ namespace Zoyal
             return selectlocation;
 
 
+        }
+        [WebMethod]
+        public static string coupon(string code)
+        {
+            string total = HttpContext.Current.Session["total_price"].ToString();
+            decimal toatalprice = decimal.Parse(total);
+            string incrtotal = HttpContext.Current.Session["incr_price"].ToString();
+            decimal incrtotalprice = decimal.Parse(incrtotal);
+            string garnd_total = "";
+            string grandincr_total = "";
+
+            COUPONS obj1 = new COUPONS();
+            obj1.COUPON_NAME = code;
+            DataTable dt_coupon = BLL.GETCOUPON(obj1);
+          foreach(DataRow row in dt_coupon.Rows)
+            {
+                string coupon_price1 = row["COUPON_PRICE"].ToString();
+                if(coupon_price1!="")
+                {
+                    string coupon_price = row["COUPON_PRICE"].ToString();
+                    decimal coup_price = decimal.Parse(coupon_price);
+                    decimal total1 = toatalprice - coup_price;
+                    decimal total2 = incrtotalprice - coup_price;
+
+                    garnd_total = total1.ToString();
+                    grandincr_total = total2.ToString();
+                   
+
+                }
+                else
+                {
+                    string coupon_discount = row["COUPON_DISCOUNT"].ToString();
+                    decimal D = decimal.Parse(coupon_discount);
+                    decimal D1 = D / 100;
+                    decimal D2 = D1 * toatalprice;
+                    decimal INCRD = D1 * incrtotalprice;
+                    decimal totalprice = toatalprice - D2;
+                    decimal totalprice1 = incrtotalprice - INCRD;
+                    garnd_total = totalprice.ToString();
+                    grandincr_total = totalprice1.ToString();
+                }
+               
+            }
+
+            return garnd_total.ToString()+','+grandincr_total.ToString();
         }
 
     }
