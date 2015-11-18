@@ -14,7 +14,11 @@
           
            height:300px;
        }
+      
+
    </style>
+    <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+
 
 </head>
 <body>
@@ -104,27 +108,27 @@
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav pull-right">
                             <li class="active">
-                                <a href="index.aspx">Home</a>
+                                <a href="http://localhost:50847/index.aspx?">Home</a>
 
                             </li>
 
-                            <li>
+                            <li class="visited">
                                 
                                 <a href="Aboutus.aspx">About Us</a>
 
                             </li>
 
-                            <li>
+                            <li class="home">
                                 
                                 <a href="Partnerwithus.aspx">Patner with us</a>
 
                             </li>
-                            <li>
+                         <%--   <li>
                                 
                                 <a href="blog.aspx">Blog</a>
 
-                            </li>
-                            <li>
+                            </li>--%>
+                            <li class="home">
                               
                                 <a href="Careers.aspx">Careers</a>
 
@@ -582,7 +586,7 @@
 
       function delete_cartitem(id)
       {
-          debugger;
+          
           var REMOVE_cart = document.getElementById('DELETE_CART' + id);
           REMOVE_cart.remove(REMOVE_cart.id);
           var REMOVE = document.getElementById('delete_product' + id);
@@ -598,6 +602,13 @@
           document.getElementById("ContentPlaceHolder1_total_footer").innerHTML = res[0];
           document.getElementById("sub_amount_cart").innerHTML = res[0];
           //document.getElementById('cart_head').innerHTML = "Your selection items(" + res[1] + ")";
+          debugger;
+          if (res[1] == 0)
+          {
+              var n= "noitem selected";
+              document.getElementById('ContentPlaceHolder1_tb_cart').innerHTML = n;
+          }
+ 
 
 
        

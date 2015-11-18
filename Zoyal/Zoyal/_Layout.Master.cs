@@ -35,11 +35,13 @@ namespace Zoyal
                     cities da = new cities();
                     DataTable dt_price = (DataTable)Session["CART"];
                     DataTable dt_loc = BLL.GETCITIES(da);
+
+                   Session["CITY_ID"] = dt_loc.ToString();
                     string locations = "";
                     for (int i = 0; i < dt_loc.Rows.Count; i++)
                     {
                         locations = locations + "<li ><a href='http://localhost:50847/index.aspx?city_id=" + dt_loc.Rows[i]["CITY_ID"] + "'>" + dt_loc.Rows[i]["CITY_NAME"].ToString() + "</a></li>";
-                        //locations = locations+dt_loc.Rows[i]["location_name"].ToString();
+                        
                     }
                     ul_locations.InnerHtml = locations;
                   //  object GRAND_TOTAL = dt_price.Compute("Sum(PRODUCT_SUB_TOTAL)", string.Empty);
