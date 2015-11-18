@@ -114,10 +114,11 @@ namespace Zoyal
         public string parsehtmlcart(DataTable dt_product)
         {
             string content = "";
+          
             DataTable dt_price = (DataTable)Session["CART"];
             for (int i = 0; i < dt_product.Rows.Count; i++)
             {
-                content = content + "<tr id='delete_product" + dt_product.Rows[i]["PRODUCT_ID"] + "' class='cart_table_item'><td class='product-thumbnail'><img alt='' width='80' src='" + dt_product.Rows[i]["PRODUCT_IMAGEURL"] + "'/></td><td class='product-name'><a href='shop-product-sidebar.html' >" + dt_product.Rows[i]["PRODUCT_IMAGETITLE"] + "</a></td><td class='product-price'><span id='price_" + dt_product.Rows[i]["PRODUCT_PRICE"] + "' class='amount'>RS" + dt_product.Rows[i]["PRODUCT_PRICE"] + "</span></td><td class='product-quantity'><div class='quantity'><input type = 'button' class='minus' value='-' onclick='qtyminus(" + dt_product.Rows[i]["product_id"] + "," + dt_product.Rows[i]["PRODUCT_PRICE"] + ");'> <input type='text' ID='txtqty_" + dt_product.Rows[i]["PRODUCT_ID"] + "' class='input-text qty text' title='Qty' name='quantity' ReadOnly='true' value='" + dt_product.Rows[i]["PRODUCT_QTY"] +"'  ><input type='button' ID='increement' class='plus' value='+' onclick='qtyincrees(" + dt_product.Rows[i]["PRODUCT_ID"] + "," + dt_product.Rows[i]["PRODUCT_PRICE"] + ");'></div></td><td class='product-subtotal'><span id='sub_amount_" + dt_product.Rows[i]["PRODUCT_ID"] + "' class='amount'>RS" + dt_product.Rows[i]["PRODUCT_SUB_TOTAL"] + "</span></td><td class='product-remove'><a title = 'Remove this item'  class='remove' onclick='delete_cartitem(" + dt_product.Rows[i]["PRODUCT_ID"] + ");' href='#'><i class='fa fa-times-circle'></i></a></td></tr>";
+                content = content + "<tr id='delete_product" + dt_product.Rows[i]["PRODUCT_ID"] + "' class='cart_table_item'><td class='product-thumbnail'><img alt='' width='80' src='" + dt_product.Rows[i]["PRODUCT_IMAGEURL"] + "'/></td><td class='product-name'><a href='shop-product-sidebar.html' >" + dt_product.Rows[i]["PRODUCT_IMAGETITLE"] + "</a></td><td class='product-price'><span id='price_" + dt_product.Rows[i]["PRODUCT_PRICE"] + "' class='amount'>" + dt_product.Rows[i]["PRODUCT_PRICE"] + "</span></td><td class='product-quantity'><div class='quantity'><input type = 'button' class='minus' value='-' onclick='qtyminus(" + dt_product.Rows[i]["product_id"] + "," + dt_product.Rows[i]["PRODUCT_PRICE"] + ");'> <input type='text' ID='txtqty_" + dt_product.Rows[i]["PRODUCT_ID"] + "' class='input-text qty text' title='Qty' name='quantity' ReadOnly='true' value='" + dt_product.Rows[i]["PRODUCT_QTY"] +"'  ><input type='button' ID='increement' class='plus' value='+' onclick='qtyincrees(" + dt_product.Rows[i]["PRODUCT_ID"] + "," + dt_product.Rows[i]["PRODUCT_PRICE"] + ");'></div></td><td class='product-subtotal'><span id='sub_amount_" + dt_product.Rows[i]["PRODUCT_ID"] + "' class='amount'>" + dt_product.Rows[i]["PRODUCT_SUB_TOTAL"] + "</span></td><td class='product-remove'><a title = 'Remove this item'  class='remove' onclick='delete_cartitem(" + dt_product.Rows[i]["PRODUCT_ID"] + ");' href='#'><i class='fa fa-times-circle'></i></a></td></tr>";
                 
             }
             cart_total_footer.InnerHtml = dt_price.Compute("Sum(PRODUCT_SUB_TOTAL)", string.Empty).ToString();
@@ -125,7 +126,10 @@ namespace Zoyal
            Session["total_price"] = dt_price.Compute("Sum(PRODUCT_SUB_TOTAL)", string.Empty).ToString();
             int count = dt_price.Rows.Count;
             lbl_count_item.InnerHtml = "Your selection(" + count + "   items)";
-           
+     
+     
+
+
             return content;
         }
         public void clearcontrol()
@@ -136,7 +140,7 @@ namespace Zoyal
                 txt_email.Text = "";
                 txt_phonenumber.Text = "";
                 txt_altphonenumber.Text = "";
-                ddlcontry.SelectedIndex = 0;
+               // ddlcontry.SelectedIndex = 0;
 
                 //txt_state.Text = "";
                 //txt_city.Text = "";
@@ -157,11 +161,11 @@ namespace Zoyal
             try
             {
 
-               
+                string startdate = Request.Form["startdate"];
+                string enddate = Request.Form["enddate"];
 
                 SHIPPINGADDRESS DA = new SHIPPINGADDRESS();
-                if (Session["ZOYALUSER"] != null)
-                {
+               
 
                     DataTable dt_details = new DataTable("DETAILS");
                     dt_details.Columns.Add("FRIST_NAME", typeof(string));
@@ -173,8 +177,11 @@ namespace Zoyal
                     dt_details.Columns.Add("ADDRESS1", typeof(string));
                     dt_details.Columns.Add("ADDRESS2", typeof(string));
                     dt_details.Columns.Add("PROMOCODE", typeof(string));
+                    dt_details.Columns.Add("AUDIENCE", typeof(string));
+                dt_details.Columns.Add("STARTDATE", typeof(string));
+                dt_details.Columns.Add("ENDDATE", typeof(string));
 
-                        DataRow column = dt_details.NewRow();
+                DataRow column = dt_details.NewRow();
                         dt_details.Rows.Add(column);
                         column["FRIST_NAME"] = txt_name.Text;
                         column["EMAIL_ID"] = txt_email.Text;
@@ -184,11 +191,18 @@ namespace Zoyal
                         //column["LOCATION"]=
                         column["ADDRESS1"] = txt_addline1.Text;
                         column["ADDRESS2"] = txt_addline2.Text;
+                        column["PROMOCODE"] = txt_promocode.Text;
+                        column["AUDIENCE"] = txt_audience.Text;
+                         column["STARTDATE"] = startdate.ToString();
+                         column["ENDDATE"] = enddate.ToString();
+                    Session["DETAILS"] = dt_details;
+              
+                if (Session["ZOYALUSER"] != null)
+                {
 
-                        Session["DETAILS"] = dt_details;
-                  
-                   
-                  
+
+                    Session["DETAILS"] = dt_details;
+
                     //DA.ADD_FIRSTNAME = txt_name.Text;
                     //DA.ADD_EMAILID = txt_email.Text;
                     //DA.ADD_PRIMARYPHONE = txt_phonenumber.Text;
@@ -218,11 +232,8 @@ namespace Zoyal
                 {
                     Response.Redirect("logincheck.aspx");
                 }
-
+              
             }
-
-
-
             catch (Exception exe)
             {
 
@@ -235,6 +246,10 @@ namespace Zoyal
         {
             try
             {
+                cities da = new cities();
+                //DataTable dt_loc = (DataTable)Session["CITY_ID"];
+                //DataTable dt_loc1 = BLL.GETCITIES(da);
+
                 Response.Redirect("index.aspx");
             }
             catch (Exception ex)
@@ -267,8 +282,8 @@ namespace Zoyal
             int count = dt_cart.Rows.Count;
            // return count.ToString();
             return delamount.ToString()+","+count.ToString();
-          
            
+
 
         }
         [WebMethod]
@@ -326,6 +341,7 @@ namespace Zoyal
         [WebMethod]
         public static string coupon(string code)
         {
+            
             string total = HttpContext.Current.Session["total_price"].ToString();
             decimal toatalprice = decimal.Parse(total);
             string incrtotal = HttpContext.Current.Session["incr_price"].ToString();

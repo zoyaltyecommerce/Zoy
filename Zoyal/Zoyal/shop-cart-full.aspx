@@ -125,7 +125,10 @@
 												</th>
 											</tr>
 										</thead>
+                                      
+
 										<tbody runat="server" id="tb_cart">
+                                           
                                             <tr class='cart_table_item'>
 <td class='product-thumbnail'>
 <a href='shop-product-sidebar.html'><img alt='' width='80' src='images/content/products/product-thumb.jpg'></a>
@@ -332,7 +335,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only">Alternate Phone Number</label>
-                                        <asp:TextBox ID="txt_altphonenumber" runat="server" class="form-control" placeholder="Phone number" MaxLength="12"></asp:TextBox>
+                                        <asp:TextBox ID="txt_altphonenumber" runat="server" class="form-control" placeholder="Alternate Phone Number" MaxLength="12"></asp:TextBox>
                                          <asp:RequiredFieldValidator ID="RequiredFieldValidator2"   runat="server" ValidationGroup="procedtocheckout"
                                                         ControlToValidate="txt_altphonenumber" ErrorMessage="Please enter phone-number" Display="Dynamic" ForeColor="red" SetFocusOnError="true">
                                             </asp:RequiredFieldValidator>
@@ -343,14 +346,14 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only">Country</label>
-                                        <div class="list-sort">
+                                       <%-- <div class="list-sort">
                                             <asp:DropDownList ID="ddlcontry" runat="server" class="formDropdown">
                                                 <asp:ListItem>Select a country</asp:ListItem>
                                                   <asp:ListItem>INDIA</asp:ListItem>
                                                   <asp:ListItem>USA</asp:ListItem>
                                                  <asp:ListItem>UK</asp:ListItem>
                                             </asp:DropDownList>
-                                        </div>
+                                        </div>--%>
                                     </div>
 								</div>
 							</div>
@@ -431,7 +434,7 @@
 												No of Audience
 											</th>
 											<td>
-												<span class="amount" id="Span3" runat="server">100</span>
+											<asp:TextBox ID="txt_audience" runat="server"></asp:TextBox>
 											</td>
 										</tr>
                                         <tr class="cart-subtotal">
@@ -440,7 +443,8 @@
 												start date
 											</th>
 											<td>
-												<span class="amount" id="Span2" runat="server">12/2/2015</span>
+											<%--	<span class="amount" id="Span2" runat="server">12/2/2015</span>--%>
+                                                 <input type="date" class="amount" name="startdate" >
 											</td>
 										</tr>
                                         <tr class="cart-subtotal">
@@ -449,7 +453,7 @@
 												End date
 											</th>
 											<td>
-												<span class="amount" id="Span1" runat="server">1/1/2016</span>
+												  <input type="date" class="amount" name="enddate">
 											</td>
 										</tr>
 										<tr class="cart-subtotal">
