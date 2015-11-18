@@ -3,7 +3,7 @@
      <meta charset="utf-8">
     <meta name="keywords" content="Zoyalty" />
     <meta name="description" content="Zoyalty">
-    <meta name="author" content="konnectsu.com">
+    <meta name="author" content="konnectsu.com"> 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Zoyalty</title>
     <!-- Google Fonts -->
