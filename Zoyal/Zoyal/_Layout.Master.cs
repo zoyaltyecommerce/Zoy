@@ -29,7 +29,7 @@ namespace Zoyal
                         lbllogin.Visible = false;
                         myaccount.Visible = true;
                     }
-                        clearcontrols();
+                       // clearcontrols();
                         cart_visible();
                     //loading locations
                     cities da = new cities();
