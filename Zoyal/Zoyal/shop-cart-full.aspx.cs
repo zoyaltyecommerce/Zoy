@@ -104,7 +104,9 @@ namespace Zoyal
                 {
 
                 }
-              //  clearcontrol();
+                //  clearcontrol();
+               
+
 
             }
 
@@ -123,7 +125,7 @@ namespace Zoyal
             }
             cart_total_footer.InnerHtml = dt_price.Compute("Sum(PRODUCT_SUB_TOTAL)", string.Empty).ToString();
             total_footer.InnerHtml= dt_price.Compute("Sum(PRODUCT_SUB_TOTAL)", string.Empty).ToString();
-           Session["total_price"] = dt_price.Compute("Sum(PRODUCT_SUB_TOTAL)", string.Empty).ToString();
+           
             int count = dt_price.Rows.Count;
             lbl_count_item.InnerHtml = "Your selection(" + count + "   items)";
      
@@ -197,16 +199,23 @@ namespace Zoyal
                          column["ENDDATE"] = enddate.ToString();
                     Session["DETAILS"] = dt_details;
               
+
+
+
                 if (Session["ZOYALUSER"] != null)
                 {
 
 
                     Session["DETAILS"] = dt_details;
+                    txt_name.Text = dt_details.Rows[0]["FRIST_NAME"].ToString();
+                    txt_email.Text = dt_details.Rows[0]["EMAIL_ID"].ToString();
+                    txt_phonenumber.Text = dt_details.Rows[0]["PRIMARYPHONE"].ToString();         
+
 
                     //DA.ADD_FIRSTNAME = txt_name.Text;
-                    //DA.ADD_EMAILID = txt_email.Text;
+                    //DA.ADD_ALTERNATEPHONE = DD_EMAILID = txt_email.Text;
                     //DA.ADD_PRIMARYPHONE = txt_phonenumber.Text;
-                    //DA.ADD_ALTERNATEPHONE = txt_altphonenumber.Text;
+                    //DA.Atxt_altphonenumber.Text;
                     //DA.ADD_COUNTRY = ddlcontry.SelectedItem.ToString();
                     //// DA.ADD_STATE = txt_state.Text;
                     ////  DA.ADD_CITY = txt_city.Text;
@@ -230,6 +239,11 @@ namespace Zoyal
                 }
                 else
                 {
+
+
+                 dt_details.Rows[0]["FRIST_NAME"] = txt_name.Text;
+                    dt_details.Rows[0]["EMAIL_ID"] = txt_email.Text;
+                    dt_details.Rows[0]["PRIMARYPHONE"] = txt_email.Text;
                     Response.Redirect("logincheck.aspx");
                 }
               
@@ -306,8 +320,8 @@ namespace Zoyal
                 }
             }
        object GRAND_TOTAL= dt_price.Compute("Sum(PRODUCT_SUB_TOTAL)", string.Empty);
-            string incrment_price = GRAND_TOTAL.ToString();
-            HttpContext.Current.Session["incr_price"] = incrment_price;
+            
+           
             HttpContext.Current.Session["CART"] = dt_price;
            
             return GRAND_TOTAL.ToString();
@@ -339,19 +353,19 @@ namespace Zoyal
 
         }
         [WebMethod]
-        public static string coupon(string code)
+        public static string coupon(string code ,string price)
         {
+           
+          
+            decimal total_price = decimal.Parse(price);
             
-            string total = HttpContext.Current.Session["total_price"].ToString();
-            decimal toatalprice = decimal.Parse(total);
-            string incrtotal = HttpContext.Current.Session["incr_price"].ToString();
-            decimal incrtotalprice = decimal.Parse(incrtotal);
             string garnd_total = "";
             string grandincr_total = "";
 
             COUPONS obj1 = new COUPONS();
             obj1.COUPON_NAME = code;
             DataTable dt_coupon = BLL.GETCOUPON(obj1);
+          
           foreach(DataRow row in dt_coupon.Rows)
             {
                 string coupon_price1 = row["COUPON_PRICE"].ToString();
@@ -359,11 +373,10 @@ namespace Zoyal
                 {
                     string coupon_price = row["COUPON_PRICE"].ToString();
                     decimal coup_price = decimal.Parse(coupon_price);
-                    decimal total1 = toatalprice - coup_price;
-                    decimal total2 = incrtotalprice - coup_price;
-
+                    decimal total1 = total_price - coup_price;
+                    
                     garnd_total = total1.ToString();
-                    grandincr_total = total2.ToString();
+                 
                    
 
                 }
@@ -372,17 +385,18 @@ namespace Zoyal
                     string coupon_discount = row["COUPON_DISCOUNT"].ToString();
                     decimal D = decimal.Parse(coupon_discount);
                     decimal D1 = D / 100;
-                    decimal D2 = D1 * toatalprice;
-                    decimal INCRD = D1 * incrtotalprice;
-                    decimal totalprice = toatalprice - D2;
-                    decimal totalprice1 = incrtotalprice - INCRD;
+                    decimal D2 = D1 * total_price;
+                  
+                    decimal totalprice = total_price - D2;
+                   
                     garnd_total = totalprice.ToString();
-                    grandincr_total = totalprice1.ToString();
+                   
                 }
                
             }
-
-            return garnd_total.ToString()+','+grandincr_total.ToString();
+            
+            return garnd_total;
+           
         }
 
     }

@@ -68,7 +68,7 @@
             function OnSuccess(result)
             {
                 document.getElementById('ContentPlaceHolder1_select_location').innerHTML = result;
-               
+                
             }
             function onerror()
             {
@@ -287,8 +287,23 @@
 													</a>
 												</td>
 											</tr>--%>
-										</tbody>
-									</table>
+                                            
+										</tbody> 
+                                         <tbody>  
+                                             <tr id="resb">
+                                                 <td></td>
+                                                  <td></td>
+                                                   <td id="result"></td>
+                                                   <td></td>
+                                                   <td></td>
+                                                   <td></td>
+                                             </tr>
+                                        </tbody>
+                                             
+                                        </table>
+                                       
+									
+                                   
 								
 							</div></div>
 						</div>
