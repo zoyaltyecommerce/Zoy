@@ -36,7 +36,8 @@ namespace Zoyal
                     Session["ZOYALUSER"] = dt_user;
                     BLL.ShowMessage(this, "YOUR ACCOUNT SUCCESSFULLY LOGIN");
                     //Session["CART"] = dt_product;
-                    Response.Redirect("shop-cart-full.aspx");
+                  
+                    
 
 
 
