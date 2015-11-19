@@ -600,3 +600,8 @@
 .product-list h4 {
   margin-bottom: 10px;
 }
+.shop_table tr td {
+    text-align:center;
+}
+#resb{text-align:center}
+ 
