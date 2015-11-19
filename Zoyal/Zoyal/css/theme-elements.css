@@ -135,6 +135,9 @@ select {
 .alert {
   margin-bottom: 30px;
 }
+ #ContentPlaceHolder1_txt_audience {
+        padding:7px 5px;
+       }
 
 /* Firefox select button fix */
 @-moz-document url-prefix() {
@@ -279,6 +282,7 @@ label {
   background-color: #1abc9c;
   border-color: #1abc9c;
   color: white;
+   
 }
 
 /* line 236, ../sass/theme-elements.scss */
