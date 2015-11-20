@@ -57,7 +57,15 @@
             //document.getElementById("total_footer").innerHTML = result;
             }
     </script>
+
+    <script type="text/javascript">
+       widow.onload =  function(){ 
+            document.getElementById("Myres").style.borderColor = "#fff";
+        }
+
+    </script>
      <script type="text/javascript">
+          
         function dropcity(id)
         {
             debugger;
@@ -99,10 +107,10 @@
 				<div class="row featured-boxes">
 					<div class="col-md-12">
 						<h3 id="lbl_count_item" runat="server">Your selection (3 items)</h3>
-						<div class="featured-box featured-box-cart">
+						<div class="featured-box featured-box-cart" id="Myres"> 
 							<div class="box-content">
 								<div >
-									<table cellspacing="0" class="shop_table" width="100%">
+									<table cellspacing="0" class="shop_table" width="100%"> 
 										<thead>
 											<tr>
 												<th class="product-thumbnail">
@@ -193,7 +201,7 @@
 <i class='fa fa-times-circle'></i>
 </a>
 </td>
-</tr>
+</tr> 
 											<%--<tr class="cart_table_item">
 												
 												<td class="product-thumbnail">
@@ -288,15 +296,16 @@
 												</td>
 											</tr>--%>
                                             
-										</tbody> 
+										</tbody>
+                                        
                                          <tbody>  
                                              <tr id="resb">
-                                                 <td></td>
-                                                  <td></td>
-                                                   <td id="result"></td>
-                                                   <td></td>
-                                                   <td></td>
-                                                   <td></td>
+                                                 <td class="tdata"></td> 
+                                                  <td class="tdata"></td>
+                                                   <td class="tdata" id="result"></td>
+                                                   <td class="tdata"></td> 
+                                                    <td class="tdata"></td>
+                                                    <td class="tdata"></td>
                                              </tr>
                                         </tbody>
                                              
@@ -423,11 +432,14 @@
                                  <div class="form-group">
                                     <label class="sr-only">Promotional code</label>
                                     <asp:TextBox ID="txt_promocode" runat="server" class="form-control" placeholder="Enter promotional code here"></asp:TextBox>
+                                     <asp:Label ID="lbl" runat="server" Visible="true"></asp:Label>
                                 </div>
                                 <div class="form-group">
                                    
                                     <%--<asp:Button ID="btn_submit" runat="server" class="btn btn-grey btn-sm"  data-loading-text="Loading..." Text="Apply Promotion"/>--%>
-                                    <input type="button" class="btn btn-grey btn-sm" runat="server" onclick="coupon_price()" value="Apply Promotion" />
+                                    <input type="button" class="btn btn-grey btn-sm" id="apply1" runat="server" onclick="coupon_price()" value="Apply Promotion" />
+                                       <input type="button" class="btn btn-grey btn-sm" id="Button1" runat="server" onclick="coupon_price()" value="remove Promotion" style="display:none" />
+                                
                                 </div>
 								</div>
 							</div>
@@ -459,7 +471,7 @@
 											</th>
 											<td>
 											<%--	<span class="amount" id="Span2" runat="server">12/2/2015</span>--%>
-                                                 <input type="date" class="amount" name="startdate" >
+                                                 <input type="date" class="amount" name="startdate">
 											</td>
 										</tr>
                                         <tr class="cart-subtotal">
@@ -468,7 +480,7 @@
 												End date
 											</th>
 											<td>
-												  <input type="date" class="amount" name="enddate">
+												  <input type="date" class="amount" name="enddate" >
 											</td>
 										</tr>
 										<tr class="cart-subtotal">
@@ -500,7 +512,7 @@
 								</table>
                                     </div>
 								<p><asp:Button ID="btn_procedchekout" runat="server" Text="Proceed To checkout" class="btn btn-primary btn-block btn-sm" data-loading-text="Loading..." OnClick="btn_procedchekout_Click" ValidationGroup="procedtocheckout" /></p>
-								<p><asp:Button ID="btn_conshaping" runat="server" Text="Continue Shopping" class="btn btn-grey btn-block btn-sm" data-loading-text="Loading..." OnClick="btn_conshaping_Click" /></p>							
+								<p><asp:Button ID="btn_conshaping" runat="server" Text="Continue Shopping" class="btn btn-grey btn-block btn-sm" data-loading-text="Loading..." OnClick="btn_conshaping_Click"/></p>							
                              
 							</div>
 						</div>
@@ -534,4 +546,5 @@
 	
 	<!-- Style Switcher -->
 	<script type="text/javascript" src="style-switcher/js/switcher.js"></script>
+        </div>
 </asp:Content>
