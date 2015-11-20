@@ -107,18 +107,18 @@
                        
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav pull-right">
-                            <li class="active">
+                            <li class="active"> 
                                 <a href="http://localhost:50847/index.aspx?">Home</a>
 
                             </li>
 
-                            <li class="visited">
+                            <li>
                                 
                                 <a href="Aboutus.aspx">About Us</a>
 
                             </li>
 
-                            <li class="home">
+                            <li>
                                 
                                 <a href="Partnerwithus.aspx">Patner with us</a>
 
@@ -128,7 +128,7 @@
                                 <a href="blog.aspx">Blog</a>
 
                             </li>--%>
-                            <li class="home">
+                            <li>
                               
                                 <a href="Careers.aspx">Careers</a>
 
@@ -603,13 +603,14 @@
           document.getElementById("sub_amount_cart").innerHTML = res[0];
           //document.getElementById('cart_head').innerHTML = "Your selection items(" + res[1] + ")";
           
-          if (res[1] == 0)
-          {
+          if (res[1] == 0) 
+          { 
               
-              var res = document.getElementById('result'); 
-
+              var res = document.getElementById('result');
+              document.getElementById("Myres").style.borderColor = "#ddd"; 
+             // document.getElementsByClassName("resdata").style.border = "1px solid #ddd";
               var n = "Noitem selected";
-              res.innerHTML = n;
+              res.innerHTML = n; 
              
           
           }
@@ -701,9 +702,23 @@
             function OnSuccess(result)
             {
               
-                document.getElementById("sub_amount_cart").innerHTML = result;
-                document.getElementById('ContentPlaceHolder1_cart_total_footer').innerHTML = result;
-                document.getElementById('ContentPlaceHolder1_total_footer').innerHTML = result;
+                //document.getElementById("sub_amount_cart").innerHTML = result;
+                //document.getElementById('ContentPlaceHolder1_cart_total_footer').innerHTML = result;
+                //document.getElementById('ContentPlaceHolder1_total_footer').innerHTML = result;
+               
+                    var res = result.split(',')
+                // var hidd = document.getElementById("hiddn1").value;
+                    document.getElementById('ContentPlaceHolder1_lbl').innerHTML = res[1];
+                    document.getElementById("sub_amount_cart").innerHTML = res[0];
+                    document.getElementById('ContentPlaceHolder1_cart_total_footer').innerHTML = res[0];
+                    document.getElementById('ContentPlaceHolder1_total_footer').innerHTML = res[0];
+                
+                    //document.getElementById("coupon_id").innerHTML = res[2];
+                    debugger;
+                    if (res[1] == "Coupon Applied") {
+                        document.getElementById("ContentPlaceHolder1_Button1").innerHTML = "block";
+                    }
+
 
             }
             function onerror()
