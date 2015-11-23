@@ -16,18 +16,19 @@
     <!-- Icon Fonts -->
     <link href="css/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
     <script src="Scripts/jquery-1.8.2.min.js"></script>
-    <!-- Owl Carousel Assets -->
+    <!-- Owl Carousel Assets -->  
+    <link href="vendor/theme-elements.css" rel="stylesheet"> 
     <link href="vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
     <link href="vendor/owl-carousel/owl.theme.css" rel="stylesheet">
     <link href="vendor/owl-carousel/owl.transitions.css" rel="stylesheet">
         <script src="vendor/owl-carousel/owl.carousel.js"></script>
 
-    <!-- bxslider -->
+    <!-- bxslider --> 
     <link href="vendor/bxslider/jquery.bxslider.css" rel="stylesheet">
     <!-- flexslider -->
     <link rel="stylesheet" href="vendor/flexslider/flexslider.css" media="screen">
     <!-- Theme -->
-    <link href="css/theme-animate.css" rel="stylesheet">
+    <link href="css/theme-animate.css" rel="stylesheet"> 
     <link href="css/theme-elements.css" rel="stylesheet">
     <link href="css/theme-blog.css" rel="stylesheet">
     <link href="css/theme-shop.css" rel="stylesheet">
@@ -52,6 +53,8 @@
         .form-control {
             height: 27px;
         }
+    
+       
     </style>
    
     
