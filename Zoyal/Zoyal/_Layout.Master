@@ -610,7 +610,11 @@
               document.getElementById("Myres").style.borderColor = "#ddd"; 
              // document.getElementsByClassName("resdata").style.border = "1px solid #ddd";
               var n = "Noitem selected";
-              res.innerHTML = n; 
+              res.innerHTML = n;
+              var zero = "00.00";
+              document.getElementById("ContentPlaceHolder1_cart_total_footer").innerHTML = zero;
+              document.getElementById("ContentPlaceHolder1_total_footer").innerHTML = zero;
+              document.getElementById("sub_amount_cart").innerHTML = zero;
              
           
           }
@@ -692,43 +696,67 @@
 
     </script>
     <script type="text/javascript">
+        
         function coupon_price()
+        
         {
-            debugger;
-            var code = document.getElementById('ContentPlaceHolder1_txt_promocode').value;
-            var price = document.getElementById('ContentPlaceHolder1_cart_total_footer').innerText;
             
-            PageMethods.coupon(code,price,OnSuccess, onerror)
-            function OnSuccess(result)
-            {
-              
-                //document.getElementById("sub_amount_cart").innerHTML = result;
-                //document.getElementById('ContentPlaceHolder1_cart_total_footer').innerHTML = result;
-                //document.getElementById('ContentPlaceHolder1_total_footer').innerHTML = result;
-               
-                    var res = result.split(',')
-                // var hidd = document.getElementById("hiddn1").value;
-                    document.getElementById('ContentPlaceHolder1_lbl').innerHTML = res[1];
-                    document.getElementById("sub_amount_cart").innerHTML = res[0];
-                    document.getElementById('ContentPlaceHolder1_cart_total_footer').innerHTML = res[0];
-                    document.getElementById('ContentPlaceHolder1_total_footer').innerHTML = res[0];
-                
-                    //document.getElementById("coupon_id").innerHTML = res[2];
-                    debugger;
-                    if (res[1] == "Coupon Applied") {
-                        document.getElementById("ContentPlaceHolder1_Button1").innerHTML = "block";
-                    }
+            
+                 debugger;
+                 //var fdfd =document.getElementById("coupon_id").value;
+
+                     var code = document.getElementById('ContentPlaceHolder1_txt_promocode').value;
+                     var price = document.getElementById('ContentPlaceHolder1_total_footer').innerText;
 
 
-            }
+
+
+
+                     PageMethods.coupon(code, price, OnSuccess, onerror)
+                     function OnSuccess(result) {
+                         var res = result.split(',')
+                        // var hidd = document.getElementById("hiddn1").value;
+                         document.getElementById("sub_amount_cart").innerHTML = res[0];
+                         document.getElementById('ContentPlaceHolder1_cart_total_footer').innerHTML = res[0];
+                         document.getElementById('ContentPlaceHolder1_total_footer').innerHTML = res[0];
+                         document.getElementById('ContentPlaceHolder1_lbl').innerHTML = res[1];
+                         //document.getElementById("coupon_id").innerHTML = res[2];
+                         debugger;
+                         if (res[1] == "Coupon Applied") {
+                             document.getElementById("ContentPlaceHolder1_apply1").style.display = "none";
+                             document.getElementById("ContentPlaceHolder1_Button1").style.display = "block";
+                         }
+
+                 }
             function onerror()
             {
-                alert('Invalid Coupon')
+                //alert('Invalid Coupon')
             }
 
         }
     </script>
-  
+    <script type="text/javascript">
+        function removie_Coupon()
+        {
+            var rmovie = document.getElementById('ContentPlaceHolder1_lbl').innerText;
+            PageMethods.remvoie_coupon(rmovie, OnSuccess, onerror)
+            function OnSuccess(result)
+            {
+                var res = result.split(',')
+
+                document.getElementById("sub_amount_cart").innerHTML = res[0];
+                document.getElementById('ContentPlaceHolder1_cart_total_footer').innerHTML = res[0];
+                document.getElementById('ContentPlaceHolder1_total_footer').innerHTML = res[0];
+                document.getElementById('ContentPlaceHolder1_lbl').innerHTML = res[1];
+                document.getElementById("ContentPlaceHolder1_apply1").style.display = "block";
+                document.getElementById("ContentPlaceHolder1_Button1").style.display = "none";
+            }
+            function onerror()
+            {
+
+            }
+        }
+    </script>
     
 </body>
 </html>
