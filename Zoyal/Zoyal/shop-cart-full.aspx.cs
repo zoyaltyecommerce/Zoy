@@ -25,7 +25,7 @@ namespace Zoyal
                         DataTable dt_product = BLL.GETPRODUCTBYID(productid);
                         dt_product.Columns.Add("PRODUCT_QTY", typeof(System.Int32));
                         dt_product.Columns.Add("PRODUCT_SUB_TOTAL", typeof(System.Decimal));
-                        // dt_product.Columns.Add("GRAND_TOTAL", typeof(System.Decimal));
+                        dt_product.Columns.Add("GRAND_TOTAL", typeof(System.Decimal));
                         DataRow[] result1 = dt_product.Select("product_id = " + productid + "");
                         foreach (DataRow row in result1)
                         {
@@ -106,9 +106,8 @@ namespace Zoyal
                 }
 
                 //  clearcontrol();
-                // string startdate = Page.Request.Form["STARTDATE"];
-                string startdate = Request.Form["startdate"];
-                string enddate = "";
+                // string startdate ="";
+              //  string enddate = "";
                 DataTable dt_details = (DataTable)Session["DETAILS"];
 
                 if (Session["DETAILS"] != null)
@@ -125,29 +124,16 @@ namespace Zoyal
 
                     txt_promocode.Text = dt_details.Rows[0]["PROMOCODE"].ToString();
                     txt_audience.Text = dt_details.Rows[0]["AUDIENCE"].ToString();
-                    startdate = dt_details.Rows[0]["STARTDATE"].ToString();
-                    startdate = DateTime.Now.ToString("dd/MM/yyyy ");
-                   // startdate = startdate.
-
-
-
-
-                    //Response.Write(startdate);
-                    enddate = dt_details.Rows[0]["ENDDATE"].ToString();
-
-
-
+                  //  startdate = dt_details.Rows[0]["STARTDATE"].ToString();
+                   // enddate = dt_details.Rows[0]["ENDDATE"].ToString();
+                  //  startdate = DateTime.Now.ToString("dd/MM/yyyy ");
+                    //enddate= DateTime.Now.ToString("dd/MM/yyyy ");
+                    txt_startdate.Text = dt_details.Rows[0]["STARTDATE"].ToString();
+                    txt_enddate.Text = dt_details.Rows[0]["ENDDATE"].ToString();
 
                 }
-
-
-
-
             }
-
-
         }
-
         public string parsehtmlcart(DataTable dt_product)
         {
             string content = "";
@@ -163,10 +149,6 @@ namespace Zoyal
 
             int count = dt_price.Rows.Count;
             lbl_count_item.InnerHtml = "Your selection(" + count + "   items)";
-
-
-
-
             return content;
         }
         public void clearcontrol()
@@ -224,16 +206,16 @@ namespace Zoyal
                 column["EMAIL_ID"] = txt_email.Text;
                 column["PRIMARYPHONE"] = txt_phonenumber.Text;
                 column["ALTPHONE"] = txt_altphonenumber.Text;
-                column["CITY"] =
-                //column["LOCATION"]=
+                column["CITY"] = select_city.Visible.ToString();
+                column["LOCATION"] = loc_select.Value;
                 column["ADDRESS1"] = txt_addline1.Text;
                 column["ADDRESS2"] = txt_addline2.Text;
                 column["PROMOCODE"] = txt_promocode.Text;
                 column["AUDIENCE"] = txt_audience.Text;
-                column["STARTDATE"] = startdate.ToString();
-                column["ENDDATE"] = enddate.ToString();
+                column["STARTDATE"] = txt_startdate.Text;
+                column["ENDDATE"] = txt_enddate.Text;
                 Session["DETAILS"] = dt_details;
-
+                
 
 
 
@@ -270,10 +252,21 @@ namespace Zoyal
                 }
                 else
                 {
+                    if (lbl_count_item ==0)
+                    {
+                        Response.Redirect("logincheck.aspx");
+                    }
+                    else
+                    {
+                        lbl_proced_msg.Text = "Please select one item";
+                       // Response.Redirect("shop-cart-full.aspx");
+                       
+                    }
+                       
+                   
 
-
-
-                    Response.Redirect("logincheck.aspx");
+                   
+                   
                 }
 
             }
@@ -281,8 +274,6 @@ namespace Zoyal
             {
 
             }
-
-
         }
 
         protected void btn_conshaping_Click(object sender, EventArgs e)
@@ -382,85 +373,96 @@ namespace Zoyal
 
         }
         [WebMethod]
+
         public static string coupon(string code, string price)
+
         {
-
             string garnd_total = price;
-
             string message = "";
-            string sucess = "";
-            COUPONS obj1 = new COUPONS();
-
-
-
-            obj1.COUPON_NAME = code;
-            decimal price1 = decimal.Parse(price);
-
-            DataTable dt_coupon = BLL.GETCOUPON(obj1);
-            if (dt_coupon.Rows.Count != 0)
+            if (price != "00.00")
             {
+                HttpContext.Current.Session["price"] = price;
+
+               
+               
+                COUPONS obj1 = new COUPONS();
 
 
-                foreach (DataRow row in dt_coupon.Rows)
+
+                obj1.COUPON_NAME = code;
+                decimal price1 = decimal.Parse(price);
+
+                DataTable dt_coupon = BLL.GETCOUPON(obj1);
+                if (dt_coupon.Rows.Count != 0)
                 {
 
 
-
-                    string coupon_price1 = row["COUPON_PRICE"].ToString();
-
-
-
-                    if (coupon_price1 != "")
+                    foreach (DataRow row in dt_coupon.Rows)
                     {
-                        string coupon_price = row["COUPON_PRICE"].ToString();
-                        decimal coup_price = decimal.Parse(coupon_price);
-                        decimal total1 = price1 - coup_price;
 
 
-                        garnd_total = total1.ToString();
 
-                        message = "coupon applied";
+                        string coupon_price1 = row["COUPON_PRICE"].ToString();
+
+
+
+                        if (coupon_price1 != "")
+                        {
+                            string coupon_price = row["COUPON_PRICE"].ToString();
+                            decimal coup_price = decimal.Parse(coupon_price);
+                            decimal total1 = price1 - coup_price;
+
+
+                            garnd_total = total1.ToString();
+
+                            message = "Coupon Applied";
+
+
+                        }
+                        else
+                        {
+                            string coupon_discount = row["COUPON_DISCOUNT"].ToString();
+                            decimal D = decimal.Parse(coupon_discount);
+                            decimal D1 = D / 100;
+                            decimal D2 = D1 * price1;
+
+                            decimal totalprice = price1 - D2;
+
+                            garnd_total = totalprice.ToString();
+                            message = "Coupon Applied";
+                        }
 
 
                     }
-                    else
-                    {
-                        string coupon_discount = row["COUPON_DISCOUNT"].ToString();
-                        decimal D = decimal.Parse(coupon_discount);
-                        decimal D1 = D / 100;
-                        decimal D2 = D1 * price1;
-
-                        decimal totalprice = price1 - D2;
-
-                        garnd_total = totalprice.ToString();
-                        message = "Coupon Applied";
-                    }
-
-
                 }
 
+                else
+                {
 
+                    message = "Inavlid Coupon ";
+
+                }
             }
+
             else
-
             {
-
-                message = "Inavlid Coupon ";
-
-
-
-
+                message = "coupon can't be applied";
             }
-
-
 
 
 
 
             return garnd_total + ',' + message;
+        }
+        [WebMethod]
+        public static string remvoie_coupon(string rmovie)
 
+        {
+            rmovie.Remove(0);
+            string price = HttpContext.Current.Session["price"].ToString();
+            string message = "";
 
-
+            return price + "," + message;
         }
     }
     }

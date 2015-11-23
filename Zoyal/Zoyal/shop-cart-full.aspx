@@ -394,7 +394,7 @@
                                        <%-- <asp:DropDownList ID="txt_state" runat="server" class="form-control" AutoPostBack="true" OnSelectedIndexChanged="txt_state_SelectedIndexChanged"  >
                                             <asp:ListItem>State/Province</asp:ListItem>
                                         </asp:DropDownList>--%>
-                                        <select class="form-control"   >
+                                        <select class="form-control"  id="city_select" runat="server"  >
   <option value="volvo">--Select-City--</option>
  
 </select>
@@ -405,7 +405,7 @@
                                     </div>
 									<div class="form-group" id="select_location" runat="server">
 										<label class="sr-only">City</label>
-                                          <select class="form-control"   >
+                                          <select class="form-control"  id="loc_select" runat="server"  >
   <option value="volvo">--Select-Location--</option>
  
 </select>
@@ -432,13 +432,13 @@
                                  <div class="form-group">
                                     <label class="sr-only">Promotional code</label>
                                     <asp:TextBox ID="txt_promocode" runat="server" class="form-control" placeholder="Enter promotional code here"></asp:TextBox>
-                                     <asp:Label ID="lbl" runat="server" Visible="true"></asp:Label>
+                                     <asp:Label ID="lbl" runat="server" Visible="true" ForeColor="Red"></asp:Label>
                                 </div>
                                 <div class="form-group">
                                    
                                     <%--<asp:Button ID="btn_submit" runat="server" class="btn btn-grey btn-sm"  data-loading-text="Loading..." Text="Apply Promotion"/>--%>
-                                    <input type="button" class="btn btn-grey btn-sm" id="apply1" runat="server" onclick="coupon_price()" value="Apply Promotion" />
-                                       <input type="button" class="btn btn-grey btn-sm" id="Button1" runat="server" onclick="coupon_price()" value="remove Promotion" style="display:none" />
+                                    <input type="button" class="btn btn-grey btn-sm" id="apply1" runat="server" onclick="coupon_price()" value="Apply Promotion"  />
+                                       <input type="button" class="btn btn-grey btn-sm" id="Button1" runat="server" onclick="removie_Coupon()" value="remove Promotion" style="display:none" />
                                 
                                 </div>
 								</div>
@@ -462,6 +462,9 @@
 											</th>
 											<td>
 											<asp:TextBox ID="txt_audience" runat="server"></asp:TextBox>
+                                                  <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ValidationGroup="procedtocheckout"
+                                                        ControlToValidate="txt_audience" ErrorMessage="Please Enter No of Audience " Display="Dynamic" SetFocusOnError="true" ForeColor="red">
+                                            </asp:RequiredFieldValidator>
 											</td>
 										</tr>
                                         <tr class="cart-subtotal">
@@ -471,7 +474,13 @@
 											</th>
 											<td>
 											<%--	<span class="amount" id="Span2" runat="server">12/2/2015</span>--%>
-                                                 <input type="date" class="amount" name="startdate">
+                                             <%--    <input type="date" class="amount" name="startdate">--%>
+                                                <EditItemTemplate>
+    <asp:TextBox ID="txt_startdate" runat="server" Text='<%# Bind("DateofBirth", "{0:yyyy-MM-dd}") %>' TextMode="Date"></asp:TextBox>
+                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ValidationGroup="procedtocheckout"
+                                                        ControlToValidate="txt_startdate" ErrorMessage="Please Select start date" Display="Dynamic" SetFocusOnError="true" ForeColor="red">
+                                            </asp:RequiredFieldValidator>
+</EditItemTemplate>
 											</td>
 										</tr>
                                         <tr class="cart-subtotal">
@@ -480,7 +489,13 @@
 												End date
 											</th>
 											<td>
-												  <input type="date" class="amount" name="enddate" >
+												  <EditItemTemplate>
+    <asp:TextBox ID="txt_enddate" runat="server" Text='<%# Bind("DateofBirth", "{0:yyyy-MM-dd}") %>' TextMode="Date"></asp:TextBox>
+                                                    
+  <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ValidationGroup="procedtocheckout"
+                                                        ControlToValidate="txt_enddate" ErrorMessage="Please Select End date" Display="Dynamic" SetFocusOnError="true" ForeColor="red">
+                                            </asp:RequiredFieldValidator>
+</EditItemTemplate>
 											</td>
 										</tr>
 										<tr class="cart-subtotal">
@@ -511,6 +526,7 @@
 									</tbody>
 								</table>
                                     </div>
+                                <asp:Label ID="lbl_proced_msg" runat="server" ForeColor="Red"></asp:Label>
 								<p><asp:Button ID="btn_procedchekout" runat="server" Text="Proceed To checkout" class="btn btn-primary btn-block btn-sm" data-loading-text="Loading..." OnClick="btn_procedchekout_Click" ValidationGroup="procedtocheckout" /></p>
 								<p><asp:Button ID="btn_conshaping" runat="server" Text="Continue Shopping" class="btn btn-grey btn-block btn-sm" data-loading-text="Loading..." OnClick="btn_conshaping_Click"/></p>							
                              
