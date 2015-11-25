@@ -17,7 +17,7 @@
     <link href="css/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
     <script src="Scripts/jquery-1.8.2.min.js"></script>
     <!-- Owl Carousel Assets -->  
-    <link href="vendor/theme-elements.css" rel="stylesheet"> 
+   <%-- <link href="vendor/theme-elements.css" rel="stylesheet"> --%>
     <link href="vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
     <link href="vendor/owl-carousel/owl.theme.css" rel="stylesheet">
     <link href="vendor/owl-carousel/owl.transitions.css" rel="stylesheet">
@@ -56,12 +56,16 @@
     
        
     </style>
-   
+ 
     
-
     
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <script>
+        $(document).ready(function () {
+            document.getElementById("li_home").className = "active";
+        });
+    </script>
     <div role="main" class="main">
         <!-- Begin Main Slide -->
         <section class="main-slide">
@@ -220,7 +224,6 @@
                         <div class='col-md-3 animation'><div class='item product'><div class='product-thumb-info'><div class='product-thumb-info-image'><span class='product-thumb-info-act'><a href='shop-cart-full.html' class='add-to-cart-product' > <span><i class='fa fa-shopping-cart'></i></span></a> </span><img alt=''  class='imaheight' class='img-responsive' src='PRODUCT_IMG/AUTOMATIC.png'></div><div class='product-thumb-info-content'><span class='price pull-right'>29.99 USD</span><h4><a href='shop-product-detail2.html'>Denim shirt</a></h4> <span class='item-cat'><small><a href='#'>Jackets</a></small></span></div></div></div></div>
                         <div class='col-md-3 animation'><div class='item product'><div class='product-thumb-info'><div class='product-thumb-info-image'><span class='product-thumb-info-act'><a href='shop-cart-full.html' class='add-to-cart-product' > <span><i class='fa fa-shopping-cart'></i></span></a> </span><img alt=''  class='imaheight' class='img-responsive' src='PRODUCT_IMG/AUTOMATIC.png'></div><div class='product-thumb-info-content'><span class='price pull-right'>29.99 USD</span><h4><a href='shop-product-detail2.html'>Denim shirt</a></h4> <span class='item-cat'><small><a href='#'>Jackets</a></small></span></div></div></div></div>
                    
-                     
                     </div>
                 </div>
             </div>
