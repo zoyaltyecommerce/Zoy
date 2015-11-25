@@ -63,6 +63,7 @@
      <script src="js/jquery-2.1.1.js"></script>
     <script type="text/javascript">
         function forgetpwd() {
+            debugger;
             document.getElementById('lblmsg').style.display = 'inline-block'
             document.getElementById('txt_fogetpassword').style.display = "inline-block";
             document.getElementById('txt_username').style.display = 'none';
@@ -72,6 +73,7 @@
             document.getElementById('forget').style.display = 'none';
             document.getElementById('backlogin').style.display = 'block';
             document.getElementById('back').style.display = "none";
+          
         }
         function backtologin()
         {
