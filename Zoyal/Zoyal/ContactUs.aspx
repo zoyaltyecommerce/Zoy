@@ -55,6 +55,11 @@
 	<![endif]-->
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+     <script>
+        $(document).ready(function () {
+            document.getElementById("li_contact").className = "active";
+        });
+    </script>
     	
 		<!-- Begin Main -->
 		<div role="main" class="main">
