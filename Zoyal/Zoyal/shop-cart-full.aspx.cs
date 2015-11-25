@@ -58,10 +58,13 @@ namespace Zoyal
                             }
                             if (sta == false)
                             {
+
                                 DataTable dt_allpro = (DataTable)Session["CART"];
+
                                 dt_product.Merge(dt_allpro);
                                 // dt_allpro.Merge(dt_product);
                                 Session["CART"] = dt_product;
+
                             }
                         }
 
@@ -107,7 +110,7 @@ namespace Zoyal
 
                 //  clearcontrol();
                 // string startdate ="";
-              //  string enddate = "";
+                //  string enddate = "";
                 DataTable dt_details = (DataTable)Session["DETAILS"];
 
                 if (Session["DETAILS"] != null)
@@ -124,9 +127,9 @@ namespace Zoyal
 
                     txt_promocode.Text = dt_details.Rows[0]["PROMOCODE"].ToString();
                     txt_audience.Text = dt_details.Rows[0]["AUDIENCE"].ToString();
-                  //  startdate = dt_details.Rows[0]["STARTDATE"].ToString();
-                   // enddate = dt_details.Rows[0]["ENDDATE"].ToString();
-                  //  startdate = DateTime.Now.ToString("dd/MM/yyyy ");
+                    //  startdate = dt_details.Rows[0]["STARTDATE"].ToString();
+                    // enddate = dt_details.Rows[0]["ENDDATE"].ToString();
+                    //  startdate = DateTime.Now.ToString("dd/MM/yyyy ");
                     //enddate= DateTime.Now.ToString("dd/MM/yyyy ");
                     txt_startdate.Text = dt_details.Rows[0]["STARTDATE"].ToString();
                     txt_enddate.Text = dt_details.Rows[0]["ENDDATE"].ToString();
@@ -165,9 +168,6 @@ namespace Zoyal
                 //txt_city.Text = "";
                 txt_addline1.Text = "";
                 txt_addline2.Text = "";
-
-
-
             }
             catch (Exception ex)
             {
@@ -215,7 +215,7 @@ namespace Zoyal
                 column["STARTDATE"] = txt_startdate.Text;
                 column["ENDDATE"] = txt_enddate.Text;
                 Session["DETAILS"] = dt_details;
-                
+
 
 
 
@@ -252,21 +252,17 @@ namespace Zoyal
                 }
                 else
                 {
-                    if (lbl_count_item ==0)
-                    {
-                        Response.Redirect("logincheck.aspx");
-                    }
-                    else
-                    {
-                        lbl_proced_msg.Text = "Please select one item";
-                       // Response.Redirect("shop-cart-full.aspx");
-                       
-                    }
-                       
-                   
+                    // if (lbl_count_item ==0)
+                    // {
+                    Response.Redirect("logincheck.aspx");
+                    // }
+                    // else
+                    // {
+                    //    lbl_proced_msg.Text = "Please select one item";
+                    //    // Response.Redirect("shop-cart-full.aspx");
 
-                   
-                   
+                    //  }
+
                 }
 
             }
@@ -383,8 +379,8 @@ namespace Zoyal
             {
                 HttpContext.Current.Session["price"] = price;
 
-               
-               
+
+
                 COUPONS obj1 = new COUPONS();
 
 
@@ -465,4 +461,4 @@ namespace Zoyal
             return price + "," + message;
         }
     }
-    }
+}
